@@ -1,0 +1,528 @@
+// =============================================================================
+// MARKDOWN EDITOR COMPONENTS
+// =============================================================================
+
+.markdown-editor {
+  position: relative;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius-lg);
+  overflow: hidden;
+  font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+  font-size: var(--font-size-sm);
+  line-height: 1.6;
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--spacing-sm) var(--spacing-md);
+    background: var(--color-surface-variant);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  &__title {
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-medium);
+    color: var(--color-text-primary);
+    margin: 0;
+  }
+
+  &__mode-toggle {
+    display: flex;
+    gap: var(--spacing-xs);
+  }
+
+  &__mode-btn {
+    padding: var(--spacing-xs) var(--spacing-sm);
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--border-radius-sm);
+    color: var(--color-text-secondary);
+    font-size: var(--font-size-xs);
+    cursor: pointer;
+    transition: all var(--transition-fast);
+
+    &:hover {
+      background: var(--color-surface-hover);
+      color: var(--color-text-primary);
+    }
+
+    &--active {
+      background: var(--color-primary);
+      color: var(--color-on-primary);
+      border-color: var(--color-primary);
+    }
+  }
+
+  &__toolbar {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+    padding: var(--spacing-sm) var(--spacing-md);
+    background: var(--color-surface-variant);
+    border-bottom: 1px solid var(--color-border);
+    flex-wrap: wrap;
+  }
+
+  &__toolbar-group {
+    display: flex;
+    gap: var(--spacing-xs);
+    padding-right: var(--spacing-sm);
+    border-right: 1px solid var(--color-border);
+
+    &:last-child {
+      border-right: none;
+      padding-right: 0;
+    }
+  }
+
+  &__toolbar-btn {
+    padding: var(--spacing-xs);
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--border-radius-sm);
+    color: var(--color-text-secondary);
+    font-size: var(--font-size-xs);
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    min-width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &:hover {
+      background: var(--color-surface-hover);
+      color: var(--color-text-primary);
+      border-color: var(--color-primary);
+    }
+
+    &--active {
+      background: var(--color-primary-alpha);
+      color: var(--color-primary);
+      border-color: var(--color-primary);
+    }
+
+    &--disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+
+      &:hover {
+        background: var(--color-surface);
+        color: var(--color-text-secondary);
+        border-color: var(--color-border);
+      }
+    }
+  }
+
+  &__container {
+    display: flex;
+    min-height: 400px;
+  }
+
+  &__editor-pane {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    border-right: 1px solid var(--color-border);
+
+    &--hidden {
+      display: none;
+    }
+  }
+
+  &__preview-pane {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+
+    &--hidden {
+      display: none;
+    }
+  }
+
+  &__editor {
+    flex: 1;
+    padding: var(--spacing-md);
+    background: var(--color-surface);
+    color: var(--color-text-primary);
+    border: none;
+    outline: none;
+    resize: none;
+    font-family: inherit;
+    font-size: inherit;
+    line-height: inherit;
+    tab-size: 2;
+
+    &::placeholder {
+      color: var(--color-text-secondary);
+    }
+  }
+
+  &__preview {
+    flex: 1;
+    padding: var(--spacing-md);
+    background: var(--color-surface);
+    color: var(--color-text-primary);
+    overflow-y: auto;
+    line-height: 1.6;
+
+    // Markdown preview styles
+    h1, h2, h3, h4, h5, h6 {
+      margin: var(--spacing-md) 0 var(--spacing-sm) 0;
+      font-weight: var(--font-weight-semibold);
+      color: var(--color-text-primary);
+    }
+
+    h1 {
+      font-size: var(--font-size-2xl);
+      border-bottom: 2px solid var(--color-border);
+      padding-bottom: var(--spacing-xs);
+    }
+
+    h2 {
+      font-size: var(--font-size-xl);
+      border-bottom: 1px solid var(--color-border);
+      padding-bottom: var(--spacing-xs);
+    }
+
+    h3 {
+      font-size: var(--font-size-lg);
+    }
+
+    h4 {
+      font-size: var(--font-size-base);
+    }
+
+    h5 {
+      font-size: var(--font-size-sm);
+    }
+
+    h6 {
+      font-size: var(--font-size-xs);
+    }
+
+    p {
+      margin: var(--spacing-sm) 0;
+    }
+
+    ul, ol {
+      margin: var(--spacing-sm) 0;
+      padding-left: var(--spacing-lg);
+    }
+
+    li {
+      margin: var(--spacing-xs) 0;
+    }
+
+    blockquote {
+      margin: var(--spacing-md) 0;
+      padding: var(--spacing-sm) var(--spacing-md);
+      border-left: 4px solid var(--color-primary);
+      background: var(--color-surface-variant);
+      font-style: italic;
+      color: var(--color-text-secondary);
+    }
+
+    code {
+      background: var(--color-surface-variant);
+      color: var(--color-primary);
+      padding: var(--spacing-xs) var(--spacing-sm);
+      border-radius: var(--border-radius-sm);
+      font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+      font-size: 0.9em;
+    }
+
+    pre {
+      background: var(--color-surface-variant);
+      padding: var(--spacing-md);
+      border-radius: var(--border-radius-md);
+      overflow-x: auto;
+      margin: var(--spacing-md) 0;
+
+      code {
+        background: none;
+        padding: 0;
+        color: var(--color-text-primary);
+      }
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: var(--spacing-md) 0;
+    }
+
+    th, td {
+      padding: var(--spacing-sm);
+      border: 1px solid var(--color-border);
+      text-align: left;
+    }
+
+    th {
+      background: var(--color-surface-variant);
+      font-weight: var(--font-weight-semibold);
+    }
+
+    a {
+      color: var(--color-primary);
+      text-decoration: none;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      border-radius: var(--border-radius-sm);
+    }
+
+    hr {
+      border: none;
+      border-top: 1px solid var(--color-border);
+      margin: var(--spacing-lg) 0;
+    }
+  }
+
+  &__status-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--spacing-xs) var(--spacing-md);
+    background: var(--color-surface-variant);
+    border-top: 1px solid var(--color-border);
+    font-size: var(--font-size-xs);
+    color: var(--color-text-secondary);
+  }
+
+  &__status-item {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+  }
+
+  &__word-count {
+    font-family: monospace;
+  }
+
+  &__character-count {
+    font-family: monospace;
+  }
+
+  &__line-count {
+    font-family: monospace;
+  }
+
+  // Markdown syntax highlighting
+  &__token {
+    &--heading {
+      color: var(--color-primary);
+      font-weight: var(--font-weight-semibold);
+    }
+
+    &--emphasis {
+      font-style: italic;
+    }
+
+    &--strong {
+      font-weight: var(--font-weight-bold);
+    }
+
+    &--code {
+      background: var(--color-surface-variant);
+      color: var(--color-primary);
+      padding: var(--spacing-xs) var(--spacing-sm);
+      border-radius: var(--border-radius-sm);
+      font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+    }
+
+    &--link {
+      color: var(--color-primary);
+      text-decoration: underline;
+    }
+
+    &--list {
+      color: var(--color-text-secondary);
+    }
+
+    &--blockquote {
+      color: var(--color-text-secondary);
+      font-style: italic;
+    }
+  }
+
+  // Split view
+  &--split {
+    .markdown-editor__container {
+      .markdown-editor__editor-pane,
+      .markdown-editor__preview-pane {
+        display: flex;
+      }
+    }
+  }
+
+  // Variations
+  &--dark {
+    background: var(--color-surface-dark);
+    color: var(--color-text-primary-dark);
+
+    .markdown-editor__header,
+    .markdown-editor__toolbar,
+    .markdown-editor__status-bar {
+      background: var(--color-surface-variant-dark);
+    }
+
+    .markdown-editor__preview {
+      background: var(--color-surface-dark);
+
+      blockquote {
+        background: var(--color-surface-variant-dark);
+      }
+
+      code {
+        background: var(--color-surface-variant-dark);
+      }
+
+      pre {
+        background: var(--color-surface-variant-dark);
+      }
+
+      th {
+        background: var(--color-surface-variant-dark);
+      }
+    }
+  }
+
+  &--compact {
+    .markdown-editor__header {
+      padding: var(--spacing-xs) var(--spacing-sm);
+    }
+
+    .markdown-editor__toolbar {
+      padding: var(--spacing-xs) var(--spacing-sm);
+    }
+
+    .markdown-editor__container {
+      min-height: 300px;
+    }
+
+    .markdown-editor__editor,
+    .markdown-editor__preview {
+      padding: var(--spacing-sm);
+    }
+  }
+
+  &--large {
+    font-size: var(--font-size-base);
+
+    .markdown-editor__container {
+      min-height: 500px;
+    }
+  }
+
+  &--fullscreen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1000;
+    border-radius: 0;
+  }
+}
+
+// Markdown toolbar shortcuts
+.markdown-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-xs);
+  padding: var(--spacing-sm);
+  background: var(--color-surface-variant);
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius-md);
+  margin-bottom: var(--spacing-md);
+
+  &__btn {
+    padding: var(--spacing-xs) var(--spacing-sm);
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--border-radius-sm);
+    color: var(--color-text-secondary);
+    font-size: var(--font-size-xs);
+    cursor: pointer;
+    transition: all var(--transition-fast);
+
+    &:hover {
+      background: var(--color-surface-hover);
+      color: var(--color-text-primary);
+      border-color: var(--color-primary);
+    }
+
+    &--active {
+      background: var(--color-primary-alpha);
+      color: var(--color-primary);
+      border-color: var(--color-primary);
+    }
+  }
+}
+
+// Responsive adjustments
+@media (max-width: 768px) {
+  .markdown-editor {
+    &__header {
+      flex-direction: column;
+      gap: var(--spacing-sm);
+      align-items: stretch;
+    }
+
+    &__toolbar {
+      flex-direction: column;
+      gap: var(--spacing-sm);
+    }
+
+    &__toolbar-group {
+      border-right: none;
+      border-bottom: 1px solid var(--color-border);
+      padding-right: 0;
+      padding-bottom: var(--spacing-sm);
+
+      &:last-child {
+        border-bottom: none;
+        padding-bottom: 0;
+      }
+    }
+
+    &__container {
+      flex-direction: column;
+    }
+
+    &__editor-pane,
+    &__preview-pane {
+      border-right: none;
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    &__preview-pane {
+      border-bottom: none;
+    }
+
+    &--split {
+      .markdown-editor__container {
+        flex-direction: row;
+      }
+
+      .markdown-editor__editor-pane,
+      .markdown-editor__preview-pane {
+        border-right: 1px solid var(--color-border);
+        border-bottom: none;
+      }
+
+      .markdown-editor__preview-pane {
+        border-right: none;
+      }
+    }
+  }
+} 

@@ -1,0 +1,90 @@
+{
+  "name": "prism",
+  "version": "1.0.0",
+  "description": "A modern, responsive admin dashboard theme with comprehensive component library",
+  "main": "dist/css/style.css",
+  "scripts": {
+    "dev": "sass src/scss/style.scss:dist/css/style.css --watch --style=expanded",
+    "build": "sass src/scss/style.scss:dist/css/style.css --style=compressed",
+    "build:prod": "sass src/scss/_build.scss:dist/css/style.min.css --style=compressed --no-source-map",
+    "build:critical": "sass src/scss/_build.scss:dist/css/critical.css --style=compressed --no-source-map",
+    "build:themes": "npm run build:light && npm run build:dark",
+    "build:light": "sass src/scss/_build.scss:dist/css/theme-light.css --style=compressed --no-source-map",
+    "build:dark": "sass src/scss/_build.scss:dist/css/theme-dark.css --style=compressed --no-source-map",
+    "lint": "stylelint src/scss/**/*.scss",
+    "lint:fix": "stylelint src/scss/**/*.scss --fix",
+    "format": "prettier --write src/scss/**/*.scss",
+    "test": "npm run lint",
+    "clean": "rimraf dist",
+    "prebuild": "npm run clean",
+    "postbuild": "npm run lint"
+  },
+  "keywords": [
+    "admin",
+    "theme",
+    "scss",
+    "css",
+    "components",
+    "ui",
+    "dashboard"
+  ],
+  "author": "Your Name",
+  "license": "MIT",
+  "devDependencies": {
+    "sass": "^1.69.0",
+    "stylelint": "^15.11.0",
+    "stylelint-config-standard-scss": "^11.1.0",
+    "stylelint-scss": "^5.3.1",
+    "prettier": "^3.1.0",
+    "rimraf": "^5.0.5",
+    "postcss": "^8.4.31",
+    "autoprefixer": "^10.4.16",
+    "cssnano": "^6.0.1"
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not dead"
+  ],
+  "stylelint": {
+    "extends": [
+      "stylelint-config-standard-scss"
+    ],
+    "rules": {
+      "selector-class-pattern": "^[a-z]([a-z0-9-]+)?(__([a-z0-9]+-?)+)?(--([a-z0-9]+-?)+){0,2}$",
+      "scss/at-import-partial-extension": "never",
+      "scss/at-import-no-partial-leading-underscore": true,
+      "scss/at-mixin-argumentless-call-parentheses": "never",
+      "scss/at-rule-no-unknown": true,
+      "scss/dollar-variable-colon-space-after": "always",
+      "scss/dollar-variable-colon-space-before": "never",
+      "scss/dollar-variable-no-missing-interpolation": true,
+      "scss/dollar-variable-pattern": "^[a-z-]+$",
+      "scss/percent-placeholder-pattern": "^[a-z-]+$",
+      "scss/selector-no-redundant-nesting-selector": true
+    }
+  },
+  "prettier": {
+    "printWidth": 80,
+    "tabWidth": 2,
+    "useTabs": false,
+    "semi": true,
+    "singleQuote": true,
+    "trailingComma": "es5",
+    "bracketSpacing": true,
+    "bracketSameLine": false,
+    "arrowParens": "avoid"
+  },
+  "engines": {
+    "node": ">=16.0.0",
+    "npm": ">=8.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/harshad1507/prism.git"
+  },
+  "bugs": {
+    "url": "https://github.com/harshad1507/prism/issues"
+  },
+  "homepage": "https://github.com/harshad1507/prism#readme"
+} 

@@ -1,0 +1,259 @@
+// =============================================================================
+// BADGE COMPONENTS
+// =============================================================================
+
+// Base badge
+.badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--spacing-xs) var(--spacing-sm);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-medium);
+  line-height: 1;
+  border-radius: var(--border-radius);
+  white-space: nowrap;
+  text-decoration: none;
+  transition: all var(--transition-fast);
+
+  // Badge types
+  &--primary {
+    background: var(--primary-color);
+    color: white;
+  }
+
+  &--secondary {
+    background: var(--secondary-color);
+    color: white;
+  }
+
+  &--success {
+    background: var(--success-color);
+    color: white;
+  }
+
+  &--warning {
+    background: var(--warning-color);
+    color: var(--text-color);
+  }
+
+  &--danger {
+    background: var(--danger-color);
+    color: white;
+  }
+
+  &--info {
+    background: var(--info-color);
+    color: white;
+  }
+
+  &--light {
+    background: var(--bg-hover);
+    color: var(--text-color);
+    border: 1px solid var(--border-color);
+  }
+
+  &--dark {
+    background: var(--text-color);
+    color: white;
+  }
+
+  // Outlined badges
+  &--outlined {
+    background: transparent;
+    border: 1px solid currentColor;
+
+    &.badge--primary {
+      color: var(--primary-color);
+    }
+
+    &.badge--secondary {
+      color: var(--secondary-color);
+    }
+
+    &.badge--success {
+      color: var(--success-color);
+    }
+
+    &.badge--warning {
+      color: var(--warning-color);
+    }
+
+    &.badge--danger {
+      color: var(--danger-color);
+    }
+
+    &.badge--info {
+      color: var(--info-color);
+    }
+
+    &.badge--light {
+      color: var(--text-muted);
+    }
+
+    &.badge--dark {
+      color: var(--text-color);
+    }
+  }
+
+  // Badge sizes
+  &--sm {
+    padding: calc(var(--spacing-xs) / 2) var(--spacing-xs);
+    font-size: calc(var(--font-size-xs) * 0.875);
+  }
+
+  &--lg {
+    padding: var(--spacing-sm) var(--spacing-md);
+    font-size: var(--font-size-sm);
+  }
+
+  // Badge with icon
+  &--with-icon {
+    gap: var(--spacing-xs);
+
+    .icon {
+      width: 0.75rem;
+      height: 0.75rem;
+    }
+  }
+
+  // Rounded badge
+  &--rounded {
+    border-radius: 9999px;
+  }
+
+  // Pill badge
+  &--pill {
+    border-radius: 9999px;
+    padding-left: var(--spacing-md);
+    padding-right: var(--spacing-md);
+  }
+}
+
+// Status badges
+.status-badge {
+  @extend .badge;
+  position: relative;
+
+  &::before {
+    content: '';
+    display: inline-block;
+    width: 0.5rem;
+    height: 0.5rem;
+    border-radius: 50%;
+    background: currentColor;
+    margin-right: var(--spacing-xs);
+  }
+
+  &--online {
+    @extend .badge--success;
+  }
+
+  &--offline {
+    @extend .badge--secondary;
+  }
+
+  &--away {
+    @extend .badge--warning;
+  }
+
+  &--busy {
+    @extend .badge--danger;
+  }
+}
+
+// Counter badge
+.counter-badge {
+  @extend .badge;
+  min-width: 1.5rem;
+  height: 1.5rem;
+  padding: 0 var(--spacing-xs);
+  border-radius: 50%;
+
+  &--large {
+    min-width: 2rem;
+    height: 2rem;
+    font-size: var(--font-size-sm);
+  }
+
+  &--small {
+    min-width: 1.25rem;
+    height: 1.25rem;
+    font-size: calc(var(--font-size-xs) * 0.75);
+  }
+}
+
+// Notification badge
+.notification-badge {
+  @extend .counter-badge;
+  position: absolute;
+  top: -0.5rem;
+  right: -0.5rem;
+  z-index: 10;
+  animation: pulse 2s infinite;
+
+  &--dot {
+    min-width: 0.5rem;
+    height: 0.5rem;
+    padding: 0;
+    border-radius: 50%;
+  }
+}
+
+// Badge group
+.badge-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-xs);
+
+  &--stacked {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  &--inline {
+    display: inline-flex;
+  }
+}
+
+// Badge in buttons
+.btn {
+  .badge {
+    margin-left: var(--spacing-xs);
+  }
+}
+
+// Badge in navigation
+.nav-item {
+  .badge {
+    margin-left: var(--spacing-xs);
+  }
+}
+
+// Responsive
+@media (max-width: 768px) {
+  .badge {
+    &--lg {
+      padding: var(--spacing-xs) var(--spacing-sm);
+      font-size: var(--font-size-xs);
+    }
+  }
+
+  .badge-group {
+    gap: calc(var(--spacing-xs) / 2);
+  }
+}
+
+// Badge animations
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+.notification-badge {
+  animation: pulse 2s infinite;
+} 

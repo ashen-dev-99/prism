@@ -1,0 +1,360 @@
+// =============================================================================
+// ALERT COMPONENT STYLES
+// =============================================================================
+
+.alert {
+  position: relative;
+  padding: $spacing-md $spacing-lg;
+  margin-bottom: $spacing-md;
+  border: 1px solid transparent;
+  border-radius: $border-radius;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  display: flex;
+  align-items: flex-start;
+  gap: $spacing-sm;
+
+  &__icon {
+    flex-shrink: 0;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+  }
+
+  &__content {
+    flex: 1;
+    min-width: 0;
+
+    .alert-title {
+      font-weight: $font-weight-bold;
+      margin: 0 0 $spacing-xs 0;
+      color: inherit;
+    }
+
+    .alert-message {
+      margin: 0;
+      color: inherit;
+    }
+  }
+
+  &__close {
+    flex-shrink: 0;
+    background: none;
+    border: none;
+    color: inherit;
+    font-size: 1.25rem;
+    cursor: pointer;
+    padding: 0;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0.7;
+    transition: opacity $transition-duration ease;
+
+    &:hover {
+      opacity: 1;
+    }
+  }
+
+  // Alert types
+  &.alert-primary {
+    background: var(--primary-bg);
+    border-color: var(--primary-color);
+    color: var(--primary-dark);
+
+    .alert__icon {
+      color: var(--primary-color);
+    }
+  }
+
+  &.alert-success {
+    background: var(--success-bg);
+    border-color: var(--success-color);
+    color: var(--success-dark);
+
+    .alert__icon {
+      color: var(--success-color);
+    }
+  }
+
+  &.alert-warning {
+    background: var(--warning-bg);
+    border-color: var(--warning-color);
+    color: var(--warning-dark);
+
+    .alert__icon {
+      color: var(--warning-color);
+    }
+  }
+
+  &.alert-danger {
+    background: var(--danger-bg);
+    border-color: var(--danger-color);
+    color: var(--danger-dark);
+
+    .alert__icon {
+      color: var(--danger-color);
+    }
+  }
+
+  &.alert-info {
+    background: var(--info-bg);
+    border-color: var(--info-color);
+    color: var(--info-dark);
+
+    .alert__icon {
+      color: var(--info-color);
+    }
+  }
+
+  &.alert-secondary {
+    background: var(--secondary-bg);
+    border-color: var(--border-color);
+    color: var(--text-muted);
+
+    .alert__icon {
+      color: var(--text-muted);
+    }
+  }
+
+  // Alert variations
+  &.alert-outlined {
+    background: transparent;
+
+    &.alert-primary {
+      color: var(--primary-color);
+    }
+
+    &.alert-success {
+      color: var(--success-color);
+    }
+
+    &.alert-warning {
+      color: var(--warning-color);
+    }
+
+    &.alert-danger {
+      color: var(--danger-color);
+    }
+
+    &.alert-info {
+      color: var(--info-color);
+    }
+
+    &.alert-secondary {
+      color: var(--text-color);
+    }
+  }
+
+  &.alert-filled {
+    color: white;
+
+    &.alert-primary {
+      background: var(--primary-color);
+      border-color: var(--primary-color);
+    }
+
+    &.alert-success {
+      background: var(--success-color);
+      border-color: var(--success-color);
+    }
+
+    &.alert-warning {
+      background: var(--warning-color);
+      border-color: var(--warning-color);
+    }
+
+    &.alert-danger {
+      background: var(--danger-color);
+      border-color: var(--danger-color);
+    }
+
+    &.alert-info {
+      background: var(--info-color);
+      border-color: var(--info-color);
+    }
+
+    &.alert-secondary {
+      background: var(--text-muted);
+      border-color: var(--text-muted);
+    }
+
+    .alert__icon,
+    .alert__close {
+      color: white;
+    }
+  }
+
+  &.alert-compact {
+    padding: $spacing-sm $spacing-md;
+    font-size: 0.875rem;
+  }
+
+  &.alert-large {
+    padding: $spacing-lg $spacing-xl;
+    font-size: 1rem;
+
+    .alert__icon {
+      width: 24px;
+      height: 24px;
+      font-size: 1.25rem;
+    }
+
+    .alert__close {
+      width: 24px;
+      height: 24px;
+      font-size: 1.5rem;
+    }
+  }
+
+  &.alert-dismissible {
+    padding-right: $spacing-xl;
+  }
+
+  &.alert-with-icon {
+    padding-left: $spacing-xl;
+  }
+}
+
+// Alert container
+.alert-container {
+  position: fixed;
+  top: $header-height + $spacing-md;
+  right: $spacing-md;
+  z-index: $z-index-alert;
+  max-width: 400px;
+  width: 100%;
+
+  .alert {
+    margin-bottom: $spacing-sm;
+    animation: slideInRight $transition-duration ease;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
+
+// Alert list
+.alert-list {
+  .alert {
+    margin-bottom: $spacing-sm;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
+
+// Alert group
+.alert-group {
+  .alert {
+    border-radius: 0;
+    margin-bottom: 0;
+
+    &:first-child {
+      border-top-left-radius: $border-radius;
+      border-top-right-radius: $border-radius;
+    }
+
+    &:last-child {
+      border-bottom-left-radius: $border-radius;
+      border-bottom-right-radius: $border-radius;
+      margin-bottom: $spacing-md;
+    }
+  }
+}
+
+// Alert animations
+@keyframes slideInRight {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideOutRight {
+  from {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+}
+
+.alert {
+  &.alert-sliding-out {
+    animation: slideOutRight $transition-duration ease forwards;
+  }
+}
+
+// Responsive alerts
+@media (max-width: $breakpoint-md) {
+  .alert {
+    padding: $spacing-sm $spacing-md;
+
+    &.alert-large {
+      padding: $spacing-md $spacing-lg;
+    }
+
+    &.alert-dismissible {
+      padding-right: $spacing-lg;
+    }
+
+    &.alert-with-icon {
+      padding-left: $spacing-lg;
+    }
+  }
+
+  .alert-container {
+    left: $spacing-sm;
+    right: $spacing-sm;
+    max-width: none;
+  }
+}
+
+@media (max-width: $breakpoint-sm) {
+  .alert {
+    padding: $spacing-xs $spacing-sm;
+    font-size: 0.875rem;
+
+    &__icon {
+      width: 18px;
+      height: 18px;
+      font-size: 0.875rem;
+    }
+
+    &__close {
+      width: 18px;
+      height: 18px;
+      font-size: 1rem;
+    }
+
+    &.alert-large {
+      padding: $spacing-sm $spacing-md;
+
+      .alert__icon {
+        width: 20px;
+        height: 20px;
+        font-size: 1rem;
+      }
+
+      .alert__close {
+        width: 20px;
+        height: 20px;
+        font-size: 1.25rem;
+      }
+    }
+  }
+} 

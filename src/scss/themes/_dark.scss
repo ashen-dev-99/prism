@@ -1,0 +1,113 @@
+// =============================================================================
+// DARK THEME
+// =============================================================================
+
+[data-theme="dark"] {
+  // Background Colors
+  --bg-primary: #{$gray-900};
+  --bg-secondary: #{$gray-800};
+  --bg-tertiary: #{$gray-700};
+  --bg-overlay: rgba(0, 0, 0, 0.7);
+  
+  // Text Colors
+  --text-primary: #{$gray-100};
+  --text-secondary: #{$gray-300};
+  --text-muted: #{$gray-400};
+  --text-inverse: #{$gray-900};
+  --text-link: #{$primary-light};
+  --text-link-hover: #{$primary-color};
+  
+  // Border Colors
+  --border-color: #{$gray-700};
+  --border-color-dark: #{$gray-600};
+  --border-color-light: #{$gray-800};
+  
+  // Shadow Colors
+  --shadow-color: rgba(0, 0, 0, 0.3);
+  --shadow-color-light: rgba(0, 0, 0, 0.2);
+  
+  // Component Colors
+  --card-bg: #{$gray-800};
+  --card-border: #{$gray-700};
+  --card-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
+  --card-shadow-hover: 0 10px 15px -3px rgba(0, 0, 0, 0.4);
+  
+  --input-bg: #{$gray-800};
+  --input-border: #{$gray-600};
+  --input-border-focus: #{$primary-color};
+  --input-shadow-focus: rgba(59, 130, 246, 0.2);
+  
+  --button-bg-primary: #{$primary-color};
+  --button-bg-secondary: #{$gray-700};
+  --button-bg-success: #{$success-color};
+  --button-bg-warning: #{$warning-color};
+  --button-bg-danger: #{$danger-color};
+  
+  --button-text-primary: #{$white};
+  --button-text-secondary: #{$gray-200};
+  --button-text-success: #{$white};
+  --button-text-warning: #{$white};
+  --button-text-danger: #{$white};
+  
+  // Status Colors
+  --status-success: #{$success-light};
+  --status-warning: #{$warning-light};
+  --status-danger: #{$danger-light};
+  --status-info: #{$info-light};
+  
+  // Sidebar Colors
+  --sidebar-bg: #{$gray-800};
+  --sidebar-border: #{$gray-700};
+  --sidebar-item-bg: transparent;
+  --sidebar-item-bg-hover: #{$gray-700};
+  --sidebar-item-bg-active: #{$primary-color};
+  --sidebar-text: #{$gray-300};
+  --sidebar-text-hover: #{$gray-100};
+  --sidebar-text-active: #{$white};
+  
+  // Header Colors
+  --header-bg: #{$gray-800};
+  --header-border: #{$gray-700};
+  --header-text: #{$gray-100};
+  
+  // Table Colors
+  --table-bg: #{$gray-800};
+  --table-border: #{$gray-700};
+  --table-row-bg: #{$gray-800};
+  --table-row-bg-hover: #{$gray-700};
+  --table-row-bg-striped: #{$gray-750};
+  
+  // Modal Colors
+  --modal-bg: #{$gray-800};
+  --modal-border: #{$gray-700};
+  --modal-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+  --modal-backdrop: rgba(0, 0, 0, 0.7);
+  
+  // Tooltip Colors
+  --tooltip-bg: #{$gray-100};
+  --tooltip-text: #{$gray-900};
+  
+  // Dropdown Colors
+  --dropdown-bg: #{$gray-800};
+  --dropdown-border: #{$gray-700};
+  --dropdown-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.4);
+  --dropdown-item-bg: transparent;
+  --dropdown-item-bg-hover: #{$gray-700};
+  
+  // Alert Colors
+  --alert-success-bg: #{darken($success-color, 60%)};
+  --alert-success-border: #{$success-color};
+  --alert-success-text: #{$success-light};
+  
+  --alert-warning-bg: #{darken($warning-color, 60%)};
+  --alert-warning-border: #{$warning-color};
+  --alert-warning-text: #{$warning-light};
+  
+  --alert-danger-bg: #{darken($danger-color, 60%)};
+  --alert-danger-border: #{$danger-color};
+  --alert-danger-text: #{$danger-light};
+  
+  --alert-info-bg: #{darken($info-color, 60%)};
+  --alert-info-border: #{$info-color};
+  --alert-info-text: #{$info-light};
+} 

@@ -1,0 +1,317 @@
+// =============================================================================
+// TOOLTIP COMPONENTS
+// =============================================================================
+
+// Tooltip container
+.tooltip {
+  position: relative;
+  display: inline-block;
+}
+
+// Tooltip content
+.tooltip__content {
+  position: absolute;
+  z-index: 1000;
+  padding: var(--spacing-xs) var(--spacing-sm);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-medium);
+  line-height: 1.4;
+  color: white;
+  background: var(--text-color);
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-md);
+  white-space: nowrap;
+  opacity: 0;
+  visibility: hidden;
+  transform: scale(0.8);
+  transition: all var(--transition-fast);
+  pointer-events: none;
+
+  // Show tooltip on hover
+  .tooltip:hover &,
+  .tooltip--active & {
+    opacity: 1;
+    visibility: visible;
+    transform: scale(1);
+  }
+
+  // Tooltip arrow
+  &::before {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 0;
+    border: 4px solid transparent;
+  }
+
+  // Positioning
+  &--top {
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%) scale(0.8);
+    margin-bottom: var(--spacing-xs);
+
+    .tooltip:hover &,
+    .tooltip--active & {
+      transform: translateX(-50%) scale(1);
+    }
+
+    &::before {
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      border-top-color: var(--text-color);
+    }
+  }
+
+  &--bottom {
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%) scale(0.8);
+    margin-top: var(--spacing-xs);
+
+    .tooltip:hover &,
+    .tooltip--active & {
+      transform: translateX(-50%) scale(1);
+    }
+
+    &::before {
+      bottom: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      border-bottom-color: var(--text-color);
+    }
+  }
+
+  &--left {
+    right: 100%;
+    top: 50%;
+    transform: translateY(-50%) scale(0.8);
+    margin-right: var(--spacing-xs);
+
+    .tooltip:hover &,
+    .tooltip--active & {
+      transform: translateY(-50%) scale(1);
+    }
+
+    &::before {
+      left: 100%;
+      top: 50%;
+      transform: translateY(-50%);
+      border-left-color: var(--text-color);
+    }
+  }
+
+  &--right {
+    left: 100%;
+    top: 50%;
+    transform: translateY(-50%) scale(0.8);
+    margin-left: var(--spacing-xs);
+
+    .tooltip:hover &,
+    .tooltip--active & {
+      transform: translateY(-50%) scale(1);
+    }
+
+    &::before {
+      right: 100%;
+      top: 50%;
+      transform: translateY(-50%);
+      border-right-color: var(--text-color);
+    }
+  }
+
+  // Tooltip themes
+  &--primary {
+    background: var(--primary-color);
+
+    &::before {
+      border-top-color: var(--primary-color);
+      border-bottom-color: var(--primary-color);
+      border-left-color: var(--primary-color);
+      border-right-color: var(--primary-color);
+    }
+  }
+
+  &--success {
+    background: var(--success-color);
+
+    &::before {
+      border-top-color: var(--success-color);
+      border-bottom-color: var(--success-color);
+      border-left-color: var(--success-color);
+      border-right-color: var(--success-color);
+    }
+  }
+
+  &--warning {
+    background: var(--warning-color);
+    color: var(--text-color);
+
+    &::before {
+      border-top-color: var(--warning-color);
+      border-bottom-color: var(--warning-color);
+      border-left-color: var(--warning-color);
+      border-right-color: var(--warning-color);
+    }
+  }
+
+  &--danger {
+    background: var(--danger-color);
+
+    &::before {
+      border-top-color: var(--danger-color);
+      border-bottom-color: var(--danger-color);
+      border-left-color: var(--danger-color);
+      border-right-color: var(--danger-color);
+    }
+  }
+
+  &--info {
+    background: var(--info-color);
+
+    &::before {
+      border-top-color: var(--info-color);
+      border-bottom-color: var(--info-color);
+      border-left-color: var(--info-color);
+      border-right-color: var(--info-color);
+    }
+  }
+
+  &--light {
+    background: var(--bg-color);
+    color: var(--text-color);
+    border: 1px solid var(--border-color);
+
+    &::before {
+      border-top-color: var(--border-color);
+      border-bottom-color: var(--border-color);
+      border-left-color: var(--border-color);
+      border-right-color: var(--border-color);
+    }
+  }
+}
+
+// Tooltip sizes
+.tooltip {
+  &--sm .tooltip__content {
+    padding: calc(var(--spacing-xs) / 2) var(--spacing-xs);
+    font-size: calc(var(--font-size-xs) * 0.875);
+  }
+
+  &--lg .tooltip__content {
+    padding: var(--spacing-sm) var(--spacing-md);
+    font-size: var(--font-size-sm);
+  }
+}
+
+// Tooltip with HTML content
+.tooltip__content {
+  &--html {
+    white-space: normal;
+    max-width: 200px;
+    text-align: center;
+  }
+}
+
+// Tooltip with custom trigger
+.tooltip {
+  &--click {
+    .tooltip__content {
+      .tooltip:hover & {
+        opacity: 0;
+        visibility: hidden;
+        transform: scale(0.8);
+      }
+
+      .tooltip--active & {
+        opacity: 1;
+        visibility: visible;
+        transform: scale(1);
+      }
+    }
+  }
+
+  &--focus {
+    .tooltip__content {
+      .tooltip:focus &,
+      .tooltip:focus-within & {
+        opacity: 1;
+        visibility: visible;
+        transform: scale(1);
+      }
+    }
+  }
+}
+
+// Tooltip group
+.tooltip-group {
+  position: relative;
+
+  .tooltip {
+    position: static;
+  }
+
+  .tooltip__content {
+    position: absolute;
+  }
+}
+
+// Responsive tooltips
+@media (max-width: 768px) {
+  .tooltip__content {
+    display: none;
+
+    .tooltip--mobile & {
+      display: block;
+      position: fixed;
+      bottom: var(--spacing-md);
+      left: 50%;
+      transform: translateX(-50%);
+      margin: 0;
+      white-space: normal;
+      max-width: calc(100vw - 2rem);
+      text-align: center;
+
+      &::before {
+        display: none;
+      }
+
+      .tooltip:hover &,
+      .tooltip--active & {
+        transform: translateX(-50%);
+      }
+    }
+  }
+}
+
+// Tooltip animations
+@keyframes tooltipFadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.8) translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.tooltip__content {
+  animation: tooltipFadeIn var(--transition-fast);
+}
+
+// Tooltip delay
+.tooltip {
+  &--delay {
+    .tooltip__content {
+      transition-delay: 0.3s;
+    }
+  }
+
+  &--no-delay {
+    .tooltip__content {
+      transition-delay: 0s;
+    }
+  }
+} 

@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    
+    <!-- Primary Meta Tags -->
+    <title>Admin Theme - Modern Dashboard</title>
+    <meta name="title" content="Admin Theme - Modern Dashboard">
+    <meta name="description" content="A modern, responsive admin dashboard theme built with HTML, SCSS, and JavaScript">
+    <meta name="keywords" content="admin, dashboard, theme, scss, javascript, responsive">
+    <meta name="author" content="Your Name">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://your-domain.com/">
+    <meta property="og:title" content="Admin Theme - Modern Dashboard">
+    <meta property="og:description" content="A modern, responsive admin dashboard theme built with HTML, SCSS, and JavaScript">
+    <meta property="og:image" content="https://your-domain.com/images/og-image.jpg">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://your-domain.com/">
+    <meta property="twitter:title" content="Admin Theme - Modern Dashboard">
+    <meta property="twitter:description" content="A modern, responsive admin dashboard theme built with HTML, SCSS, and JavaScript">
+    <meta property="twitter:image" content="https://your-domain.com/images/og-image.jpg">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="/css/style.css">
+    
+    <!-- Theme color for browser UI -->
+    <meta name="theme-color" content="#3b82f6">
+    <meta name="msapplication-TileColor" content="#3b82f6">
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div id="loading" class="loading">
+        <div class="loading-spinner"></div>
+    </div>
+
+    <!-- Main Application -->
+    <div id="app" class="app" style="display: none;">
+        <!-- Sidebar -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <div class="sidebar-brand">
+                    <i class="fas fa-cube"></i>
+                    <span class="sidebar-brand-text">Admin Theme</span>
+                </div>
+                <button class="sidebar-toggle" id="sidebarToggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <ul class="sidebar-menu">
+                    <li class="sidebar-item">
+                        <a href="/" class="sidebar-link active">
+                            <i class="fas fa-tachometer-alt"></i>
+                            <span>Dashboard</span>
+                        </a>
+                    </li>
+                    <li class="sidebar-item">
+                        <a href="/users" class="sidebar-link">
+                            <i class="fas fa-users"></i>
+                            <span>Users</span>
+                        </a>
+                    </li>
+                    <li class="sidebar-item">
+                        <a href="/products" class="sidebar-link">
+                            <i class="fas fa-box"></i>
+                            <span>Products</span>
+                        </a>
+                    </li>
+                    <li class="sidebar-item">
+                        <a href="/orders" class="sidebar-link">
+                            <i class="fas fa-shopping-cart"></i>
+                            <span>Orders</span>
+                        </a>
+                    </li>
+                    <li class="sidebar-item">
+                        <a href="/analytics" class="sidebar-link">
+                            <i class="fas fa-chart-bar"></i>
+                            <span>Analytics</span>
+                        </a>
+                    </li>
+                    <li class="sidebar-item">
+                        <a href="/settings" class="sidebar-link">
+                            <i class="fas fa-cog"></i>
+                            <span>Settings</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="header">
+                <div class="header-left">
+                    <button class="header-menu-toggle" id="headerMenuToggle">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    <h1 class="header-title">Dashboard</h1>
+                </div>
+                
+                <div class="header-right">
+                    <div class="header-search">
+                        <div class="form-search">
+                            <i class="fas fa-search search-icon"></i>
+                            <input type="text" class="form-control" placeholder="Search...">
+                        </div>
+                    </div>
+                    
+                    <div class="header-actions">
+                        <button class="btn btn-icon-only" id="notificationsToggle">
+                            <i class="fas fa-bell"></i>
+                        </button>
+                        
+                        <button class="btn btn-icon-only" id="themeToggle">
+                            <i class="fas fa-moon"></i>
+                        </button>
+                        
+                        <div class="header-user">
+                            <img src="https://via.placeholder.com/32x32" alt="User Avatar" class="user-avatar">
+                            <span class="user-name">John Doe</span>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Page Content -->
+            <div class="page-content">
+                <div class="container">
+                    <!-- Welcome Section -->
+                    <section class="welcome-section">
+                        <div class="welcome-content">
+                            <h2>Welcome back, John!</h2>
+                            <p>Here's what's happening with your projects today.</p>
+                        </div>
+                        <div class="welcome-actions">
+                            <button class="btn btn-primary">
+                                <i class="fas fa-plus"></i>
+                                New Project
+                            </button>
+                        </div>
+                    </section>
+
+                    <!-- Stats Cards -->
+                    <section class="stats-section">
+                        <div class="stats-grid">
+                            <div class="stat-card">
+                                <div class="stat-icon">
+                                    <i class="fas fa-users"></i>
+                                </div>
+                                <div class="stat-content">
+                                    <h3 class="stat-number">2,847</h3>
+                                    <p class="stat-label">Total Users</p>
+                                    <span class="stat-change positive">
+                                        <i class="fas fa-arrow-up"></i>
+                                        12.5%
+                                    </span>
+                                </div>
+                            </div>
+                            
+                            <div class="stat-card">
+                                <div class="stat-icon">
+                                    <i class="fas fa-shopping-cart"></i>
+                                </div>
+                                <div class="stat-content">
+                                    <h3 class="stat-number">1,234</h3>
+                                    <p class="stat-label">Total Orders</p>
+                                    <span class="stat-change positive">
+                                        <i class="fas fa-arrow-up"></i>
+                                        8.2%
+                                    </span>
+                                </div>
+                            </div>
+                            
+                            <div class="stat-card">
+                                <div class="stat-icon">
+                                    <i class="fas fa-dollar-sign"></i>
+                                </div>
+                                <div class="stat-content">
+                                    <h3 class="stat-number">$45,678</h3>
+                                    <p class="stat-label">Revenue</p>
+                                    <span class="stat-change positive">
+                                        <i class="fas fa-arrow-up"></i>
+                                        15.3%
+                                    </span>
+                                </div>
+                            </div>
+                            
+                            <div class="stat-card">
+                                <div class="stat-icon">
+                                    <i class="fas fa-chart-line"></i>
+                                </div>
+                                <div class="stat-content">
+                                    <h3 class="stat-number">89.2%</h3>
+                                    <p class="stat-label">Conversion Rate</p>
+                                    <span class="stat-change negative">
+                                        <i class="fas fa-arrow-down"></i>
+                                        2.1%
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Recent Activity -->
+                    <section class="activity-section">
+                        <div class="section-header">
+                            <h3>Recent Activity</h3>
+                            <a href="/activity" class="btn btn-ghost">View All</a>
+                        </div>
+                        
+                        <div class="activity-list">
+                            <div class="activity-item">
+                                <div class="activity-icon">
+                                    <i class="fas fa-user-plus"></i>
+                                </div>
+                                <div class="activity-content">
+                                    <p class="activity-text">New user <strong>Sarah Johnson</strong> registered</p>
+                                    <span class="activity-time">2 minutes ago</span>
+                                </div>
+                            </div>
+                            
+                            <div class="activity-item">
+                                <div class="activity-icon">
+                                    <i class="fas fa-shopping-cart"></i>
+                                </div>
+                                <div class="activity-content">
+                                    <p class="activity-text">Order <strong>#12345</strong> was completed</p>
+                                    <span class="activity-time">15 minutes ago</span>
+                                </div>
+                            </div>
+                            
+                            <div class="activity-item">
+                                <div class="activity-icon">
+                                    <i class="fas fa-star"></i>
+                                </div>
+                                <div class="activity-content">
+                                    <p class="activity-text">New review received for <strong>Product XYZ</strong></p>
+                                    <span class="activity-time">1 hour ago</span>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+    <script src="/js/main.js"></script>
+    
+    <script>
+        // Hide loading screen when page is ready
+        window.addEventListener('load', function() {
+            document.getElementById('loading').style.display = 'none';
+            document.getElementById('app').style.display = 'block';
+        });
+    </script>
+</body>
+</html> 

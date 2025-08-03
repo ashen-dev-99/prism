@@ -1,0 +1,88 @@
+// =============================================================================
+// RATING COMPONENTS
+// =============================================================================
+
+.rating {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+
+  // Rating star
+  &__star {
+    color: var(--border-color);
+    font-size: var(--font-size-lg);
+    cursor: pointer;
+    transition: color var(--transition-fast);
+    user-select: none;
+
+    &:hover {
+      color: var(--warning-color);
+    }
+
+    &.active {
+      color: var(--warning-color);
+    }
+
+    &.half {
+      position: relative;
+      color: var(--border-color);
+
+      &::before {
+        content: '★';
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 50%;
+        overflow: hidden;
+        color: var(--warning-color);
+      }
+    }
+  }
+
+  // Rating text
+  &__text {
+    font-size: var(--font-size-sm);
+    color: var(--text-muted);
+    margin-left: var(--spacing-xs);
+  }
+
+  // Rating count
+  &__count {
+    font-size: var(--font-size-xs);
+    color: var(--text-muted);
+  }
+
+  // Read-only rating
+  &--readonly {
+    .rating__star {
+      cursor: default;
+      &:hover { color: inherit; }
+    }
+  }
+
+  // Rating sizes
+  &--sm {
+    .rating__star { font-size: var(--font-size-base); }
+  }
+  &--lg {
+    .rating__star { font-size: var(--font-size-xl); }
+  }
+  &--xl {
+    .rating__star { font-size: 2rem; }
+  }
+}
+
+// Rating with custom icons
+.rating--custom {
+  .rating__star {
+    &::before { content: var(--rating-icon, '★'); }
+  }
+}
+
+// Responsive
+@media (max-width: 768px) {
+  .rating {
+    gap: var(--spacing-xxs);
+    &__text, &__count { font-size: var(--font-size-xs); }
+  }
+} 

@@ -1,0 +1,148 @@
+// =============================================================================
+// BUILD CONFIGURATION
+// =============================================================================
+// This file contains build-specific imports and optimizations
+
+// Development mode - include all components
+// =============================================================================
+@if $build-mode == 'development' {
+  // Import everything for development
+  @import 'style';
+}
+
+// Production mode - selective imports
+// =============================================================================
+@if $build-mode == 'production' {
+  // Core utilities (always included)
+  @import 'utils/variables';
+  @import 'utils/functions';
+  @import 'utils/mixins';
+  
+  // Base styles (always included)
+  @import 'base/reset';
+  @import 'base/typography';
+  @import 'base/utilities';
+  
+  // Theme (include only active theme)
+  @if $theme == 'light' {
+    @import 'themes/light';
+  } @else if $theme == 'dark' {
+    @import 'themes/dark';
+  }
+  
+  // Layout (always included)
+  @import 'layout/grid';
+  @import 'layout/header';
+  @import 'layout/sidebar';
+  @import 'layout/footer';
+  
+  // Core components (always included)
+  @import 'components/core/buttons';
+  @import 'components/core/forms';
+  @import 'components/core/cards';
+  @import 'components/core/tables';
+  @import 'components/core/alerts';
+  
+  // Conditional component imports based on usage
+  @if $include-navigation {
+    @import 'components/navigation/navigation';
+    @import 'components/navigation/breadcrumbs';
+    @import 'components/navigation/tabs';
+    @import 'components/navigation/menus';
+    @import 'components/navigation/dropdown';
+    @import 'components/navigation/accordion';
+  }
+  
+  @if $include-feedback {
+    @import 'components/feedback/badges';
+    @import 'components/feedback/progress';
+    @import 'components/feedback/tooltips';
+    @import 'components/feedback/notifications';
+    @import 'components/feedback/ratings';
+  }
+  
+  @if $include-data {
+    @import 'components/data/data-tables';
+    @import 'components/data/tree';
+    @import 'components/data/list';
+    @import 'components/data/charts';
+    @import 'components/data/calendar';
+    @import 'components/data/kanban';
+  }
+  
+  @if $include-media {
+    @import 'components/media/avatars';
+    @import 'components/media/chips';
+    @import 'components/media/media';
+    @import 'components/media/dividers';
+    @import 'components/media/galleries';
+    @import 'components/media/image-viewer';
+  }
+  
+  @if $include-interactive {
+    @import 'components/interactive/modals';
+    @import 'components/interactive/popovers';
+    @import 'components/interactive/carousels';
+    @import 'components/interactive/sliders';
+    @import 'components/interactive/color-picker';
+    @import 'components/interactive/file-upload';
+  }
+  
+  @if $include-forms {
+    @import 'components/forms/filters';
+    @import 'components/forms/search';
+    @import 'components/forms/wizards';
+    @import 'components/forms/steppers';
+  }
+  
+  @if $include-editors {
+    @import 'components/editors/code-editor';
+    @import 'components/editors/markdown-editor';
+    @import 'components/editors/rich-text-editor';
+  }
+  
+  @if $include-visualization {
+    @import 'components/visualization/maps';
+    @import 'components/visualization/timeline';
+    @import 'components/visualization/progress';
+  }
+  
+  // Page-specific styles (include only used pages)
+  @if $include-dashboard {
+    @import 'pages/dashboard';
+  }
+  
+  @if $include-login {
+    @import 'pages/login';
+  }
+  
+  @if $include-settings {
+    @import 'pages/settings';
+  }
+  
+  // Animations (include only if animations are enabled)
+  @if $include-animations {
+    @import 'animations/keyframes';
+    @import 'animations/utilities';
+  }
+  
+  // Print styles (always included)
+  @import 'print/styles';
+}
+
+// Critical CSS mode - only essential styles
+// =============================================================================
+@if $build-mode == 'critical' {
+  // Only include critical styles for above-the-fold content
+  @import 'utils/variables';
+  @import 'utils/functions';
+  @import 'utils/mixins';
+  @import 'base/reset';
+  @import 'base/typography';
+  @import 'themes/light';
+  @import 'layout/grid';
+  @import 'layout/header';
+  @import 'components/core/buttons';
+  @import 'components/core/forms';
+  @import 'components/core/cards';
+} 

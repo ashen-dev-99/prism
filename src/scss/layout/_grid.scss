@@ -1,0 +1,397 @@
+// =============================================================================
+// GRID LAYOUT
+// =============================================================================
+
+// Container
+// =============================================================================
+
+.container {
+  width: 100%;
+  max-width: $container-max-width;
+  margin: 0 auto;
+  padding: 0 $container-padding;
+  
+  @include respond-to(sm) {
+    padding: 0 $spacing-4;
+  }
+  
+  @include respond-to(lg) {
+    padding: 0 $spacing-6;
+  }
+}
+
+.container-fluid {
+  width: 100%;
+  padding: 0 $container-padding;
+}
+
+.container-sm {
+  max-width: 640px;
+}
+
+.container-md {
+  max-width: 768px;
+}
+
+.container-lg {
+  max-width: 1024px;
+}
+
+.container-xl {
+  max-width: 1280px;
+}
+
+// Grid System
+// =============================================================================
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  margin-left: -$spacing-2;
+  margin-right: -$spacing-2;
+  
+  @include respond-to(sm) {
+    margin-left: -$spacing-3;
+    margin-right: -$spacing-3;
+  }
+  
+  @include respond-to(lg) {
+    margin-left: -$spacing-4;
+    margin-right: -$spacing-4;
+  }
+}
+
+.col {
+  flex: 1 0 0%;
+  padding-left: $spacing-2;
+  padding-right: $spacing-2;
+  
+  @include respond-to(sm) {
+    padding-left: $spacing-3;
+    padding-right: $spacing-3;
+  }
+  
+  @include respond-to(lg) {
+    padding-left: $spacing-4;
+    padding-right: $spacing-4;
+  }
+}
+
+// Column sizes
+@for $i from 1 through 12 {
+  .col-#{$i} {
+    flex: 0 0 percentage($i / 12);
+    max-width: percentage($i / 12);
+    padding-left: $spacing-2;
+    padding-right: $spacing-2;
+    
+    @include respond-to(sm) {
+      padding-left: $spacing-3;
+      padding-right: $spacing-3;
+    }
+    
+    @include respond-to(lg) {
+      padding-left: $spacing-4;
+      padding-right: $spacing-4;
+    }
+  }
+}
+
+// Responsive columns
+@each $breakpoint, $value in (
+  sm: $breakpoint-sm,
+  md: $breakpoint-md,
+  lg: $breakpoint-lg,
+  xl: $breakpoint-xl,
+  2xl: $breakpoint-2xl
+) {
+  @include respond-to($breakpoint) {
+    @for $i from 1 through 12 {
+      .col-#{$breakpoint}-#{$i} {
+        flex: 0 0 percentage($i / 12);
+        max-width: percentage($i / 12);
+      }
+    }
+    
+    .col-#{$breakpoint}-auto {
+      flex: 0 0 auto;
+      width: auto;
+      max-width: 100%;
+    }
+  }
+}
+
+// Auto columns
+.col-auto {
+  flex: 0 0 auto;
+  width: auto;
+  max-width: 100%;
+}
+
+// Order utilities
+@for $i from 1 through 12 {
+  .order-#{$i} {
+    order: $i;
+  }
+}
+
+@each $breakpoint, $value in (
+  sm: $breakpoint-sm,
+  md: $breakpoint-md,
+  lg: $breakpoint-lg,
+  xl: $breakpoint-xl,
+  2xl: $breakpoint-2xl
+) {
+  @include respond-to($breakpoint) {
+    @for $i from 1 through 12 {
+      .order-#{$breakpoint}-#{$i} {
+        order: $i;
+      }
+    }
+  }
+}
+
+// Offset utilities
+@for $i from 1 through 12 {
+  .offset-#{$i} {
+    margin-left: percentage($i / 12);
+  }
+}
+
+@each $breakpoint, $value in (
+  sm: $breakpoint-sm,
+  md: $breakpoint-md,
+  lg: $breakpoint-lg,
+  xl: $breakpoint-xl,
+  2xl: $breakpoint-2xl
+) {
+  @include respond-to($breakpoint) {
+    @for $i from 1 through 12 {
+      .offset-#{$breakpoint}-#{$i} {
+        margin-left: percentage($i / 12);
+      }
+    }
+  }
+}
+
+// Grid gaps
+// =============================================================================
+
+.g-0 {
+  margin-left: 0;
+  margin-right: 0;
+  
+  > .col,
+  > [class*="col-"] {
+    padding-left: 0;
+    padding-right: 0;
+  }
+}
+
+.g-1 {
+  margin-left: -$spacing-1;
+  margin-right: -$spacing-1;
+  
+  > .col,
+  > [class*="col-"] {
+    padding-left: $spacing-1;
+    padding-right: $spacing-1;
+  }
+}
+
+.g-2 {
+  margin-left: -$spacing-2;
+  margin-right: -$spacing-2;
+  
+  > .col,
+  > [class*="col-"] {
+    padding-left: $spacing-2;
+    padding-right: $spacing-2;
+  }
+}
+
+.g-3 {
+  margin-left: -$spacing-3;
+  margin-right: -$spacing-3;
+  
+  > .col,
+  > [class*="col-"] {
+    padding-left: $spacing-3;
+    padding-right: $spacing-3;
+  }
+}
+
+.g-4 {
+  margin-left: -$spacing-4;
+  margin-right: -$spacing-4;
+  
+  > .col,
+  > [class*="col-"] {
+    padding-left: $spacing-4;
+    padding-right: $spacing-4;
+  }
+}
+
+// CSS Grid
+// =============================================================================
+
+.grid {
+  display: grid;
+  gap: $spacing-4;
+  
+  &.grid-1 {
+    grid-template-columns: repeat(1, 1fr);
+  }
+  
+  &.grid-2 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  &.grid-3 {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  
+  &.grid-4 {
+    grid-template-columns: repeat(4, 1fr);
+  }
+  
+  &.grid-5 {
+    grid-template-columns: repeat(5, 1fr);
+  }
+  
+  &.grid-6 {
+    grid-template-columns: repeat(6, 1fr);
+  }
+  
+  &.grid-12 {
+    grid-template-columns: repeat(12, 1fr);
+  }
+  
+  // Responsive grid
+  @include respond-to-max(sm) {
+    &.grid-responsive {
+      grid-template-columns: 1fr;
+    }
+  }
+  
+  @include respond-to(sm) {
+    &.grid-responsive {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  
+  @include respond-to(md) {
+    &.grid-responsive {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+  
+  @include respond-to(lg) {
+    &.grid-responsive {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+  
+  @include respond-to(xl) {
+    &.grid-responsive {
+      grid-template-columns: repeat(6, 1fr);
+    }
+  }
+}
+
+// Grid gaps
+.grid-gap-0 { gap: 0; }
+.grid-gap-1 { gap: $spacing-1; }
+.grid-gap-2 { gap: $spacing-2; }
+.grid-gap-3 { gap: $spacing-3; }
+.grid-gap-4 { gap: $spacing-4; }
+.grid-gap-5 { gap: $spacing-5; }
+.grid-gap-6 { gap: $spacing-6; }
+.grid-gap-8 { gap: $spacing-8; }
+
+// Grid areas
+.grid-areas-auto {
+  grid-template-areas: auto;
+}
+
+.grid-areas-dense {
+  grid-auto-flow: dense;
+}
+
+// Flexbox utilities
+// =============================================================================
+
+.d-flex { display: flex; }
+.d-inline-flex { display: inline-flex; }
+
+.flex-row { flex-direction: row; }
+.flex-row-reverse { flex-direction: row-reverse; }
+.flex-column { flex-direction: column; }
+.flex-column-reverse { flex-direction: column-reverse; }
+
+.flex-wrap { flex-wrap: wrap; }
+.flex-nowrap { flex-wrap: nowrap; }
+.flex-wrap-reverse { flex-wrap: wrap-reverse; }
+
+.justify-start { justify-content: flex-start; }
+.justify-end { justify-content: flex-end; }
+.justify-center { justify-content: center; }
+.justify-between { justify-content: space-between; }
+.justify-around { justify-content: space-around; }
+.justify-evenly { justify-content: space-evenly; }
+
+.items-start { align-items: flex-start; }
+.items-end { align-items: flex-end; }
+.items-center { align-items: center; }
+.items-baseline { align-items: baseline; }
+.items-stretch { align-items: stretch; }
+
+.content-start { align-content: flex-start; }
+.content-end { align-content: flex-end; }
+.content-center { align-content: center; }
+.content-between { align-content: space-between; }
+.content-around { align-content: space-around; }
+.content-stretch { align-content: stretch; }
+
+.self-start { align-self: flex-start; }
+.self-end { align-self: flex-end; }
+.self-center { align-self: center; }
+.self-baseline { align-self: baseline; }
+.self-stretch { align-self: stretch; }
+
+.flex-1 { flex: 1 1 0%; }
+.flex-auto { flex: 1 1 auto; }
+.flex-initial { flex: 0 1 auto; }
+.flex-none { flex: none; }
+
+.flex-grow-0 { flex-grow: 0; }
+.flex-grow-1 { flex-grow: 1; }
+
+.flex-shrink-0 { flex-shrink: 0; }
+.flex-shrink-1 { flex-shrink: 1; }
+
+// Responsive flex utilities
+@each $breakpoint, $value in (
+  sm: $breakpoint-sm,
+  md: $breakpoint-md,
+  lg: $breakpoint-lg,
+  xl: $breakpoint-xl,
+  2xl: $breakpoint-2xl
+) {
+  @include respond-to($breakpoint) {
+    .#{$breakpoint}\:d-flex { display: flex; }
+    .#{$breakpoint}\:d-inline-flex { display: inline-flex; }
+    
+    .#{$breakpoint}\:flex-row { flex-direction: row; }
+    .#{$breakpoint}\:flex-column { flex-direction: column; }
+    
+    .#{$breakpoint}\:justify-start { justify-content: flex-start; }
+    .#{$breakpoint}\:justify-center { justify-content: center; }
+    .#{$breakpoint}\:justify-end { justify-content: flex-end; }
+    .#{$breakpoint}\:justify-between { justify-content: space-between; }
+    
+    .#{$breakpoint}\:items-start { align-items: flex-start; }
+    .#{$breakpoint}\:items-center { align-items: center; }
+    .#{$breakpoint}\:items-end { align-items: flex-end; }
+  }
+} 

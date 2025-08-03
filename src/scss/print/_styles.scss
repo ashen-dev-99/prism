@@ -1,0 +1,154 @@
+// =============================================================================
+// PRINT STYLES
+// =============================================================================
+// Optimized styles for printing
+
+@media print {
+  // Reset all colors and backgrounds for printing
+  * {
+    background: transparent !important;
+    color: black !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+  }
+  
+  // Ensure links are visible and show URLs
+  a,
+  a:visited {
+    text-decoration: underline;
+  }
+  
+  a[href]:after {
+    content: " (" attr(href) ")";
+  }
+  
+  abbr[title]:after {
+    content: " (" attr(title) ")";
+  }
+  
+  // Hide unnecessary elements
+  .ir a:after,
+  a[href^="javascript:"]:after,
+  a[href^="#"]:after {
+    content: "";
+  }
+  
+  // Prevent page breaks in important elements
+  pre,
+  blockquote {
+    border: 1px solid #999;
+    page-break-inside: avoid;
+  }
+  
+  // Ensure table headers repeat on each page
+  thead {
+    display: table-header-group;
+  }
+  
+  // Prevent page breaks in table rows and images
+  tr,
+  img {
+    page-break-inside: avoid;
+  }
+  
+  // Ensure images don't exceed page width
+  img {
+    max-width: 100% !important;
+  }
+  
+  // Prevent orphaned text
+  p,
+  h2,
+  h3 {
+    orphans: 3;
+    widows: 3;
+  }
+  
+  // Prevent page breaks after headings
+  h2,
+  h3 {
+    page-break-after: avoid;
+  }
+  
+  // Hide non-essential UI elements
+  .no-print,
+  .sidebar,
+  .header,
+  .footer,
+  .navigation,
+  .breadcrumbs,
+  .pagination,
+  .actions,
+  .toolbar {
+    display: none !important;
+  }
+  
+  // Optimize layout for printing
+  .main-content {
+    margin: 0 !important;
+    padding: 0 !important;
+    width: 100% !important;
+  }
+  
+  // Ensure proper text contrast
+  .text-muted,
+  .text-secondary {
+    color: #666 !important;
+  }
+  
+  // Optimize tables for printing
+  table {
+    border-collapse: collapse !important;
+    
+    th,
+    td {
+      border: 1px solid #ccc !important;
+      padding: 4px 8px !important;
+    }
+  }
+  
+  // Optimize forms for printing
+  input,
+  textarea,
+  select {
+    border: 1px solid #ccc !important;
+    background: white !important;
+  }
+  
+  // Hide form controls that don't make sense in print
+  button,
+  .btn,
+  input[type="submit"],
+  input[type="button"] {
+    display: none !important;
+  }
+  
+  // Optimize cards and containers
+  .card,
+  .container,
+  .panel {
+    border: 1px solid #ccc !important;
+    box-shadow: none !important;
+    margin-bottom: 1em !important;
+  }
+  
+  // Ensure proper page margins
+  @page {
+    margin: 1in;
+  }
+  
+  // Optimize for different paper sizes
+  @page :first {
+    margin-top: 0.5in;
+  }
+  
+  @page :left {
+    margin-left: 1.5in;
+    margin-right: 0.5in;
+  }
+  
+  @page :right {
+    margin-left: 0.5in;
+    margin-right: 1.5in;
+  }
+} 

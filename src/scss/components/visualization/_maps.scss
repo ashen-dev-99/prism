@@ -1,0 +1,545 @@
+// =============================================================================
+// MAP COMPONENTS
+// =============================================================================
+
+.map {
+  position: relative;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius-lg);
+  overflow: hidden;
+  min-height: 400px;
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--spacing-sm) var(--spacing-md);
+    background: var(--color-surface-variant);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  &__title {
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-medium);
+    color: var(--color-text-primary);
+    margin: 0;
+  }
+
+  &__actions {
+    display: flex;
+    gap: var(--spacing-xs);
+  }
+
+  &__btn {
+    padding: var(--spacing-xs) var(--spacing-sm);
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--border-radius-sm);
+    color: var(--color-text-secondary);
+    font-size: var(--font-size-xs);
+    cursor: pointer;
+    transition: all var(--transition-fast);
+
+    &:hover {
+      background: var(--color-surface-hover);
+      color: var(--color-text-primary);
+    }
+
+    &--active {
+      background: var(--color-primary);
+      color: var(--color-on-primary);
+      border-color: var(--color-primary);
+    }
+  }
+
+  &__container {
+    position: relative;
+    width: 100%;
+    height: 400px;
+    background: var(--color-surface-variant);
+  }
+
+  &__canvas {
+    width: 100%;
+    height: 100%;
+    background: var(--color-surface);
+  }
+
+  &__controls {
+    position: absolute;
+    top: var(--spacing-sm);
+    right: var(--spacing-sm);
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-xs);
+    z-index: 10;
+  }
+
+  &__control-btn {
+    width: 32px;
+    height: 32px;
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--border-radius-sm);
+    color: var(--color-text-secondary);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all var(--transition-fast);
+    box-shadow: var(--shadow-sm);
+
+    &:hover {
+      background: var(--color-surface-hover);
+      color: var(--color-text-primary);
+      box-shadow: var(--shadow-md);
+    }
+
+    &--active {
+      background: var(--color-primary);
+      color: var(--color-on-primary);
+      border-color: var(--color-primary);
+    }
+  }
+
+  &__zoom-controls {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--border-radius-sm);
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+  }
+
+  &__zoom-btn {
+    width: 32px;
+    height: 32px;
+    background: var(--color-surface);
+    border: none;
+    color: var(--color-text-secondary);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all var(--transition-fast);
+
+    &:hover {
+      background: var(--color-surface-hover);
+      color: var(--color-text-primary);
+    }
+
+    &:first-child {
+      border-bottom: 1px solid var(--color-border);
+    }
+  }
+
+  &__search {
+    position: absolute;
+    top: var(--spacing-sm);
+    left: var(--spacing-sm);
+    z-index: 10;
+    min-width: 250px;
+  }
+
+  &__search-input {
+    width: 100%;
+    padding: var(--spacing-sm) var(--spacing-md);
+    padding-left: calc(var(--spacing-md) + 24px);
+    border: 1px solid var(--color-border);
+    border-radius: var(--border-radius-md);
+    background: var(--color-surface);
+    color: var(--color-text-primary);
+    font-size: var(--font-size-sm);
+    box-shadow: var(--shadow-sm);
+
+    &::placeholder {
+      color: var(--color-text-secondary);
+    }
+
+    &:focus {
+      outline: none;
+      border-color: var(--color-primary);
+      box-shadow: 0 0 0 2px var(--color-primary-alpha);
+    }
+  }
+
+  &__search-icon {
+    position: absolute;
+    left: var(--spacing-sm);
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--color-text-secondary);
+    font-size: var(--font-size-sm);
+    pointer-events: none;
+  }
+
+  &__marker {
+    position: absolute;
+    width: 24px;
+    height: 24px;
+    background: var(--color-primary);
+    border: 2px solid var(--color-surface);
+    border-radius: 50% 50% 50% 0;
+    transform: rotate(-45deg);
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    box-shadow: var(--shadow-sm);
+
+    &:hover {
+      transform: rotate(-45deg) scale(1.2);
+      box-shadow: var(--shadow-md);
+    }
+
+    &--selected {
+      background: var(--color-warning);
+      transform: rotate(-45deg) scale(1.1);
+    }
+
+    &--custom {
+      background: var(--marker-color, var(--color-primary));
+    }
+  }
+
+  &__marker-pulse {
+    position: absolute;
+    width: 24px;
+    height: 24px;
+    background: var(--color-primary);
+    border-radius: 50%;
+    animation: mapPulse 2s infinite;
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 8px;
+      height: 8px;
+      background: var(--color-surface);
+      border-radius: 50%;
+    }
+  }
+
+  &__popup {
+    position: absolute;
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--border-radius-md);
+    box-shadow: var(--shadow-lg);
+    padding: var(--spacing-md);
+    min-width: 200px;
+    max-width: 300px;
+    z-index: 20;
+    transform: translate(-50%, -100%);
+    margin-top: -10px;
+
+    &::after {
+      content: '';
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      border: 8px solid transparent;
+      border-top-color: var(--color-border);
+    }
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      border: 7px solid transparent;
+      border-top-color: var(--color-surface);
+      margin-top: 1px;
+    }
+  }
+
+  &__popup-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--spacing-sm);
+    padding-bottom: var(--spacing-sm);
+    border-bottom: 1px solid var(--color-border-subtle);
+  }
+
+  &__popup-title {
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-text-primary);
+    margin: 0;
+  }
+
+  &__popup-close {
+    background: none;
+    border: none;
+    color: var(--color-text-secondary);
+    cursor: pointer;
+    padding: var(--spacing-xs);
+    border-radius: var(--border-radius-sm);
+    transition: all var(--transition-fast);
+
+    &:hover {
+      background: var(--color-surface-hover);
+      color: var(--color-text-primary);
+    }
+  }
+
+  &__popup-content {
+    font-size: var(--font-size-sm);
+    color: var(--color-text-secondary);
+    line-height: 1.5;
+  }
+
+  &__popup-actions {
+    display: flex;
+    gap: var(--spacing-xs);
+    margin-top: var(--spacing-sm);
+    padding-top: var(--spacing-sm);
+    border-top: 1px solid var(--color-border-subtle);
+  }
+
+  &__popup-btn {
+    padding: var(--spacing-xs) var(--spacing-sm);
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--border-radius-sm);
+    color: var(--color-text-secondary);
+    font-size: var(--font-size-xs);
+    cursor: pointer;
+    transition: all var(--transition-fast);
+
+    &:hover {
+      background: var(--color-surface-hover);
+      color: var(--color-text-primary);
+    }
+
+    &--primary {
+      background: var(--color-primary);
+      color: var(--color-on-primary);
+      border-color: var(--color-primary);
+
+      &:hover {
+        background: var(--color-primary-dark);
+      }
+    }
+  }
+
+  &__legend {
+    position: absolute;
+    bottom: var(--spacing-sm);
+    left: var(--spacing-sm);
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--border-radius-md);
+    padding: var(--spacing-sm);
+    box-shadow: var(--shadow-sm);
+    z-index: 10;
+    min-width: 150px;
+  }
+
+  &__legend-title {
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-text-primary);
+    margin: 0 0 var(--spacing-xs) 0;
+  }
+
+  &__legend-item {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+    margin: var(--spacing-xs) 0;
+    font-size: var(--font-size-xs);
+    color: var(--color-text-secondary);
+  }
+
+  &__legend-marker {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  &__overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 30;
+  }
+
+  &__loading {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--border-radius-md);
+    padding: var(--spacing-lg);
+    text-align: center;
+    color: var(--color-text-secondary);
+  }
+
+  &__error {
+    background: var(--color-surface);
+    border: 1px solid var(--color-error);
+    border-radius: var(--border-radius-md);
+    padding: var(--spacing-lg);
+    text-align: center;
+    color: var(--color-error);
+  }
+
+  // Map layers
+  &__layers {
+    position: absolute;
+    top: var(--spacing-sm);
+    left: var(--spacing-sm);
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--border-radius-md);
+    padding: var(--spacing-sm);
+    box-shadow: var(--shadow-sm);
+    z-index: 10;
+    min-width: 120px;
+  }
+
+  &__layer-item {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+    margin: var(--spacing-xs) 0;
+    font-size: var(--font-size-xs);
+    color: var(--color-text-secondary);
+    cursor: pointer;
+    transition: color var(--transition-fast);
+
+    &:hover {
+      color: var(--color-text-primary);
+    }
+  }
+
+  &__layer-checkbox {
+    width: 14px;
+    height: 14px;
+    accent-color: var(--color-primary);
+  }
+
+  // Variations
+  &--dark {
+    background: var(--color-surface-dark);
+
+    .map__header {
+      background: var(--color-surface-variant-dark);
+    }
+
+    .map__container {
+      background: var(--color-surface-variant-dark);
+    }
+
+    .map__canvas {
+      background: var(--color-surface-dark);
+    }
+  }
+
+  &--compact {
+    .map__header {
+      padding: var(--spacing-xs) var(--spacing-sm);
+    }
+
+    .map__container {
+      height: 300px;
+    }
+  }
+
+  &--large {
+    .map__container {
+      height: 600px;
+    }
+  }
+
+  &--fullscreen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1000;
+    border-radius: 0;
+  }
+}
+
+// Map animations
+@keyframes mapPulse {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(3);
+    opacity: 0;
+  }
+}
+
+// Map cluster
+.map-cluster {
+  position: absolute;
+  background: var(--color-primary);
+  color: var(--color-on-primary);
+  border: 2px solid var(--color-surface);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-semibold);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  box-shadow: var(--shadow-sm);
+
+  &:hover {
+    transform: scale(1.1);
+    box-shadow: var(--shadow-md);
+  }
+}
+
+// Responsive adjustments
+@media (max-width: 768px) {
+  .map {
+    &__header {
+      flex-direction: column;
+      gap: var(--spacing-sm);
+      align-items: stretch;
+    }
+
+    &__search {
+      position: static;
+      margin: var(--spacing-sm);
+      min-width: auto;
+    }
+
+    &__controls {
+      position: static;
+      flex-direction: row;
+      justify-content: center;
+      margin: var(--spacing-sm);
+    }
+
+    &__legend,
+    &__layers {
+      position: static;
+      margin: var(--spacing-sm);
+    }
+
+    &__container {
+      height: 300px;
+    }
+  }
+} 
