@@ -350,18 +350,79 @@
   .sidebar {
     transform: translateX(-100%);
     z-index: $z-modal;
+    width: 280px; // Full width on mobile when expanded
     
     &.show {
       transform: translateX(0);
     }
+    
+    // On mobile, when collapsed, show as minimized sidebar
+    &--collapsed {
+      width: $sidebar-width-collapsed; // Minimized width (64px)
+      transform: translateX(0); // Always visible when collapsed
+      position: fixed;
+      left: 0;
+      top: $header-height;
+      height: calc(100vh - #{$header-height});
+      
+      // Hide text and show only icons
+      .sidebar-nav {
+        &-section-title {
+          display: none;
+        }
+        
+        &-link {
+          justify-content: center;
+          padding: $spacing-sm;
+          margin-right: 0;
+          
+          .nav-text,
+          .nav-badge,
+          .nav-arrow {
+            display: none;
+          }
+          
+          .nav-icon {
+            width: auto;
+          }
+        }
+        
+        &-sub {
+          display: none;
+        }
+      }
+    }
   }
   
   .sidebar-toggle {
-    display: none;
+    display: flex; // Always show toggle button on mobile
+    left: $sidebar-width-collapsed; // Position after minimized sidebar
+    border-radius: 0 $border-radius $border-radius 0;
+    border-left: 1px solid $border-color;
+    
+    // When sidebar is expanded, move button to right edge
+    .sidebar.show + & {
+      left: 280px; // Position after expanded sidebar
+    }
   }
   
   .sidebar-overlay {
     display: block;
+    
+    // Only show overlay when sidebar is expanded (not minimized)
+    .sidebar--collapsed ~ & {
+      display: none;
+    }
+  }
+  
+  // Adjust main content for minimized sidebar
+  .main-content {
+    margin-left: $sidebar-width-collapsed;
+    
+    // When sidebar is expanded, remove margin
+    .sidebar.show ~ & {
+      margin-left: 0;
+    }
   }
 }
 

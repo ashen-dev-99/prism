@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mobile Sidebar Test</title>
+    <link rel="stylesheet" href="dist/prism-theme.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .test-info {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            background: #000;
+            color: #fff;
+            padding: 10px;
+            border-radius: 5px;
+            font-family: monospace;
+            z-index: 9999;
+            font-size: 12px;
+            max-width: 200px;
+        }
+        .test-controls {
+            margin: 20px 0;
+            padding: 20px;
+            background: #f5f5f5;
+            border-radius: 8px;
+        }
+        .test-controls button {
+            margin: 5px;
+            padding: 8px 16px;
+            background: #6366f1;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .test-controls button:hover {
+            background: #4f46e5;
+        }
+        .viewport-info {
+            background: #e3f2fd;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 4px;
+            border-left: 4px solid #2196f3;
+        }
+        @media (max-width: 768px) {
+            .test-info {
+                position: relative;
+                top: auto;
+                right: auto;
+                margin: 10px;
+                max-width: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="test-info">
+        <div>Screen: <span id="screen-size">loading...</span></div>
+        <div>Sidebar: <span id="sidebar-state">loading...</span></div>
+        <div>Button: <span id="button-visible">loading...</span></div>
+        <div>Overlay: <span id="overlay-visible">loading...</span></div>
+    </div>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="header-brand">
+            <div class="header-brand-logo">
+                <i class="fas fa-cube"></i>
+            </div>
+            <span class="header-brand-text">Prism Admin</span>
+        </div>
+    </header>
+
+    <!-- Sidebar -->
+    <aside class="sidebar" data-component="sidebar">
+        <nav class="sidebar-nav">
+            <div class="sidebar-nav-section">
+                <h6 class="sidebar-nav-section-title">Main</h6>
+                <ul class="sidebar-nav-list">
+                    <li class="sidebar-nav-item">
+                        <a href="#" class="sidebar-nav-link active">
+                            <i class="fas fa-home nav-icon"></i>
+                            <span class="nav-text">Dashboard</span>
+                        </a>
+                    </li>
+                    <li class="sidebar-nav-item">
+                        <a href="#" class="sidebar-nav-link">
+                            <i class="fas fa-users nav-icon"></i>
+                            <span class="nav-text">Users</span>
+                            <span class="nav-badge">12</span>
+                        </a>
+                    </li>
+                    <li class="sidebar-nav-item">
+                        <a href="#" class="sidebar-nav-link">
+                            <i class="fas fa-shopping-cart nav-icon"></i>
+                            <span class="nav-text">Orders</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </aside>
+
+    <!-- Sidebar Toggle -->
+    <button class="sidebar-toggle" data-sidebar-toggle>
+        <i class="fas fa-chevron-left sidebar-toggle-icon"></i>
+    </button>
+
+    <!-- Sidebar Overlay -->
+    <div class="sidebar-overlay"></div>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="main-content-wrapper">
+            <h1>Mobile Sidebar Test</h1>
+            
+            <div class="viewport-info">
+                <strong>Test Instructions:</strong>
+                <ul>
+                    <li>Resize browser window to test different screen sizes</li>
+                    <li>On mobile (≤768px): Sidebar should slide in from left</li>
+                    <li>On desktop (>768px): Sidebar should collapse/expand in place</li>
+                    <li>Click overlay or press Escape to close on mobile</li>
+                </ul>
+            </div>
+            
+            <div class="test-controls">
+                <h3>Test Controls</h3>
+                <button onclick="window.sidebar.toggle()">Toggle Sidebar</button>
+                <button onclick="window.sidebar.minimize()">Minimize (Mobile)</button>
+                <button onclick="window.sidebar.maximize()">Maximize (Mobile)</button>
+                <button onclick="window.sidebar.collapse()">Close</button>
+                <button onclick="window.sidebar.expand()">Open</button>
+                <button onclick="localStorage.clear(); location.reload();">Reset</button>
+            </div>
+            
+            <h3>Expected Mobile Behavior (≤768px):</h3>
+            <ul>
+                <li><strong>Minimized State:</strong> 64px wide, shows only icons, always visible</li>
+                <li><strong>Expanded State:</strong> 280px wide, shows full content, slides in from left</li>
+                <li><strong>Toggle Button:</strong> Always visible, moves with sidebar state</li>
+                <li><strong>Overlay:</strong> Only appears when expanded, click to close</li>
+                <li><strong>Main Content:</strong> Adjusts margin for minimized sidebar</li>
+            </ul>
+            
+            <h3>Expected Desktop Behavior:</h3>
+            <ul>
+                <li>Sidebar collapses/expands in place</li>
+                <li>Button moves with sidebar</li>
+                <li>Icon rotates 180° when collapsed</li>
+                <li>No overlay on desktop</li>
+            </ul>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-wrapper">
+            <div class="footer-bottom">
+                <p class="footer-bottom-text">&copy; 2024 Prism Theme. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script type="module" src="src/index.js"></script>
+    <script>
+        // Test script to monitor mobile behavior
+        document.addEventListener('DOMContentLoaded', function() {
+            const sidebar = document.querySelector('.sidebar');
+            const button = document.querySelector('.sidebar-toggle');
+            const overlay = document.querySelector('.sidebar-overlay');
+            const screenSpan = document.getElementById('screen-size');
+            const stateSpan = document.getElementById('sidebar-state');
+            const buttonSpan = document.getElementById('button-visible');
+            const overlaySpan = document.getElementById('overlay-visible');
+
+            function updateDisplay() {
+                const width = window.innerWidth;
+                const isMobile = width <= 768;
+                const isCollapsed = sidebar.classList.contains('sidebar--collapsed');
+                const isShowing = sidebar.classList.contains('show');
+                const buttonVisible = window.getComputedStyle(button).display !== 'none';
+                const overlayVisible = window.getComputedStyle(overlay).display !== 'none';
+                
+                screenSpan.textContent = `${width}px (${isMobile ? 'Mobile' : 'Desktop'})`;
+                stateSpan.textContent = isCollapsed ? 'collapsed' : 'expanded';
+                buttonSpan.textContent = buttonVisible ? 'visible' : 'hidden';
+                overlaySpan.textContent = overlayVisible ? 'visible' : 'hidden';
+            }
+
+            // Monitor changes
+            const observer = new MutationObserver(updateDisplay);
+            observer.observe(sidebar, { attributes: true, attributeFilter: ['class'] });
+            observer.observe(button, { attributes: true, attributeFilter: ['style'] });
+            observer.observe(overlay, { attributes: true, attributeFilter: ['style'] });
+
+            // Initial display
+            updateDisplay();
+            
+            // Update on resize
+            window.addEventListener('resize', updateDisplay);
+            
+            console.log('Mobile sidebar test loaded');
+            console.log('Sidebar instance:', window.sidebar);
+        });
+    </script>
+</body>
+</html>

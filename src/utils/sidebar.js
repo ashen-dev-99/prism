@@ -39,6 +39,26 @@ export default class Sidebar {
         this.toggle()
       })
     }
+    
+    // Handle mobile overlay clicks
+    const overlay = document.querySelector('.sidebar-overlay')
+    if (overlay) {
+      overlay.addEventListener('click', () => {
+        this.collapse()
+      })
+    }
+    
+    // Handle escape key
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && this.isExpanded()) {
+        this.collapse()
+      }
+    })
+    
+    // Handle window resize
+    window.addEventListener('resize', () => {
+      this.updateUI()
+    })
   }
   
   toggle() {
@@ -48,11 +68,28 @@ export default class Sidebar {
   }
   
   updateUI() {
+    const isMobile = window.innerWidth < 768 // md breakpoint
+    
     // Update sidebar
     if (this.isCollapsed) {
       this.sidebar.classList.add('sidebar--collapsed')
     } else {
       this.sidebar.classList.remove('sidebar--collapsed')
+    }
+    
+    // On mobile, handle three states: hidden, minimized, expanded
+    if (isMobile) {
+      if (this.isCollapsed) {
+        // Minimized state - show only icons
+        this.sidebar.classList.remove('show')
+        this.sidebar.classList.add('sidebar--collapsed')
+        document.body.classList.remove('sidebar-open')
+      } else {
+        // Expanded state - show full content
+        this.sidebar.classList.add('show')
+        this.sidebar.classList.remove('sidebar--collapsed')
+        document.body.classList.add('sidebar-open')
+      }
     }
     
     // Update main content
@@ -87,11 +124,32 @@ export default class Sidebar {
     }
   }
   
+  // Mobile-specific methods
+  minimize() {
+    if (window.innerWidth < 768) {
+      this.isCollapsed = true
+      this.updateUI()
+      this.saveState()
+    }
+  }
+  
+  maximize() {
+    if (window.innerWidth < 768) {
+      this.isCollapsed = false
+      this.updateUI()
+      this.saveState()
+    }
+  }
+  
   isExpanded() {
     return !this.isCollapsed
   }
   
   isCollapsedState() {
     return this.isCollapsed
+  }
+  
+  isMobile() {
+    return window.innerWidth < 768
   }
 }
