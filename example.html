@@ -90,7 +90,7 @@
     </header>
 
     <!-- Sidebar -->
-    <aside class="sidebar" data-component="sidebar">
+    <aside class="sidebar nav-no-markers" data-component="sidebar">
         <nav class="sidebar-nav">
             <div class="sidebar-nav-section">
                 <h6 class="sidebar-nav-section-title">Main</h6>
@@ -138,17 +138,86 @@
             <div class="sidebar-nav-section">
                 <h6 class="sidebar-nav-section-title">System</h6>
                 <ul class="sidebar-nav-list">
-                    <li class="sidebar-nav-item">
-                        <a href="#" class="sidebar-nav-link">
+                    <li class="sidebar-nav-item sidebar-nav-item--has-submenu">
+                        <a href="#" class="sidebar-nav-link" data-submenu-toggle aria-expanded="false" aria-haspopup="true">
                             <i class="fas fa-cog nav-icon"></i>
                             <span class="nav-text">Settings</span>
+                            <i class="fas fa-chevron-right nav-arrow"></i>
                         </a>
+                        <ul class="sidebar-nav-sub">
+                            <li class="sidebar-nav-sub-item">
+                                <a href="#" class="sidebar-nav-sub-link">
+                                    <i class="fas fa-user-cog nav-icon"></i>
+                                    <span class="nav-text">Profile</span>
+                                </a>
+                            </li>
+                            <li class="sidebar-nav-sub-item">
+                                <a href="#" class="sidebar-nav-sub-link">
+                                    <i class="fas fa-shield-alt nav-icon"></i>
+                                    <span class="nav-text">Security</span>
+                                </a>
+                            </li>
+                            <li class="sidebar-nav-sub-item">
+                                <a href="#" class="sidebar-nav-sub-link">
+                                    <i class="fas fa-bell nav-icon"></i>
+                                    <span class="nav-text">Notifications</span>
+                                </a>
+                            </li>
+                        </ul>
                     </li>
-                    <li class="sidebar-nav-item">
-                        <a href="#" class="sidebar-nav-link">
+                    <li class="sidebar-nav-item sidebar-nav-item--has-submenu">
+                        <a href="#" class="sidebar-nav-link" data-submenu-toggle aria-expanded="false" aria-haspopup="true">
                             <i class="fas fa-chart-bar nav-icon"></i>
                             <span class="nav-text">Analytics</span>
+                            <i class="fas fa-chevron-right nav-arrow"></i>
                         </a>
+                        <ul class="sidebar-nav-sub">
+                            <li class="sidebar-nav-sub-item">
+                                <a href="#" class="sidebar-nav-sub-link">
+                                    <i class="fas fa-chart-line nav-icon"></i>
+                                    <span class="nav-text">Reports</span>
+                                </a>
+                            </li>
+                            <li class="sidebar-nav-sub-item">
+                                <a href="#" class="sidebar-nav-sub-link">
+                                    <i class="fas fa-chart-pie nav-icon"></i>
+                                    <span class="nav-text">Statistics</span>
+                                </a>
+                            </li>
+                            <li class="sidebar-nav-sub-item">
+                                <a href="#" class="sidebar-nav-sub-link">
+                                    <i class="fas fa-download nav-icon"></i>
+                                    <span class="nav-text">Exports</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="sidebar-nav-item sidebar-nav-item--has-submenu">
+                        <a href="#" class="sidebar-nav-link" data-submenu-toggle aria-expanded="false" aria-haspopup="true">
+                            <i class="fas fa-database nav-icon"></i>
+                            <span class="nav-text">Database</span>
+                            <i class="fas fa-chevron-right nav-arrow"></i>
+                        </a>
+                        <ul class="sidebar-nav-sub">
+                            <li class="sidebar-nav-sub-item">
+                                <a href="#" class="sidebar-nav-sub-link">
+                                    <i class="fas fa-table nav-icon"></i>
+                                    <span class="nav-text">Tables</span>
+                                </a>
+                            </li>
+                            <li class="sidebar-nav-sub-item">
+                                <a href="#" class="sidebar-nav-sub-link">
+                                    <i class="fas fa-sync nav-icon"></i>
+                                    <span class="nav-text">Backups</span>
+                                </a>
+                            </li>
+                            <li class="sidebar-nav-sub-item">
+                                <a href="#" class="sidebar-nav-sub-link">
+                                    <i class="fas fa-tools nav-icon"></i>
+                                    <span class="nav-text">Maintenance</span>
+                                </a>
+                            </li>
+                        </ul>
                     </li>
                 </ul>
             </div>

@@ -260,3 +260,9 @@
 .object-position-bottom { object-position: bottom !important; }
 .object-position-left { object-position: left !important; }
 .object-position-center { object-position: center !important; }
+
+// Navigation Utilities
+// ===================
+.nav-no-markers {
+  @extend %nav-no-markers;
+}

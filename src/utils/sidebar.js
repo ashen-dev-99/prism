@@ -48,6 +48,9 @@ export default class Sidebar {
       })
     }
     
+    // Handle submenu toggles
+    this.bindSubmenuEvents()
+    
     // Handle escape key
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape' && this.isExpanded()) {
@@ -58,6 +61,65 @@ export default class Sidebar {
     // Handle window resize
     window.addEventListener('resize', () => {
       this.updateUI()
+    })
+  }
+
+  bindSubmenuEvents() {
+    const submenuToggles = this.sidebar.querySelectorAll('[data-submenu-toggle]')
+    
+    submenuToggles.forEach(toggle => {
+      toggle.addEventListener('click', (e) => {
+        e.preventDefault()
+        this.toggleSubmenu(toggle)
+      })
+
+      // Handle keyboard navigation
+      toggle.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault()
+          this.toggleSubmenu(toggle)
+        }
+      })
+    })
+  }
+
+  toggleSubmenu(toggle) {
+    const navItem = toggle.closest('.sidebar-nav-item--has-submenu')
+    if (!navItem) return
+
+    const isExpanded = navItem.classList.contains('expanded')
+    
+    if (isExpanded) {
+      this.collapseSubmenu(navItem)
+    } else {
+      this.expandSubmenu(navItem)
+    }
+  }
+
+  expandSubmenu(navItem) {
+    navItem.classList.add('expanded')
+    
+    // Update ARIA attributes
+    const toggle = navItem.querySelector('[data-submenu-toggle]')
+    if (toggle) {
+      toggle.setAttribute('aria-expanded', 'true')
+    }
+  }
+
+  collapseSubmenu(navItem) {
+    navItem.classList.remove('expanded')
+    
+    // Update ARIA attributes
+    const toggle = navItem.querySelector('[data-submenu-toggle]')
+    if (toggle) {
+      toggle.setAttribute('aria-expanded', 'false')
+    }
+  }
+
+  collapseAllSubmenus() {
+    const expandedSubmenus = this.sidebar.querySelectorAll('.sidebar-nav-item--has-submenu.expanded')
+    expandedSubmenus.forEach(submenu => {
+      this.collapseSubmenu(submenu)
     })
   }
   
