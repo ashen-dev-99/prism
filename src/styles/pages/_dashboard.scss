@@ -1,0 +1,375 @@
+// Prism Theme - Dashboard Page
+// =====================================
+
+.dashboard {
+  // Dashboard Grid
+  &-grid {
+    display: grid;
+    gap: $spacing-lg;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    margin-bottom: $spacing-xl;
+    
+    @include respond-below(md) {
+      grid-template-columns: 1fr;
+    }
+  }
+  
+  // Dashboard Stats
+  &-stats {
+    display: grid;
+    gap: $spacing-lg;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    margin-bottom: $spacing-xl;
+    
+    @include respond-below(md) {
+      grid-template-columns: 1fr;
+    }
+  }
+  
+  // Dashboard Charts
+  &-charts {
+    display: grid;
+    gap: $spacing-lg;
+    grid-template-columns: 2fr 1fr;
+    margin-bottom: $spacing-xl;
+    
+    @include respond-below(lg) {
+      grid-template-columns: 1fr;
+    }
+  }
+  
+  // Dashboard Activity
+  &-activity {
+    @extend %card-base;
+    
+    &-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: $spacing-lg;
+      
+      .dashboard-activity-title {
+        font-size: $font-size-lg;
+        font-weight: $font-weight-semibold;
+        color: $text-primary;
+        margin: 0;
+      }
+      
+      .dashboard-activity-actions {
+        display: flex;
+        gap: $spacing-sm;
+      }
+    }
+    
+    &-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+    
+    &-item {
+      display: flex;
+      align-items: center;
+      gap: $spacing-md;
+      padding: $spacing-md 0;
+      border-bottom: 1px solid $border-color;
+      
+      &:last-child {
+        border-bottom: none;
+      }
+      
+      .activity-avatar {
+        width: 2.5rem;
+        height: 2.5rem;
+        border-radius: 50%;
+        background-color: $primary-color;
+        color: $white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: $font-weight-medium;
+        flex-shrink: 0;
+      }
+      
+      .activity-content {
+        flex: 1;
+        
+        .activity-text {
+          font-size: $font-size-sm;
+          color: $text-primary;
+          margin-bottom: $spacing-xs;
+        }
+        
+        .activity-time {
+          font-size: $font-size-xs;
+          color: $text-muted;
+        }
+      }
+      
+      .activity-status {
+        &--success {
+          color: $success-color;
+        }
+        
+        &--warning {
+          color: $warning-color;
+        }
+        
+        &--danger {
+          color: $error-color;
+        }
+      }
+    }
+  }
+  
+  // Dashboard Quick Actions
+  &-quick-actions {
+    @extend %card-base;
+    
+    &-header {
+      margin-bottom: $spacing-lg;
+      
+      .dashboard-quick-actions-title {
+        font-size: $font-size-lg;
+        font-weight: $font-weight-semibold;
+        color: $text-primary;
+        margin: 0;
+      }
+    }
+    
+    &-grid {
+      display: grid;
+      gap: $spacing-md;
+      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    }
+    
+    &-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      padding: $spacing-lg $spacing-md;
+      border: 1px solid $border-color;
+      border-radius: $border-radius;
+      color: $text-primary;
+      text-decoration: none;
+      transition: all $transition-fast;
+      
+      &:hover {
+        background-color: $bg-secondary;
+        border-color: $primary-color;
+        transform: translateY(-2px);
+        text-decoration: none;
+      }
+      
+      .action-icon {
+        font-size: 2rem;
+        color: $primary-color;
+        margin-bottom: $spacing-sm;
+      }
+      
+      .action-title {
+        font-size: $font-size-sm;
+        font-weight: $font-weight-medium;
+        margin: 0;
+      }
+    }
+  }
+  
+  // Dashboard Notifications
+  &-notifications {
+    @extend %card-base;
+    
+    &-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: $spacing-lg;
+      
+      .dashboard-notifications-title {
+        font-size: $font-size-lg;
+        font-weight: $font-weight-semibold;
+        color: $text-primary;
+        margin: 0;
+      }
+      
+      .dashboard-notifications-badge {
+        background-color: $error-color;
+        color: $white;
+        font-size: $font-size-xs;
+        font-weight: $font-weight-bold;
+        padding: $spacing-xs $spacing-sm;
+        border-radius: $border-radius-full;
+      }
+    }
+    
+    &-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+    
+    &-item {
+      padding: $spacing-md 0;
+      border-bottom: 1px solid $border-color;
+      
+      &:last-child {
+        border-bottom: none;
+      }
+      
+      &.unread {
+        background-color: color-alpha($primary-color, 0.05);
+        margin: 0 (-$spacing-lg);
+        padding-left: $spacing-lg;
+        padding-right: $spacing-lg;
+        border-radius: $border-radius;
+      }
+      
+      .notification-content {
+        .notification-title {
+          font-size: $font-size-sm;
+          font-weight: $font-weight-medium;
+          color: $text-primary;
+          margin-bottom: $spacing-xs;
+        }
+        
+        .notification-text {
+          font-size: $font-size-xs;
+          color: $text-muted;
+          margin-bottom: $spacing-xs;
+        }
+        
+        .notification-time {
+          font-size: $font-size-xs;
+          color: $text-muted;
+        }
+      }
+    }
+  }
+  
+  // Dashboard Welcome
+  &-welcome {
+    @extend %card-base;
+    
+    background: linear-gradient(135deg, $primary-color 0%, $primary-light 100%);
+    color: $white;
+    border: none;
+    margin-bottom: $spacing-xl;
+    
+    &-content {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      
+      @include respond-below(md) {
+        flex-direction: column;
+        text-align: center;
+        gap: $spacing-lg;
+      }
+    }
+    
+    &-text {
+      .welcome-title {
+        font-size: $font-size-2xl;
+        font-weight: $font-weight-bold;
+        margin-bottom: $spacing-sm;
+      }
+      
+      .welcome-subtitle {
+        font-size: $font-size-base;
+        opacity: 0.9;
+        margin: 0;
+      }
+    }
+    
+    &-actions {
+      display: flex;
+      gap: $spacing-sm;
+      
+      .btn {
+        background-color: rgba(255, 255, 255, 0.2);
+        border-color: rgba(255, 255, 255, 0.3);
+        color: $white;
+        
+        &:hover {
+          background-color: rgba(255, 255, 255, 0.3);
+          border-color: rgba(255, 255, 255, 0.4);
+        }
+      }
+    }
+  }
+  
+  // Dashboard Timeline
+  &-timeline {
+    @extend %card-base;
+    
+    &-header {
+      margin-bottom: $spacing-lg;
+      
+      .dashboard-timeline-title {
+        font-size: $font-size-lg;
+        font-weight: $font-weight-semibold;
+        color: $text-primary;
+        margin: 0;
+      }
+    }
+    
+    &-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      position: relative;
+      
+      &::before {
+        content: '';
+        position: absolute;
+        left: 1rem;
+        top: 0;
+        bottom: 0;
+        width: 2px;
+        background-color: $border-color;
+      }
+    }
+    
+    &-item {
+      position: relative;
+      padding-left: 3rem;
+      padding-bottom: $spacing-lg;
+      
+      &:last-child {
+        padding-bottom: 0;
+      }
+      
+      &::before {
+        content: '';
+        position: absolute;
+        left: 0.75rem;
+        top: 0.25rem;
+        width: 0.5rem;
+        height: 0.5rem;
+        background-color: $primary-color;
+        border-radius: 50%;
+      }
+      
+      .timeline-content {
+        .timeline-title {
+          font-size: $font-size-sm;
+          font-weight: $font-weight-medium;
+          color: $text-primary;
+          margin-bottom: $spacing-xs;
+        }
+        
+        .timeline-text {
+          font-size: $font-size-xs;
+          color: $text-muted;
+          margin-bottom: $spacing-xs;
+        }
+        
+        .timeline-time {
+          font-size: $font-size-xs;
+          color: $text-muted;
+        }
+      }
+    }
+  }
+}

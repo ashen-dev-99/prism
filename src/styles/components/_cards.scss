@@ -1,0 +1,342 @@
+// Prism Theme - Cards
+// =====================================
+
+.card {
+  @extend %card-base;
+  
+  // Card Variants
+  &--elevated {
+    box-shadow: $shadow-lg;
+    border: none;
+  }
+  
+  &--outlined {
+    box-shadow: none;
+    border: 2px solid $border-color;
+  }
+  
+  &--flat {
+    box-shadow: none;
+    border: none;
+    background-color: $bg-secondary;
+  }
+  
+  // Card Sizes
+  &--sm {
+    .card-header,
+    .card-body,
+    .card-footer {
+      padding: $spacing-md;
+    }
+  }
+  
+  &--lg {
+    .card-header,
+    .card-body,
+    .card-footer {
+      padding: $spacing-xl;
+    }
+  }
+  
+  // Card Header
+  &-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: $spacing-lg $spacing-lg $spacing-md;
+    border-bottom: 1px solid $border-color;
+    background-color: $bg-primary;
+    
+    &--no-border {
+      border-bottom: none;
+    }
+  }
+  
+  &-title {
+    margin: 0;
+    font-size: $font-size-lg;
+    font-weight: $font-weight-semibold;
+    color: $text-primary;
+    line-height: $line-height-tight;
+  }
+  
+  &-subtitle {
+    margin: $spacing-xs 0 0;
+    font-size: $font-size-sm;
+    color: $text-muted;
+    font-weight: $font-weight-normal;
+  }
+  
+  &-actions {
+    display: flex;
+    align-items: center;
+    gap: $spacing-sm;
+    margin-left: auto;
+  }
+  
+  // Card Body
+  &-body {
+    padding: $spacing-lg;
+    flex: 1;
+    
+    &--no-padding {
+      padding: 0;
+    }
+  }
+  
+  // Card Footer
+  &-footer {
+    padding: $spacing-md $spacing-lg $spacing-lg;
+    border-top: 1px solid $border-color;
+    background-color: $bg-secondary;
+    
+    &--no-border {
+      border-top: none;
+    }
+  }
+  
+  // Card Image
+  &-img {
+    width: 100%;
+    height: auto;
+    display: block;
+    
+    &-top {
+      border-top-left-radius: $border-radius;
+      border-top-right-radius: $border-radius;
+    }
+    
+    &-bottom {
+      border-bottom-left-radius: $border-radius;
+      border-bottom-right-radius: $border-radius;
+    }
+  }
+  
+  // Card Overlay
+  &-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+      to bottom,
+      transparent 0%,
+      transparent 50%,
+      rgba(0, 0, 0, 0.7) 100%
+    );
+    border-radius: $border-radius;
+  }
+  
+  // Card States
+  &--hoverable {
+    transition: all $transition-normal;
+    cursor: pointer;
+    
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: $shadow-lg;
+    }
+  }
+  
+  &--loading {
+    position: relative;
+    overflow: hidden;
+    
+    &::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.4),
+        transparent
+      );
+      animation: shimmer 1.5s infinite;
+    }
+  }
+}
+
+// Card Grid
+.card-grid {
+  display: grid;
+  gap: $spacing-lg;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  
+  &--sm {
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  }
+  
+  &--lg {
+    grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+  }
+  
+  &--2-cols {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  &--3-cols {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  
+  &--4-cols {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+// Card List
+.card-list {
+  .card {
+    margin-bottom: $spacing-lg;
+    
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
+
+// Stats Cards
+.stat-card {
+  @extend %card-base;
+  
+  text-align: center;
+  padding: $spacing-xl;
+  
+  &-icon {
+    width: 3rem;
+    height: 3rem;
+    margin: 0 auto $spacing-md;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: $border-radius-lg;
+    font-size: $font-size-xl;
+    color: $white;
+    
+    &--primary {
+      background-color: $primary-color;
+    }
+    
+    &--success {
+      background-color: $success-color;
+    }
+    
+    &--warning {
+      background-color: $warning-color;
+    }
+    
+    &--danger {
+      background-color: $error-color;
+    }
+  }
+  
+  &-value {
+    font-size: $font-size-3xl;
+    font-weight: $font-weight-bold;
+    color: $text-primary;
+    margin-bottom: $spacing-xs;
+  }
+  
+  &-label {
+    font-size: $font-size-sm;
+    color: $text-muted;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  
+  &-change {
+    margin-top: $spacing-sm;
+    font-size: $font-size-xs;
+    font-weight: $font-weight-medium;
+    
+    &--positive {
+      color: $success-color;
+    }
+    
+    &--negative {
+      color: $error-color;
+    }
+    
+    &::before {
+      content: attr(data-change);
+      margin-right: $spacing-xs;
+    }
+  }
+}
+
+// Profile Cards
+.profile-card {
+  @extend %card-base;
+  
+  text-align: center;
+  padding: $spacing-xl;
+  
+  &-avatar {
+    width: 4rem;
+    height: 4rem;
+    margin: 0 auto $spacing-md;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 3px solid $white;
+    box-shadow: $shadow-md;
+    
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+  
+  &-name {
+    font-size: $font-size-lg;
+    font-weight: $font-weight-semibold;
+    color: $text-primary;
+    margin-bottom: $spacing-xs;
+  }
+  
+  &-title {
+    font-size: $font-size-sm;
+    color: $text-muted;
+    margin-bottom: $spacing-md;
+  }
+  
+  &-stats {
+    display: flex;
+    justify-content: space-around;
+    margin-top: $spacing-lg;
+    padding-top: $spacing-lg;
+    border-top: 1px solid $border-color;
+    
+    .stat {
+      text-align: center;
+      
+      &-value {
+        display: block;
+        font-size: $font-size-lg;
+        font-weight: $font-weight-semibold;
+        color: $text-primary;
+      }
+      
+      &-label {
+        font-size: $font-size-xs;
+        color: $text-muted;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+      }
+    }
+  }
+}
+
+// Card Animations
+@keyframes shimmer {
+  0% {
+    left: -100%;
+  }
+  100% {
+    left: 100%;
+  }
+}

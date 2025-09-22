@@ -1,0 +1,42 @@
+{
+  "name": "prism-theme",
+  "version": "1.0.0",
+  "description": "A modern admin theme built with SCSS and component-based architecture",
+  "main": "dist/prism-theme.css",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build && npm run build:css",
+    "build:css": "sass src/styles/main.scss dist/prism-theme.css --style=compressed",
+    "build:watch": "vite build --watch",
+    "preview": "vite preview",
+    "lint:css": "stylelint 'src/**/*.scss'",
+    "format:css": "prettier --write 'src/**/*.scss'"
+  },
+  "keywords": [
+    "admin",
+    "theme",
+    "scss",
+    "css",
+    "ui",
+    "components",
+    "dashboard"
+  ],
+  "author": "Your Name",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "autoprefixer": "^10.4.16",
+    "postcss": "^8.4.32",
+    "prettier": "^3.1.0",
+    "sass": "^1.69.5",
+    "stylelint": "^16.0.0",
+    "stylelint-config-standard-scss": "^13.0.0",
+    "vite": "^5.0.0",
+    "vite-plugin-css-injected-by-js": "^3.0.0"
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not dead"
+  ]
+}

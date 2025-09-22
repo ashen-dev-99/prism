@@ -1,0 +1,191 @@
+// Prism Theme - Mixins
+// =====================================
+
+// Media Queries
+// -------------
+@mixin respond-to($breakpoint) {
+  @if $breakpoint == xs {
+    @media (min-width: $breakpoint-xs) { @content; }
+  }
+  @if $breakpoint == sm {
+    @media (min-width: $breakpoint-sm) { @content; }
+  }
+  @if $breakpoint == md {
+    @media (min-width: $breakpoint-md) { @content; }
+  }
+  @if $breakpoint == lg {
+    @media (min-width: $breakpoint-lg) { @content; }
+  }
+  @if $breakpoint == xl {
+    @media (min-width: $breakpoint-xl) { @content; }
+  }
+  @if $breakpoint == 2xl {
+    @media (min-width: $breakpoint-2xl) { @content; }
+  }
+}
+
+@mixin respond-below($breakpoint) {
+  @if $breakpoint == xs {
+    @media (max-width: $breakpoint-xs - 1px) { @content; }
+  }
+  @if $breakpoint == sm {
+    @media (max-width: $breakpoint-sm - 1px) { @content; }
+  }
+  @if $breakpoint == md {
+    @media (max-width: $breakpoint-md - 1px) { @content; }
+  }
+  @if $breakpoint == lg {
+    @media (max-width: $breakpoint-lg - 1px) { @content; }
+  }
+  @if $breakpoint == xl {
+    @media (max-width: $breakpoint-xl - 1px) { @content; }
+  }
+  @if $breakpoint == 2xl {
+    @media (max-width: $breakpoint-2xl - 1px) { @content; }
+  }
+}
+
+// Typography
+// ----------
+@mixin text-truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+@mixin text-clamp($lines: 2) {
+  display: -webkit-box;
+  -webkit-line-clamp: $lines;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+@mixin font-smoothing {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+// Layout
+// -------
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin flex-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+@mixin absolute-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+@mixin sticky-top($top: 0) {
+  position: sticky;
+  top: $top;
+  z-index: $z-sticky;
+}
+
+// Components
+// ----------
+@mixin button-reset {
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+  font: inherit;
+  color: inherit;
+}
+
+@mixin input-reset {
+  background: none;
+  border: none;
+  outline: none;
+  font: inherit;
+  color: inherit;
+}
+
+@mixin card {
+  background: $bg-primary;
+  border: 1px solid $border-color;
+  border-radius: $border-radius;
+  box-shadow: $shadow-sm;
+  padding: $spacing-lg;
+}
+
+@mixin focus-ring($color: $primary-color) {
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+  
+  &:focus-visible {
+    outline: 2px solid $color;
+    outline-offset: 2px;
+  }
+}
+
+// Animations
+// ----------
+@mixin fade-in($duration: $transition-normal) {
+  animation: fadeIn $duration ease-in-out;
+}
+
+@mixin slide-in($direction: up, $duration: $transition-normal) {
+  @if $direction == up {
+    animation: slideInUp $duration ease-out;
+  } @else if $direction == down {
+    animation: slideInDown $duration ease-out;
+  } @else if $direction == left {
+    animation: slideInLeft $duration ease-out;
+  } @else if $direction == right {
+    animation: slideInRight $duration ease-out;
+  }
+}
+
+// Utilities
+// ---------
+@mixin sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+@mixin clearfix {
+  &::after {
+    content: '';
+    display: table;
+    clear: both;
+  }
+}
+
+// Dark Mode
+// ---------
+@mixin dark-mode {
+  @media (prefers-color-scheme: dark) {
+    @content;
+  }
+}
+
+@mixin theme($theme: light) {
+  @if $theme == dark {
+    [data-theme='dark'] & {
+      @content;
+    }
+  } @else {
+    [data-theme='light'] & {
+      @content;
+    }
+  }
+}

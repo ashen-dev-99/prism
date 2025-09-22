@@ -1,0 +1,284 @@
+// Prism Theme - Tables
+// =====================================
+
+.table {
+  @extend %table-base;
+  
+  // Table Variants
+  &--striped {
+    tbody tr:nth-of-type(odd) {
+      background-color: $bg-secondary;
+    }
+  }
+  
+  &--hover {
+    tbody tr:hover {
+      background-color: $bg-secondary;
+    }
+  }
+  
+  &--bordered {
+    border: 1px solid $border-color;
+    
+    th,
+    td {
+      border: 1px solid $border-color;
+    }
+  }
+  
+  &--borderless {
+    th,
+    td {
+      border: none;
+    }
+  }
+  
+  &--sm {
+    th,
+    td {
+      padding: $spacing-xs $spacing-sm;
+      font-size: $font-size-xs;
+    }
+  }
+  
+  &--lg {
+    th,
+    td {
+      padding: $spacing-md $spacing-lg;
+      font-size: $font-size-base;
+    }
+  }
+  
+  // Table Responsive
+  &-responsive {
+    display: block;
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    
+    .table {
+      margin-bottom: 0;
+    }
+  }
+  
+  // Table Dark
+  &-dark {
+    color: $white;
+    background-color: $gray-800;
+    
+    th,
+    td {
+      border-color: $gray-700;
+    }
+    
+    thead th {
+      border-color: $gray-700;
+    }
+    
+    tbody + tbody {
+      border-top: 2px solid $gray-700;
+    }
+  }
+}
+
+// Table Caption
+.table-caption {
+  padding: $spacing-sm $spacing-md;
+  color: $text-muted;
+  text-align: left;
+  caption-side: bottom;
+  font-size: $font-size-sm;
+}
+
+// Table Head
+.table-head {
+  &-dark {
+    th {
+      color: $white;
+      background-color: $gray-800;
+      border-color: $gray-700;
+    }
+  }
+}
+
+// Table Body
+.table-body {
+  &-light {
+    tbody tr {
+      background-color: $white;
+    }
+  }
+}
+
+// Table Row
+.table-row {
+  &-active {
+    background-color: color-alpha($primary-color, 0.1) !important;
+  }
+  
+  &-success {
+    background-color: color-alpha($success-color, 0.1) !important;
+  }
+  
+  &-warning {
+    background-color: color-alpha($warning-color, 0.1) !important;
+  }
+  
+  &-danger {
+    background-color: color-alpha($error-color, 0.1) !important;
+  }
+  
+  &-info {
+    background-color: color-alpha($info-color, 0.1) !important;
+  }
+}
+
+// Table Cell
+.table-cell {
+  &-active {
+    background-color: color-alpha($primary-color, 0.1) !important;
+  }
+  
+  &-success {
+    background-color: color-alpha($success-color, 0.1) !important;
+  }
+  
+  &-warning {
+    background-color: color-alpha($warning-color, 0.1) !important;
+  }
+  
+  &-danger {
+    background-color: color-alpha($error-color, 0.1) !important;
+  }
+  
+  &-info {
+    background-color: color-alpha($info-color, 0.1) !important;
+  }
+}
+
+// Table Actions
+.table-actions {
+  display: flex;
+  gap: $spacing-xs;
+  align-items: center;
+  
+  .btn {
+    padding: $spacing-xs;
+    min-height: auto;
+    font-size: $font-size-xs;
+  }
+}
+
+// Data Table
+.data-table {
+  .table {
+    margin-bottom: 0;
+  }
+  
+  &-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: $spacing-lg;
+    padding: $spacing-md 0;
+    border-bottom: 1px solid $border-color;
+    
+    &-title {
+      font-size: $font-size-lg;
+      font-weight: $font-weight-semibold;
+      color: $text-primary;
+    }
+    
+    &-actions {
+      display: flex;
+      gap: $spacing-sm;
+      align-items: center;
+    }
+  }
+  
+  &-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: $spacing-lg;
+    padding: $spacing-md 0;
+    border-top: 1px solid $border-color;
+    font-size: $font-size-sm;
+    color: $text-muted;
+  }
+}
+
+// Table Pagination
+.table-pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: $spacing-sm;
+  margin-top: $spacing-lg;
+  
+  .btn {
+    min-width: 2.5rem;
+    height: 2.5rem;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  &-info {
+    font-size: $font-size-sm;
+    color: $text-muted;
+    margin: 0 $spacing-md;
+  }
+}
+
+// Table Loading
+.table-loading {
+  position: relative;
+  
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: color-alpha($white, 0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
+  }
+  
+  &-spinner {
+    @extend %spinner-base;
+    width: 2rem;
+    height: 2rem;
+    border-width: 3px;
+  }
+}
+
+// Table Empty State
+.table-empty {
+  text-align: center;
+  padding: $spacing-3xl $spacing-lg;
+  color: $text-muted;
+  
+  &-icon {
+    font-size: 3rem;
+    margin-bottom: $spacing-md;
+    opacity: 0.5;
+  }
+  
+  &-title {
+    font-size: $font-size-lg;
+    font-weight: $font-weight-medium;
+    margin-bottom: $spacing-sm;
+    color: $text-secondary;
+  }
+  
+  &-message {
+    font-size: $font-size-sm;
+    margin-bottom: $spacing-lg;
+  }
+}

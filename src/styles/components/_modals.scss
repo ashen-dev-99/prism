@@ -1,0 +1,323 @@
+// Prism Theme - Modals
+// =====================================
+
+.modal {
+  @extend %modal-base;
+  
+  // Modal Sizes
+  &--sm .modal-content {
+    max-width: 300px;
+  }
+  
+  &--lg .modal-content {
+    max-width: 800px;
+  }
+  
+  &--xl .modal-content {
+    max-width: 1140px;
+  }
+  
+  &--fullscreen .modal-content {
+    max-width: 100vw;
+    max-height: 100vh;
+    border-radius: 0;
+  }
+  
+  // Modal Content
+  &-content {
+    position: relative;
+    background: $bg-primary;
+    border-radius: $border-radius-lg;
+    box-shadow: $shadow-xl;
+    max-width: 500px;
+    max-height: 90vh;
+    overflow: hidden;
+    z-index: 1;
+  }
+  
+  &-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: $spacing-lg;
+    border-bottom: 1px solid $border-color;
+    background: $bg-primary;
+    
+    .modal-title {
+      margin: 0;
+      font-size: $font-size-lg;
+      font-weight: $font-weight-semibold;
+      color: $text-primary;
+    }
+    
+    .modal-close {
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      color: $text-muted;
+      cursor: pointer;
+      padding: $spacing-xs;
+      line-height: 1;
+      border-radius: $border-radius;
+      transition: all $transition-fast;
+      
+      &:hover {
+        color: $text-primary;
+        background-color: $bg-secondary;
+      }
+      
+      &:focus {
+        outline: 2px solid $primary-color;
+        outline-offset: 2px;
+      }
+    }
+  }
+  
+  &-body {
+    padding: $spacing-lg;
+    max-height: 60vh;
+    overflow-y: auto;
+  }
+  
+  &-footer {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: $spacing-sm;
+    padding: $spacing-lg;
+    border-top: 1px solid $border-color;
+    background: $bg-secondary;
+  }
+  
+  // Modal Backdrop
+  &-backdrop {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: color-alpha($black, 0.5);
+    backdrop-filter: blur(4px);
+    z-index: 0;
+  }
+  
+  // Modal States
+  &-show {
+    display: flex !important;
+  }
+  
+  &-fade {
+    opacity: 0;
+    transition: opacity $transition-normal;
+    
+    &.modal-show {
+      opacity: 1;
+    }
+  }
+  
+  &-slide {
+    transform: translateY(-50px);
+    transition: transform $transition-normal;
+    
+    &.modal-show {
+      transform: translateY(0);
+    }
+  }
+  
+  &-scale {
+    transform: scale(0.8);
+    transition: transform $transition-normal;
+    
+    &.modal-show {
+      transform: scale(1);
+    }
+  }
+}
+
+// Modal Variants
+.modal {
+  &--centered {
+    align-items: center;
+    justify-content: center;
+  }
+  
+  &--top {
+    align-items: flex-start;
+    padding-top: $spacing-xl;
+  }
+  
+  &--bottom {
+    align-items: flex-end;
+    padding-bottom: $spacing-xl;
+  }
+}
+
+// Confirmation Modal
+.modal-confirmation {
+  .modal-content {
+    max-width: 400px;
+  }
+  
+  .modal-body {
+    text-align: center;
+    padding: $spacing-xl;
+    
+    .modal-icon {
+      font-size: 3rem;
+      margin-bottom: $spacing-lg;
+      color: $warning-color;
+    }
+    
+    .modal-message {
+      font-size: $font-size-lg;
+      color: $text-primary;
+      margin-bottom: $spacing-lg;
+    }
+  }
+  
+  .modal-footer {
+    justify-content: center;
+  }
+}
+
+// Alert Modal
+.modal-alert {
+  .modal-content {
+    max-width: 400px;
+  }
+  
+  .modal-body {
+    text-align: center;
+    padding: $spacing-xl;
+    
+    .modal-icon {
+      font-size: 3rem;
+      margin-bottom: $spacing-lg;
+    }
+    
+    &--success .modal-icon {
+      color: $success-color;
+    }
+    
+    &--warning .modal-icon {
+      color: $warning-color;
+    }
+    
+    &--danger .modal-icon {
+      color: $error-color;
+    }
+    
+    &--info .modal-icon {
+      color: $info-color;
+    }
+  }
+}
+
+// Form Modal
+.modal-form {
+  .modal-content {
+    max-width: 600px;
+  }
+  
+  .modal-body {
+    padding: $spacing-xl;
+  }
+  
+  .form-group {
+    margin-bottom: $spacing-lg;
+  }
+}
+
+// Image Modal
+.modal-image {
+  .modal-content {
+    max-width: 90vw;
+    max-height: 90vh;
+    background: transparent;
+    box-shadow: none;
+    border: none;
+  }
+  
+  .modal-body {
+    padding: 0;
+    text-align: center;
+  }
+  
+  .modal-image-content {
+    max-width: 100%;
+    max-height: 90vh;
+    object-fit: contain;
+    border-radius: $border-radius;
+  }
+}
+
+// Video Modal
+.modal-video {
+  .modal-content {
+    max-width: 90vw;
+    max-height: 90vh;
+    background: $black;
+  }
+  
+  .modal-body {
+    padding: 0;
+    position: relative;
+    padding-bottom: 56.25%; // 16:9 aspect ratio
+    height: 0;
+    overflow: hidden;
+  }
+  
+  .modal-video-content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+  }
+}
+
+// Modal Animations
+@keyframes modalFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes modalSlideIn {
+  from {
+    transform: translateY(-50px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes modalScaleIn {
+  from {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+// Modal Utilities
+.modal-open {
+  overflow: hidden;
+}
+
+.modal-scrollbar-measure {
+  position: absolute;
+  top: -9999px;
+  width: 50px;
+  height: 50px;
+  overflow: scroll;
+}

@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prism Theme - Admin Dashboard</title>
+    <link rel="stylesheet" href="dist/prism-theme.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-brand">
+            <div class="header-brand-logo">
+                <i class="fas fa-cube"></i>
+            </div>
+            <span class="header-brand-text">Prism Admin</span>
+        </div>
+
+        <div class="header-search">
+            <input type="text" class="header-search-input" placeholder="Search...">
+            <i class="fas fa-search header-search-icon"></i>
+        </div>
+
+        <div class="header-actions">
+            <!-- Theme Toggle -->
+            <button class="btn-icon" data-theme-toggle aria-label="Toggle theme">
+                <i class="fas fa-moon"></i>
+            </button>
+
+            <!-- Notifications -->
+            <div class="header-notifications" data-component="dropdown">
+                <button class="header-notifications-toggle dropdown-toggle">
+                    <i class="fas fa-bell"></i>
+                    <span class="notification-badge">3</span>
+                </button>
+                <div class="header-notifications-menu dropdown-menu">
+                    <div class="header-notifications-menu-header">
+                        <h6 class="notifications-title">Notifications</h6>
+                        <button class="btn btn--sm btn--ghost">Mark all read</button>
+                    </div>
+                    <div class="header-notifications-menu-body">
+                        <div class="header-notifications-menu-item unread">
+                            <div class="notification-content">
+                                <p class="notification-title">New user registered</p>
+                                <p class="notification-text">John Doe just joined your platform</p>
+                                <p class="notification-time">2 minutes ago</p>
+                            </div>
+                        </div>
+                        <div class="header-notifications-menu-item">
+                            <div class="notification-content">
+                                <p class="notification-title">Server maintenance</p>
+                                <p class="notification-text">Scheduled maintenance in 2 hours</p>
+                                <p class="notification-time">1 hour ago</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- User Menu -->
+            <div class="header-user" data-component="dropdown">
+                <button class="header-user-toggle dropdown-toggle">
+                    <img src="https://via.placeholder.com/32" alt="User" class="user-avatar">
+                    <span class="user-name">John Doe</span>
+                    <i class="fas fa-chevron-down user-arrow"></i>
+                </button>
+                <div class="header-user-menu dropdown-menu">
+                    <div class="header-user-menu-header">
+                        <div class="user-info">
+                            <p class="user-name">John Doe</p>
+                            <p class="user-email">john@example.com</p>
+                        </div>
+                    </div>
+                    <div class="header-user-menu-body">
+                        <a href="#" class="header-user-menu-item">
+                            <i class="fas fa-user"></i> Profile
+                        </a>
+                        <a href="#" class="header-user-menu-item">
+                            <i class="fas fa-cog"></i> Settings
+                        </a>
+                        <div class="header-user-menu-item divider"></div>
+                        <a href="#" class="header-user-menu-item">
+                            <i class="fas fa-sign-out-alt"></i> Logout
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Sidebar -->
+    <aside class="sidebar" data-component="sidebar">
+        <nav class="sidebar-nav">
+            <div class="sidebar-nav-section">
+                <h6 class="sidebar-nav-section-title">Main</h6>
+                <ul class="sidebar-nav-list">
+                    <li class="sidebar-nav-item">
+                        <a href="#" class="sidebar-nav-link active">
+                            <i class="fas fa-home nav-icon"></i>
+                            <span class="nav-text">Dashboard</span>
+                        </a>
+                    </li>
+                    <li class="sidebar-nav-item">
+                        <a href="#" class="sidebar-nav-link">
+                            <i class="fas fa-users nav-icon"></i>
+                            <span class="nav-text">Users</span>
+                            <span class="nav-badge">12</span>
+                        </a>
+                    </li>
+                    <li class="sidebar-nav-item">
+                        <a href="#" class="sidebar-nav-link">
+                            <i class="fas fa-shopping-cart nav-icon"></i>
+                            <span class="nav-text">Orders</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="sidebar-nav-section">
+                <h6 class="sidebar-nav-section-title">Content</h6>
+                <ul class="sidebar-nav-list">
+                    <li class="sidebar-nav-item">
+                        <a href="#" class="sidebar-nav-link">
+                            <i class="fas fa-file-alt nav-icon"></i>
+                            <span class="nav-text">Pages</span>
+                        </a>
+                    </li>
+                    <li class="sidebar-nav-item">
+                        <a href="#" class="sidebar-nav-link">
+                            <i class="fas fa-image nav-icon"></i>
+                            <span class="nav-text">Media</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="sidebar-nav-section">
+                <h6 class="sidebar-nav-section-title">System</h6>
+                <ul class="sidebar-nav-list">
+                    <li class="sidebar-nav-item">
+                        <a href="#" class="sidebar-nav-link">
+                            <i class="fas fa-cog nav-icon"></i>
+                            <span class="nav-text">Settings</span>
+                        </a>
+                    </li>
+                    <li class="sidebar-nav-item">
+                        <a href="#" class="sidebar-nav-link">
+                            <i class="fas fa-chart-bar nav-icon"></i>
+                            <span class="nav-text">Analytics</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </aside>
+
+    <!-- Sidebar Toggle -->
+    <button class="sidebar-toggle" data-sidebar-toggle>
+        <i class="fas fa-chevron-left sidebar-toggle-icon"></i>
+    </button>
+
+    <!-- Sidebar Overlay -->
+    <div class="sidebar-overlay"></div>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="main-content-wrapper">
+            <!-- Welcome Card -->
+            <div class="dashboard-welcome">
+                <div class="dashboard-welcome-content">
+                    <div class="dashboard-welcome-text">
+                        <h1 class="welcome-title">Welcome back, John!</h1>
+                        <p class="welcome-subtitle">Here's what's happening with your dashboard today.</p>
+                    </div>
+                    <div class="dashboard-welcome-actions">
+                        <button class="btn btn--primary">
+                            <i class="fas fa-plus"></i> New Project
+                        </button>
+                        <button class="btn btn--ghost">
+                            <i class="fas fa-download"></i> Export
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Stats Cards -->
+            <div class="dashboard-stats">
+                <div class="stat-card">
+                    <div class="stat-card-icon stat-card-icon--primary">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <div class="stat-card-value">1,234</div>
+                    <div class="stat-card-label">Total Users</div>
+                    <div class="stat-card-change stat-card-change--positive" data-change="+12%">
+                        Since last month
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-card-icon stat-card-icon--success">
+                        <i class="fas fa-dollar-sign"></i>
+                    </div>
+                    <div class="stat-card-value">$45,678</div>
+                    <div class="stat-card-label">Revenue</div>
+                    <div class="stat-card-change stat-card-change--positive" data-change="+8%">
+                        Since last month
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-card-icon stat-card-icon--warning">
+                        <i class="fas fa-shopping-bag"></i>
+                    </div>
+                    <div class="stat-card-value">567</div>
+                    <div class="stat-card-label">Orders</div>
+                    <div class="stat-card-change stat-card-change--negative" data-change="-3%">
+                        Since last month
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-card-icon stat-card-icon--danger">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <div class="stat-card-value">89%</div>
+                    <div class="stat-card-label">Conversion</div>
+                    <div class="stat-card-change stat-card-change--positive" data-change="+5%">
+                        Since last month
+                    </div>
+                </div>
+            </div>
+
+            <!-- Content Grid -->
+            <div class="dashboard-grid">
+                <!-- Chart Card -->
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Sales Overview</h3>
+                        <div class="card-actions">
+                            <div class="dropdown" data-component="dropdown">
+                                <button class="btn btn--sm btn--ghost dropdown-toggle">
+                                    <i class="fas fa-ellipsis-v"></i>
+                                </button>
+                                <div class="dropdown-menu">
+                                    <a href="#" class="dropdown-item">View Details</a>
+                                    <a href="#" class="dropdown-item">Export Data</a>
+                                    <div class="dropdown-divider"></div>
+                                    <a href="#" class="dropdown-item">Settings</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div style="height: 300px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 8px; display: flex; align-items: center; justify-content: center; color: white;">
+                            <i class="fas fa-chart-area" style="font-size: 3rem; opacity: 0.7;"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Activity Card -->
+                <div class="dashboard-activity">
+                    <div class="dashboard-activity-header">
+                        <h3 class="dashboard-activity-title">Recent Activity</h3>
+                        <div class="dashboard-activity-actions">
+                            <button class="btn btn--sm btn--ghost">View All</button>
+                        </div>
+                    </div>
+                    <ul class="dashboard-activity-list">
+                        <li class="dashboard-activity-item">
+                            <div class="activity-avatar">JD</div>
+                            <div class="activity-content">
+                                <p class="activity-text">John Doe updated project settings</p>
+                                <p class="activity-time">2 minutes ago</p>
+                            </div>
+                            <div class="activity-status activity-status--success">
+                                <i class="fas fa-check"></i>
+                            </div>
+                        </li>
+                        <li class="dashboard-activity-item">
+                            <div class="activity-avatar">SM</div>
+                            <div class="activity-content">
+                                <p class="activity-text">Sarah Miller created a new task</p>
+                                <p class="activity-time">1 hour ago</p>
+                            </div>
+                            <div class="activity-status activity-status--warning">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                        </li>
+                        <li class="dashboard-activity-item">
+                            <div class="activity-avatar">MB</div>
+                            <div class="activity-content">
+                                <p class="activity-text">Mike Brown deleted 3 files</p>
+                                <p class="activity-time">3 hours ago</p>
+                            </div>
+                            <div class="activity-status activity-status--danger">
+                                <i class="fas fa-trash"></i>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Demo Components Section -->
+            <div class="main-content-section">
+                <h2 class="main-content-section-title">Component Examples</h2>
+
+                <!-- Tabs Example -->
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Tabs Component</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="tabs" data-component="tabs">
+                            <ul class="tabs-nav">
+                                <li class="tabs-nav-item">
+                                    <a href="#" class="tabs-nav-link active">Overview</a>
+                                </li>
+                                <li class="tabs-nav-item">
+                                    <a href="#" class="tabs-nav-link">Analytics</a>
+                                </li>
+                                <li class="tabs-nav-item">
+                                    <a href="#" class="tabs-nav-link">Settings</a>
+                                </li>
+                            </ul>
+                            <div class="tabs-content">
+                                <div class="tabs-pane active">
+                                    <p>Overview content goes here. This is the first tab panel.</p>
+                                </div>
+                                <div class="tabs-pane">
+                                    <p>Analytics content goes here. This is the second tab panel.</p>
+                                </div>
+                                <div class="tabs-pane">
+                                    <p>Settings content goes here. This is the third tab panel.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Forms Example -->
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Form Components</h3>
+                    </div>
+                    <div class="card-body">
+                        <form>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label class="form-label">First Name</label>
+                                    <input type="text" class="form-control" placeholder="Enter first name">
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Last Name</label>
+                                    <input type="text" class="form-control" placeholder="Enter last name">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Email</label>
+                                <input type="email" class="form-control" placeholder="Enter email address">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Message</label>
+                                <textarea class="form-control form-control--textarea" placeholder="Enter your message"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <div class="form-check">
+                                    <input type="checkbox" id="agree" class="form-check-input">
+                                    <label for="agree" class="form-check-label">I agree to the terms and conditions</label>
+                                </div>
+                            </div>
+                            <div class="btn-group">
+                                <button type="submit" class="btn btn--primary">Submit</button>
+                                <button type="button" class="btn btn--secondary">Cancel</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Buttons Example -->
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Button Components</h3>
+                    </div>
+                    <div class="card-body">
+                        <div style="display: flex; flex-wrap: wrap; gap: 1rem; margin-bottom: 2rem;">
+                            <button class="btn btn--primary">Primary</button>
+                            <button class="btn btn--secondary">Secondary</button>
+                            <button class="btn btn--success">Success</button>
+                            <button class="btn btn--warning">Warning</button>
+                            <button class="btn btn--danger">Danger</button>
+                            <button class="btn btn--outline">Outline</button>
+                            <button class="btn btn--ghost">Ghost</button>
+                        </div>
+                        
+                        <div style="display: flex; flex-wrap: wrap; gap: 1rem; margin-bottom: 2rem;">
+                            <button class="btn btn--primary btn--sm">Small</button>
+                            <button class="btn btn--primary">Normal</button>
+                            <button class="btn btn--primary btn--lg">Large</button>
+                        </div>
+
+                        <div style="display: flex; flex-wrap: wrap; gap: 1rem;">
+                            <button class="btn-icon">
+                                <i class="fas fa-heart"></i>
+                            </button>
+                            <button class="btn btn--primary">
+                                <i class="fas fa-download"></i> Download
+                            </button>
+                            <button class="btn btn--primary btn--loading">Loading</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-wrapper">
+            <div class="footer-bottom">
+                <p class="footer-bottom-text">&copy; 2024 Prism Theme. All rights reserved.</p>
+                <ul class="footer-bottom-links">
+                    <li><a href="#">Privacy</a></li>
+                    <li><a href="#">Terms</a></li>
+                    <li><a href="#">Support</a></li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Toast Container -->
+    <div class="toast-container"></div>
+
+    <!-- Example Modal -->
+    <div class="modal" id="exampleModal" data-component="modal" style="display: none;">
+        <div class="modal-backdrop"></div>
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Example Modal</h5>
+                <button type="button" class="modal-close" data-dismiss="modal" aria-label="Close">
+                    &times;
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>This is an example modal dialog. You can put any content here.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn--secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn--primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="src/index.js"></script>
+    <script>
+        // Example usage
+        document.addEventListener('DOMContentLoaded', function() {
+            // Show welcome toast
+            setTimeout(() => {
+                if (typeof ComponentRegistry !== 'undefined') {
+                    ComponentRegistry.showToast('Welcome to Prism Admin Theme!', 'success', {
+                        title: 'Welcome'
+                    });
+                }
+            }, 1000);
+        });
+    </script>
+</body>
+</html>

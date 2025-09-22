@@ -1,0 +1,284 @@
+// Prism Theme - Typography
+// =====================================
+
+// Font Loading
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+// Headings
+.heading {
+  &-1 { @extend h1; }
+  &-2 { @extend h2; }
+  &-3 { @extend h3; }
+  &-4 { @extend h4; }
+  &-5 { @extend h5; }
+  &-6 { @extend h6; }
+  
+  &--display {
+    font-size: $font-size-4xl;
+    font-weight: $font-weight-bold;
+    line-height: $line-height-tight;
+    letter-spacing: -0.025em;
+    
+    @include respond-to(md) {
+      font-size: 3rem;
+    }
+    
+    @include respond-to(lg) {
+      font-size: 3.5rem;
+    }
+  }
+  
+  &--subtitle {
+    font-size: $font-size-lg;
+    font-weight: $font-weight-normal;
+    color: $text-secondary;
+    line-height: $line-height-relaxed;
+  }
+}
+
+// Text Utilities
+.text {
+  &-xs { font-size: $font-size-xs; }
+  &-sm { font-size: $font-size-sm; }
+  &-base { font-size: $font-size-base; }
+  &-lg { font-size: $font-size-lg; }
+  &-xl { font-size: $font-size-xl; }
+  &-2xl { font-size: $font-size-2xl; }
+  &-3xl { font-size: $font-size-3xl; }
+  &-4xl { font-size: $font-size-4xl; }
+  
+  &-light { font-weight: $font-weight-light; }
+  &-normal { font-weight: $font-weight-normal; }
+  &-medium { font-weight: $font-weight-medium; }
+  &-semibold { font-weight: $font-weight-semibold; }
+  &-bold { font-weight: $font-weight-bold; }
+  
+  &-primary { color: $text-primary; }
+  &-secondary { color: $text-secondary; }
+  &-muted { color: $text-muted; }
+  &-inverse { color: $text-inverse; }
+  
+  &-success { color: $success-color; }
+  &-warning { color: $warning-color; }
+  &-danger { color: $error-color; }
+  &-info { color: $info-color; }
+  
+  &-left { text-align: left; }
+  &-center { text-align: center; }
+  &-right { text-align: right; }
+  &-justify { text-align: justify; }
+  
+  &-uppercase { text-transform: uppercase; }
+  &-lowercase { text-transform: lowercase; }
+  &-capitalize { text-transform: capitalize; }
+  
+  &-truncate { @include text-truncate; }
+  &-clamp-2 { @include text-clamp(2); }
+  &-clamp-3 { @include text-clamp(3); }
+  
+  &-nowrap { white-space: nowrap; }
+  &-break { word-break: break-word; }
+  &-break-all { word-break: break-all; }
+  
+  &-decoration-none { text-decoration: none; }
+  &-underline { text-decoration: underline; }
+  &-line-through { text-decoration: line-through; }
+  
+  &-leading-tight { line-height: $line-height-tight; }
+  &-leading-normal { line-height: $line-height-normal; }
+  &-leading-relaxed { line-height: $line-height-relaxed; }
+}
+
+// Code
+code {
+  font-family: $font-family-mono;
+  font-size: 0.875em;
+  color: $error-color;
+  background-color: $bg-secondary;
+  padding: 0.125rem 0.25rem;
+  border-radius: $border-radius-sm;
+}
+
+pre {
+  font-family: $font-family-mono;
+  font-size: $font-size-sm;
+  line-height: $line-height-normal;
+  color: $text-primary;
+  background-color: $bg-secondary;
+  padding: $spacing-md;
+  border-radius: $border-radius;
+  overflow-x: auto;
+  margin: 0 0 $spacing-md;
+  
+  code {
+    color: inherit;
+    background-color: transparent;
+    padding: 0;
+    border-radius: 0;
+  }
+}
+
+// Blockquotes
+blockquote {
+  margin: 0 0 $spacing-md;
+  padding: $spacing-md $spacing-lg;
+  border-left: 4px solid $primary-color;
+  background-color: $bg-secondary;
+  border-radius: 0 $border-radius $border-radius 0;
+  font-style: italic;
+  color: $text-secondary;
+  
+  p:last-child {
+    margin-bottom: 0;
+  }
+  
+  cite {
+    display: block;
+    margin-top: $spacing-sm;
+    font-size: $font-size-sm;
+    color: $text-muted;
+    font-style: normal;
+    
+    &::before {
+      content: '— ';
+    }
+  }
+}
+
+// Lists
+.list {
+  &-unstyled {
+    list-style: none;
+    padding-left: 0;
+  }
+  
+  &-inline {
+    display: flex;
+    flex-wrap: wrap;
+    gap: $spacing-sm;
+    list-style: none;
+    padding-left: 0;
+    margin-bottom: 0;
+    
+    li {
+      margin-bottom: 0;
+    }
+  }
+  
+  &-group {
+    display: flex;
+    flex-direction: column;
+    padding-left: 0;
+    margin-bottom: 0;
+    
+    &-item {
+      position: relative;
+      display: block;
+      padding: $spacing-sm $spacing-md;
+      color: $text-primary;
+      text-decoration: none;
+      background-color: $bg-primary;
+      border: 1px solid $border-color;
+      
+      &:first-child {
+        border-top-left-radius: $border-radius;
+        border-top-right-radius: $border-radius;
+      }
+      
+      &:last-child {
+        border-bottom-left-radius: $border-radius;
+        border-bottom-right-radius: $border-radius;
+      }
+      
+      &:not(:last-child) {
+        border-bottom: 0;
+      }
+      
+      &:hover {
+        background-color: $bg-secondary;
+        color: $text-primary;
+        text-decoration: none;
+      }
+      
+      &.active {
+        background-color: $primary-color;
+        color: $white;
+        border-color: $primary-color;
+      }
+    }
+  }
+}
+
+// Definition Lists
+dl {
+  margin: 0 0 $spacing-md;
+}
+
+dt {
+  font-weight: $font-weight-semibold;
+  margin-bottom: $spacing-xs;
+}
+
+dd {
+  margin-left: $spacing-lg;
+  margin-bottom: $spacing-sm;
+}
+
+// Address
+address {
+  font-style: normal;
+  line-height: $line-height-normal;
+  margin-bottom: $spacing-md;
+}
+
+// Small
+small {
+  font-size: 0.875em;
+}
+
+// Mark
+mark {
+  background-color: color-alpha($warning-color, 0.2);
+  color: $text-primary;
+  padding: 0.125rem 0.25rem;
+  border-radius: $border-radius-sm;
+}
+
+// Abbreviations
+abbr[title] {
+  text-decoration: underline dotted;
+  cursor: help;
+}
+
+// Keyboard
+kbd {
+  font-family: $font-family-mono;
+  font-size: 0.875em;
+  color: $text-primary;
+  background-color: $bg-secondary;
+  padding: 0.125rem 0.25rem;
+  border-radius: $border-radius-sm;
+  border: 1px solid $border-color;
+  box-shadow: inset 0 -1px 0 $border-color-dark;
+}
+
+// Sample
+samp {
+  font-family: $font-family-mono;
+  font-size: 0.875em;
+  color: $text-primary;
+}
+
+// Variables
+var {
+  font-family: $font-family-mono;
+  font-style: italic;
+  color: $text-primary;
+}
+
+// Time
+time {
+  color: $text-muted;
+  font-size: $font-size-sm;
+}

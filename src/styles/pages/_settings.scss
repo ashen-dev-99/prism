@@ -1,0 +1,432 @@
+// Prism Theme - Settings Page
+// =====================================
+
+.settings {
+  // Settings Layout
+  &-layout {
+    display: grid;
+    gap: $spacing-xl;
+    grid-template-columns: 250px 1fr;
+    
+    @include respond-below(lg) {
+      grid-template-columns: 1fr;
+    }
+  }
+  
+  // Settings Sidebar
+  &-sidebar {
+    &-nav {
+      @extend %card-base;
+      
+      padding: 0;
+      
+      &-list {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+      }
+      
+      &-item {
+        border-bottom: 1px solid $border-color;
+        
+        &:last-child {
+          border-bottom: none;
+        }
+      }
+      
+      &-link {
+        display: flex;
+        align-items: center;
+        gap: $spacing-sm;
+        padding: $spacing-md $spacing-lg;
+        color: $text-secondary;
+        text-decoration: none;
+        transition: all $transition-fast;
+        
+        &:hover {
+          color: $text-primary;
+          background-color: $bg-secondary;
+          text-decoration: none;
+        }
+        
+        &.active {
+          color: $primary-color;
+          background-color: color-alpha($primary-color, 0.1);
+          font-weight: $font-weight-medium;
+          border-right: 3px solid $primary-color;
+        }
+        
+        .settings-nav-icon {
+          font-size: 1.125rem;
+          width: 1.5rem;
+          text-align: center;
+        }
+        
+        .settings-nav-text {
+          flex: 1;
+        }
+      }
+    }
+  }
+  
+  // Settings Content
+  &-content {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-xl;
+  }
+  
+  // Settings Section
+  &-section {
+    @extend %card-base;
+    
+    &-header {
+      margin-bottom: $spacing-lg;
+      padding-bottom: $spacing-lg;
+      border-bottom: 1px solid $border-color;
+      
+      .settings-section-title {
+        font-size: $font-size-xl;
+        font-weight: $font-weight-semibold;
+        color: $text-primary;
+        margin: 0 0 $spacing-sm;
+      }
+      
+      .settings-section-description {
+        font-size: $font-size-sm;
+        color: $text-muted;
+        margin: 0;
+      }
+    }
+    
+    &-body {
+      .form-group {
+        margin-bottom: $spacing-lg;
+        
+        &:last-child {
+          margin-bottom: 0;
+        }
+      }
+    }
+    
+    &-footer {
+      margin-top: $spacing-lg;
+      padding-top: $spacing-lg;
+      border-top: 1px solid $border-color;
+      display: flex;
+      justify-content: flex-end;
+      gap: $spacing-sm;
+    }
+  }
+  
+  // Settings Profile
+  &-profile {
+    &-avatar {
+      position: relative;
+      display: inline-block;
+      margin-bottom: $spacing-lg;
+      
+      .profile-avatar {
+        width: 6rem;
+        height: 6rem;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 3px solid $border-color;
+      }
+      
+      .profile-avatar-upload {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        width: 2rem;
+        height: 2rem;
+        background-color: $primary-color;
+        color: $white;
+        border: 2px solid $white;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: all $transition-fast;
+        
+        &:hover {
+          background-color: $primary-dark;
+        }
+        
+        input[type="file"] {
+          position: absolute;
+          opacity: 0;
+          width: 100%;
+          height: 100%;
+          cursor: pointer;
+        }
+      }
+    }
+  }
+  
+  // Settings Preferences
+  &-preferences {
+    &-group {
+      margin-bottom: $spacing-xl;
+      
+      &:last-child {
+        margin-bottom: 0;
+      }
+      
+      .preferences-group-title {
+        font-size: $font-size-lg;
+        font-weight: $font-weight-medium;
+        color: $text-primary;
+        margin: 0 0 $spacing-lg;
+      }
+    }
+    
+    &-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: $spacing-md 0;
+      border-bottom: 1px solid $border-color;
+      
+      &:last-child {
+        border-bottom: none;
+      }
+      
+      .preferences-item-content {
+        flex: 1;
+        
+        .preferences-item-title {
+          font-size: $font-size-sm;
+          font-weight: $font-weight-medium;
+          color: $text-primary;
+          margin: 0 0 $spacing-xs;
+        }
+        
+        .preferences-item-description {
+          font-size: $font-size-xs;
+          color: $text-muted;
+          margin: 0;
+        }
+      }
+      
+      .preferences-item-control {
+        margin-left: $spacing-lg;
+      }
+    }
+  }
+  
+  // Settings Security
+  &-security {
+    &-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: $spacing-lg;
+      border: 1px solid $border-color;
+      border-radius: $border-radius;
+      margin-bottom: $spacing-md;
+      
+      &:last-child {
+        margin-bottom: 0;
+      }
+      
+      &.enabled {
+        border-color: $success-color;
+        background-color: color-alpha($success-color, 0.05);
+      }
+      
+      &.disabled {
+        border-color: $error-color;
+        background-color: color-alpha($error-color, 0.05);
+      }
+      
+      .security-item-content {
+        flex: 1;
+        
+        .security-item-title {
+          font-size: $font-size-base;
+          font-weight: $font-weight-medium;
+          color: $text-primary;
+          margin: 0 0 $spacing-xs;
+        }
+        
+        .security-item-description {
+          font-size: $font-size-sm;
+          color: $text-muted;
+          margin: 0;
+        }
+        
+        .security-item-status {
+          margin-top: $spacing-sm;
+          font-size: $font-size-xs;
+          font-weight: $font-weight-medium;
+          
+          &.enabled {
+            color: $success-color;
+          }
+          
+          &.disabled {
+            color: $error-color;
+          }
+        }
+      }
+      
+      .security-item-actions {
+        margin-left: $spacing-lg;
+        display: flex;
+        gap: $spacing-sm;
+      }
+    }
+  }
+  
+  // Settings Notifications
+  &-notifications {
+    &-group {
+      margin-bottom: $spacing-xl;
+      
+      &:last-child {
+        margin-bottom: 0;
+      }
+      
+      .notifications-group-title {
+        font-size: $font-size-lg;
+        font-weight: $font-weight-medium;
+        color: $text-primary;
+        margin: 0 0 $spacing-lg;
+      }
+    }
+    
+    &-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: $spacing-md 0;
+      border-bottom: 1px solid $border-color;
+      
+      &:last-child {
+        border-bottom: none;
+      }
+      
+      .notifications-item-content {
+        flex: 1;
+        
+        .notifications-item-title {
+          font-size: $font-size-sm;
+          font-weight: $font-weight-medium;
+          color: $text-primary;
+          margin: 0 0 $spacing-xs;
+        }
+        
+        .notifications-item-description {
+          font-size: $font-size-xs;
+          color: $text-muted;
+          margin: 0;
+        }
+      }
+      
+      .notifications-item-controls {
+        margin-left: $spacing-lg;
+        display: flex;
+        gap: $spacing-md;
+        align-items: center;
+        
+        .form-check {
+          margin: 0;
+        }
+      }
+    }
+  }
+  
+  // Settings Theme
+  &-theme {
+    &-options {
+      display: grid;
+      gap: $spacing-md;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    }
+    
+    &-option {
+      padding: $spacing-lg;
+      border: 2px solid $border-color;
+      border-radius: $border-radius;
+      cursor: pointer;
+      transition: all $transition-fast;
+      text-align: center;
+      
+      &:hover {
+        border-color: $primary-color;
+      }
+      
+      &.active {
+        border-color: $primary-color;
+        background-color: color-alpha($primary-color, 0.05);
+      }
+      
+      .theme-option-preview {
+        width: 100%;
+        height: 60px;
+        border-radius: $border-radius-sm;
+        margin-bottom: $spacing-md;
+        display: flex;
+        overflow: hidden;
+        
+        .preview-header {
+          width: 100%;
+          height: 20px;
+        }
+        
+        .preview-sidebar {
+          width: 30%;
+          height: 40px;
+        }
+        
+        .preview-content {
+          width: 70%;
+          height: 40px;
+        }
+      }
+      
+      .theme-option-title {
+        font-size: $font-size-sm;
+        font-weight: $font-weight-medium;
+        color: $text-primary;
+        margin: 0;
+      }
+      
+      // Light theme preview
+      &--light {
+        .preview-header {
+          background-color: $white;
+          border-bottom: 1px solid $gray-200;
+        }
+        
+        .preview-sidebar {
+          background-color: $gray-50;
+          border-right: 1px solid $gray-200;
+        }
+        
+        .preview-content {
+          background-color: $white;
+        }
+      }
+      
+      // Dark theme preview
+      &--dark {
+        .preview-header {
+          background-color: $gray-900;
+          border-bottom: 1px solid $gray-800;
+        }
+        
+        .preview-sidebar {
+          background-color: $gray-800;
+          border-right: 1px solid $gray-700;
+        }
+        
+        .preview-content {
+          background-color: $gray-900;
+        }
+      }
+    }
+  }
+}

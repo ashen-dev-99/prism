@@ -1,0 +1,336 @@
+// Prism Theme - Progress
+// =====================================
+
+.progress {
+  display: flex;
+  height: 1rem;
+  overflow: hidden;
+  font-size: $font-size-xs;
+  background-color: $bg-secondary;
+  border-radius: $border-radius;
+  
+  // Progress Bar
+  &-bar {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    overflow: hidden;
+    color: $white;
+    text-align: center;
+    white-space: nowrap;
+    background-color: $primary-color;
+    transition: width $transition-normal;
+    
+    &--striped {
+      background-image: linear-gradient(
+        45deg,
+        rgba(255, 255, 255, 0.15) 25%,
+        transparent 25%,
+        transparent 50%,
+        rgba(255, 255, 255, 0.15) 50%,
+        rgba(255, 255, 255, 0.15) 75%,
+        transparent 75%,
+        transparent
+      );
+      background-size: 1rem 1rem;
+    }
+    
+    &--animated {
+      animation: progress-bar-stripes 1s linear infinite;
+    }
+  }
+  
+  // Progress Sizes
+  &--sm {
+    height: 0.5rem;
+    font-size: 0.625rem;
+  }
+  
+  &--lg {
+    height: 1.5rem;
+    font-size: $font-size-sm;
+  }
+  
+  // Progress Variants
+  &--success .progress-bar {
+    background-color: $success-color;
+  }
+  
+  &--info .progress-bar {
+    background-color: $info-color;
+  }
+  
+  &--warning .progress-bar {
+    background-color: $warning-color;
+  }
+  
+  &--danger .progress-bar {
+    background-color: $error-color;
+  }
+}
+
+// Circular Progress
+.progress-circle {
+  position: relative;
+  display: inline-block;
+  width: 4rem;
+  height: 4rem;
+  
+  &-svg {
+    width: 100%;
+    height: 100%;
+    transform: rotate(-90deg);
+  }
+  
+  &-background {
+    fill: none;
+    stroke: $bg-secondary;
+    stroke-width: 8;
+  }
+  
+  &-fill {
+    fill: none;
+    stroke: $primary-color;
+    stroke-width: 8;
+    stroke-linecap: round;
+    transition: stroke-dasharray $transition-normal;
+  }
+  
+  &-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: $font-size-sm;
+    font-weight: $font-weight-medium;
+    color: $text-primary;
+  }
+  
+  // Circle Sizes
+  &--sm {
+    width: 2rem;
+    height: 2rem;
+    
+    .progress-circle-fill,
+    .progress-circle-background {
+      stroke-width: 4;
+    }
+    
+    .progress-circle-text {
+      font-size: $font-size-xs;
+    }
+  }
+  
+  &--lg {
+    width: 6rem;
+    height: 6rem;
+    
+    .progress-circle-fill,
+    .progress-circle-background {
+      stroke-width: 12;
+    }
+    
+    .progress-circle-text {
+      font-size: $font-size-lg;
+    }
+  }
+  
+  // Circle Variants
+  &--success .progress-circle-fill {
+    stroke: $success-color;
+  }
+  
+  &--warning .progress-circle-fill {
+    stroke: $warning-color;
+  }
+  
+  &--danger .progress-circle-fill {
+    stroke: $error-color;
+  }
+  
+  &--info .progress-circle-fill {
+    stroke: $info-color;
+  }
+}
+
+// Progress Steps
+.progress-steps {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: $spacing-lg;
+  
+  &-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 1;
+    position: relative;
+    
+    &:not(:last-child)::after {
+      content: '';
+      position: absolute;
+      top: 1rem;
+      left: 50%;
+      width: 100%;
+      height: 2px;
+      background-color: $border-color;
+      z-index: 1;
+    }
+    
+    &.completed::after {
+      background-color: $success-color;
+    }
+  }
+  
+  &-step {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    background-color: $bg-secondary;
+    color: $text-muted;
+    font-weight: $font-weight-medium;
+    font-size: $font-size-sm;
+    z-index: 2;
+    position: relative;
+    border: 2px solid $border-color;
+    
+    &.active {
+      background-color: $primary-color;
+      color: $white;
+      border-color: $primary-color;
+    }
+    
+    &.completed {
+      background-color: $success-color;
+      color: $white;
+      border-color: $success-color;
+    }
+  }
+  
+  &-label {
+    margin-top: $spacing-sm;
+    font-size: $font-size-xs;
+    color: $text-secondary;
+    text-align: center;
+    
+    .progress-steps-item.active & {
+      color: $primary-color;
+      font-weight: $font-weight-medium;
+    }
+    
+    .progress-steps-item.completed & {
+      color: $success-color;
+    }
+  }
+}
+
+// Progress List
+.progress-list {
+  .progress-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: $spacing-md;
+    
+    &:last-child {
+      margin-bottom: 0;
+    }
+    
+    &-label {
+      flex: 0 0 8rem;
+      font-size: $font-size-sm;
+      color: $text-primary;
+      margin-right: $spacing-md;
+    }
+    
+    &-bar {
+      flex: 1;
+      margin-right: $spacing-md;
+    }
+    
+    &-value {
+      flex: 0 0 3rem;
+      font-size: $font-size-sm;
+      color: $text-muted;
+      text-align: right;
+    }
+  }
+}
+
+// Progress Card
+.progress-card {
+  @extend %card-base;
+  
+  padding: $spacing-lg;
+  
+  &-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: $spacing-md;
+    
+    .progress-title {
+      font-size: $font-size-lg;
+      font-weight: $font-weight-medium;
+      color: $text-primary;
+      margin: 0;
+    }
+    
+    .progress-value {
+      font-size: $font-size-sm;
+      color: $text-muted;
+    }
+  }
+  
+  &-body {
+    .progress {
+      margin-bottom: $spacing-md;
+    }
+    
+    .progress-description {
+      font-size: $font-size-sm;
+      color: $text-muted;
+      margin: 0;
+    }
+  }
+}
+
+// Progress Animations
+@keyframes progress-bar-stripes {
+  0% {
+    background-position-x: 1rem;
+  }
+}
+
+// Progress Utilities
+.progress-text {
+  font-size: $font-size-sm;
+  color: $text-muted;
+  margin-top: $spacing-xs;
+}
+
+.progress-indeterminate {
+  .progress-bar {
+    width: 100%;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      $primary-color,
+      transparent
+    );
+    background-size: 200% 100%;
+    animation: progress-indeterminate 2s infinite;
+  }
+}
+
+@keyframes progress-indeterminate {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}

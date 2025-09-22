@@ -1,0 +1,332 @@
+// Prism Theme - Forms
+// =====================================
+
+.form-group {
+  @extend %form-group-base;
+}
+
+// Form Controls
+.form-control {
+  @extend %input-base;
+  
+  &--sm {
+    height: 2rem;
+    padding: $spacing-xs $spacing-sm;
+    font-size: $font-size-xs;
+  }
+  
+  &--lg {
+    height: 3rem;
+    padding: $spacing-md $spacing-lg;
+    font-size: $font-size-base;
+  }
+  
+  &--textarea {
+    height: auto;
+    min-height: 6rem;
+    padding: $spacing-md;
+    resize: vertical;
+    font-family: $font-family-primary;
+    line-height: $line-height-normal;
+  }
+  
+  &--select {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3e%3c/svg%3e");
+    background-position: right $spacing-sm center;
+    background-repeat: no-repeat;
+    background-size: 1rem;
+    padding-right: 2.5rem;
+    appearance: none;
+  }
+}
+
+// Form Labels
+.form-label {
+  display: block;
+  margin-bottom: $spacing-xs;
+  font-size: $font-size-sm;
+  font-weight: $font-weight-medium;
+  color: $text-primary;
+  
+  &--required::after {
+    content: ' *';
+    color: $error-color;
+  }
+}
+
+// Form Help Text
+.form-text {
+  margin-top: $spacing-xs;
+  font-size: $font-size-xs;
+  color: $text-muted;
+}
+
+// Form Error States
+.form-error {
+  margin-top: $spacing-xs;
+  font-size: $font-size-xs;
+  color: $error-color;
+  display: flex;
+  align-items: center;
+  gap: $spacing-xs;
+  
+  &::before {
+    content: '⚠';
+    font-size: 0.875rem;
+  }
+}
+
+.form-control.error {
+  border-color: $error-color;
+  
+  &:focus {
+    border-color: $error-color;
+    box-shadow: 0 0 0 3px color-alpha($error-color, 0.1);
+  }
+}
+
+// Checkboxes and Radio Buttons
+.form-check {
+  display: flex;
+  align-items: center;
+  gap: $spacing-sm;
+  margin-bottom: $spacing-md;
+  
+  &-input {
+    width: 1rem;
+    height: 1rem;
+    margin: 0;
+    cursor: pointer;
+    
+    &:checked {
+      background-color: $primary-color;
+      border-color: $primary-color;
+    }
+    
+    &:focus {
+      box-shadow: 0 0 0 3px color-alpha($primary-color, 0.1);
+    }
+  }
+  
+  &-label {
+    margin: 0;
+    font-size: $font-size-sm;
+    color: $text-primary;
+    cursor: pointer;
+    user-select: none;
+  }
+  
+  &-inline {
+    display: inline-flex;
+    margin-right: $spacing-lg;
+  }
+}
+
+// Switch Toggle
+.form-switch {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: $spacing-sm;
+  
+  &-input {
+    position: relative;
+    width: 2.75rem;
+    height: 1.5rem;
+    background-color: $gray-300;
+    border: none;
+    border-radius: $border-radius-full;
+    cursor: pointer;
+    transition: background-color $transition-fast;
+    
+    &::before {
+      content: '';
+      position: absolute;
+      top: 2px;
+      left: 2px;
+      width: 1.25rem;
+      height: 1.25rem;
+      background-color: $white;
+      border-radius: 50%;
+      transition: transform $transition-fast;
+    }
+    
+    &:checked {
+      background-color: $primary-color;
+      
+      &::before {
+        transform: translateX(1.25rem);
+      }
+    }
+    
+    &:focus {
+      outline: 2px solid $primary-color;
+      outline-offset: 2px;
+    }
+  }
+  
+  &-label {
+    font-size: $font-size-sm;
+    color: $text-primary;
+    cursor: pointer;
+    user-select: none;
+  }
+}
+
+// Input Groups
+.input-group {
+  position: relative;
+  display: flex;
+  width: 100%;
+  
+  .form-control {
+    border-radius: 0;
+    
+    &:first-child {
+      border-top-left-radius: $border-radius;
+      border-bottom-left-radius: $border-radius;
+    }
+    
+    &:last-child {
+      border-top-right-radius: $border-radius;
+      border-bottom-right-radius: $border-radius;
+    }
+    
+    &:not(:first-child) {
+      border-left-width: 0;
+    }
+    
+    &:focus {
+      z-index: 1;
+    }
+  }
+  
+  &-prepend,
+  &-append {
+    display: flex;
+    align-items: center;
+    padding: $spacing-sm $spacing-md;
+    background-color: $bg-secondary;
+    border: 1px solid $border-color;
+    color: $text-muted;
+    font-size: $font-size-sm;
+    white-space: nowrap;
+  }
+  
+  &-prepend {
+    border-right: 0;
+    border-top-left-radius: $border-radius;
+    border-bottom-left-radius: $border-radius;
+  }
+  
+  &-append {
+    border-left: 0;
+    border-top-right-radius: $border-radius;
+    border-bottom-right-radius: $border-radius;
+  }
+}
+
+// Form Validation States
+.was-validated {
+  .form-control {
+    &:valid {
+      border-color: $success-color;
+      
+      &:focus {
+        border-color: $success-color;
+        box-shadow: 0 0 0 3px color-alpha($success-color, 0.1);
+      }
+    }
+    
+    &:invalid {
+      border-color: $error-color;
+      
+      &:focus {
+        border-color: $error-color;
+        box-shadow: 0 0 0 3px color-alpha($error-color, 0.1);
+      }
+    }
+  }
+}
+
+// Form Layouts
+.form-row {
+  display: flex;
+  gap: $spacing-lg;
+  margin-bottom: $spacing-lg;
+  
+  .form-group {
+    flex: 1;
+    margin-bottom: 0;
+  }
+}
+
+.form-horizontal {
+  .form-group {
+    display: flex;
+    align-items: center;
+    gap: $spacing-md;
+    
+    .form-label {
+      flex: 0 0 8rem;
+      margin-bottom: 0;
+      text-align: right;
+    }
+    
+    .form-control {
+      flex: 1;
+    }
+  }
+}
+
+// Search Input
+.search-input {
+  position: relative;
+  
+  .form-control {
+    padding-left: 2.5rem;
+  }
+  
+  &-icon {
+    position: absolute;
+    left: $spacing-sm;
+    top: 50%;
+    transform: translateY(-50%);
+    color: $text-muted;
+    pointer-events: none;
+  }
+}
+
+// File Upload
+.file-upload {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  
+  &-input {
+    position: absolute;
+    opacity: 0;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+  }
+  
+  &-label {
+    @extend %btn-base;
+    @extend .btn--secondary;
+    
+    display: flex;
+    align-items: center;
+    gap: $spacing-sm;
+    cursor: pointer;
+  }
+  
+  &-preview {
+    margin-top: $spacing-sm;
+    padding: $spacing-sm;
+    background-color: $bg-secondary;
+    border-radius: $border-radius;
+    font-size: $font-size-xs;
+    color: $text-muted;
+  }
+}

@@ -1,0 +1,324 @@
+// Prism Theme - Tabs
+// =====================================
+
+.tabs {
+  // Tab Navigation
+  &-nav {
+    display: flex;
+    flex-wrap: wrap;
+    padding-left: 0;
+    margin-bottom: 0;
+    list-style: none;
+    border-bottom: 1px solid $border-color;
+    
+    &-item {
+      margin-bottom: -1px;
+    }
+    
+    &-link {
+      display: block;
+      padding: $spacing-sm $spacing-md;
+      color: $text-secondary;
+      text-decoration: none;
+      border: 1px solid transparent;
+      border-top-left-radius: $border-radius;
+      border-top-right-radius: $border-radius;
+      transition: all $transition-fast;
+      cursor: pointer;
+      
+      &:hover {
+        color: $text-primary;
+        background-color: $bg-secondary;
+        border-color: $border-color $border-color transparent;
+        text-decoration: none;
+      }
+      
+      &.active {
+        color: $text-primary;
+        background-color: $bg-primary;
+        border-color: $border-color $border-color $bg-primary;
+        font-weight: $font-weight-medium;
+      }
+      
+      &.disabled {
+        color: $text-muted;
+        pointer-events: none;
+        cursor: default;
+      }
+    }
+  }
+  
+  // Tab Content
+  &-content {
+    padding: $spacing-lg 0;
+  }
+  
+  &-pane {
+    display: none;
+    
+    &.active {
+      display: block;
+    }
+  }
+  
+  // Tab Variants
+  &--pills {
+    .tabs-nav {
+      border-bottom: none;
+      
+      &-link {
+        border-radius: $border-radius;
+        margin-right: $spacing-xs;
+        border: none;
+        
+        &.active {
+          background-color: $primary-color;
+          color: $white;
+        }
+      }
+    }
+  }
+  
+  &--underline {
+    .tabs-nav {
+      border-bottom: 2px solid $border-color;
+      
+      &-link {
+        border: none;
+        border-bottom: 2px solid transparent;
+        margin-right: $spacing-lg;
+        padding-bottom: $spacing-sm;
+        
+        &.active {
+          border-bottom-color: $primary-color;
+          color: $primary-color;
+          background-color: transparent;
+        }
+      }
+    }
+  }
+  
+  &--vertical {
+    display: flex;
+    
+    .tabs-nav {
+      flex-direction: column;
+      border-bottom: none;
+      border-right: 1px solid $border-color;
+      margin-right: $spacing-lg;
+      
+      &-link {
+        border-radius: 0;
+        border-right: 2px solid transparent;
+        margin-bottom: $spacing-xs;
+        
+        &.active {
+          border-right-color: $primary-color;
+          background-color: color-alpha($primary-color, 0.1);
+        }
+      }
+    }
+    
+    .tabs-content {
+      flex: 1;
+    }
+  }
+  
+  // Tab Sizes
+  &--sm {
+    .tabs-nav-link {
+      padding: $spacing-xs $spacing-sm;
+      font-size: $font-size-xs;
+    }
+  }
+  
+  &--lg {
+    .tabs-nav-link {
+      padding: $spacing-md $spacing-lg;
+      font-size: $font-size-lg;
+    }
+  }
+}
+
+// Tab Card
+.tab-card {
+  @extend %card-base;
+  
+  .tabs-nav {
+    margin: 0;
+    border-bottom: 1px solid $border-color;
+    background-color: $bg-secondary;
+    
+    &-link {
+      border-radius: 0;
+      border: none;
+      margin: 0;
+      
+      &.active {
+        background-color: $bg-primary;
+        border-bottom: 2px solid $primary-color;
+      }
+    }
+  }
+  
+  .tabs-content {
+    padding: $spacing-lg;
+  }
+}
+
+// Tab Accordion
+.tab-accordion {
+  .tabs-nav {
+    flex-direction: column;
+    border: none;
+    
+    &-item {
+      margin-bottom: $spacing-xs;
+    }
+    
+    &-link {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: $spacing-md;
+      background-color: $bg-secondary;
+      border: 1px solid $border-color;
+      border-radius: $border-radius;
+      text-decoration: none;
+      transition: all $transition-fast;
+      
+      &:hover {
+        background-color: $gray-100;
+        text-decoration: none;
+      }
+      
+      &.active {
+        background-color: $primary-color;
+        color: $white;
+        border-color: $primary-color;
+      }
+      
+      .tab-icon {
+        transition: transform $transition-fast;
+      }
+      
+      &.active .tab-icon {
+        transform: rotate(180deg);
+      }
+    }
+  }
+  
+  .tabs-content {
+    padding: 0;
+  }
+  
+  .tabs-pane {
+    padding: $spacing-md;
+    background-color: $bg-primary;
+    border: 1px solid $border-color;
+    border-top: none;
+    border-radius: 0 0 $border-radius $border-radius;
+  }
+}
+
+// Tab with Icons
+.tabs-icon {
+  .tabs-nav-link {
+    display: flex;
+    align-items: center;
+    gap: $spacing-sm;
+    
+    .tab-icon {
+      font-size: 1.125rem;
+    }
+  }
+}
+
+// Tab with Badges
+.tabs-badge {
+  .tabs-nav-link {
+    position: relative;
+    
+    .tab-badge {
+      position: absolute;
+      top: -0.5rem;
+      right: -0.5rem;
+      min-width: 1.25rem;
+      height: 1.25rem;
+      background-color: $error-color;
+      color: $white;
+      font-size: 0.625rem;
+      font-weight: $font-weight-bold;
+      border-radius: $border-radius-full;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0 $spacing-xs;
+    }
+  }
+}
+
+// Tab Loading
+.tabs-loading {
+  .tabs-pane {
+    position: relative;
+    min-height: 200px;
+    
+    &::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      @extend %spinner-base;
+      width: 2rem;
+      height: 2rem;
+      border-width: 3px;
+    }
+  }
+}
+
+// Tab Responsive
+.tabs-responsive {
+  @include respond-below(md) {
+    .tabs-nav {
+      flex-direction: column;
+      border: none;
+      
+      &-link {
+        border-radius: $border-radius;
+        margin-bottom: $spacing-xs;
+        border: 1px solid $border-color;
+        
+        &.active {
+          background-color: $primary-color;
+          color: $white;
+          border-color: $primary-color;
+        }
+      }
+    }
+  }
+}
+
+// Tab Animations
+.tabs-fade {
+  .tabs-pane {
+    opacity: 0;
+    transition: opacity $transition-normal;
+    
+    &.active {
+      opacity: 1;
+    }
+  }
+}
+
+.tabs-slide {
+  .tabs-pane {
+    transform: translateX(100%);
+    transition: transform $transition-normal;
+    
+    &.active {
+      transform: translateX(0);
+    }
+  }
+}

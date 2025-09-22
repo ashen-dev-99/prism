@@ -1,0 +1,272 @@
+// Prism Theme - Placeholders (Extends)
+// =====================================
+
+// Button Base
+%btn-base {
+  @include button-reset;
+  @include flex-center;
+  @include focus-ring;
+  
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: $btn-padding-y $btn-padding-x;
+  min-height: $btn-height;
+  font-family: $font-family-primary;
+  font-size: $font-size-sm;
+  font-weight: $font-weight-medium;
+  line-height: $line-height-tight;
+  text-decoration: none;
+  border-radius: $border-radius;
+  transition: all $transition-fast;
+  cursor: pointer;
+  user-select: none;
+  
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+}
+
+// Input Base
+%input-base {
+  @include input-reset;
+  @include focus-ring;
+  
+  display: block;
+  width: 100%;
+  height: $input-height;
+  padding: $input-padding-y $input-padding-x;
+  font-family: $font-family-primary;
+  font-size: $font-size-sm;
+  line-height: $line-height-normal;
+  color: $text-primary;
+  background-color: $bg-primary;
+  border: 1px solid $border-color;
+  border-radius: $border-radius;
+  transition: border-color $transition-fast, box-shadow $transition-fast;
+  
+  &::placeholder {
+    color: $text-muted;
+  }
+  
+  &:focus {
+    border-color: $primary-color;
+    box-shadow: 0 0 0 3px color-alpha($primary-color, 0.1);
+  }
+  
+  &:disabled {
+    background-color: $bg-muted;
+    color: $text-muted;
+    cursor: not-allowed;
+  }
+  
+  &.error {
+    border-color: $error-color;
+    
+    &:focus {
+      border-color: $error-color;
+      box-shadow: 0 0 0 3px color-alpha($error-color, 0.1);
+    }
+  }
+}
+
+// Card Base
+%card-base {
+  @include card;
+  
+  background: $bg-primary;
+  border: 1px solid $border-color;
+  border-radius: $border-radius;
+  box-shadow: $shadow-sm;
+  overflow: hidden;
+  
+  .card-header {
+    padding: $spacing-lg $spacing-lg $spacing-md;
+    border-bottom: 1px solid $border-color;
+    
+    .card-title {
+      margin: 0;
+      font-size: $font-size-lg;
+      font-weight: $font-weight-semibold;
+      color: $text-primary;
+    }
+  }
+  
+  .card-body {
+    padding: $spacing-lg;
+  }
+  
+  .card-footer {
+    padding: $spacing-md $spacing-lg $spacing-lg;
+    border-top: 1px solid $border-color;
+    background-color: $bg-secondary;
+  }
+}
+
+// Table Base
+%table-base {
+  width: 100%;
+  border-collapse: collapse;
+  border-spacing: 0;
+  
+  th,
+  td {
+    padding: $spacing-sm $spacing-md;
+    text-align: left;
+    border-bottom: 1px solid $border-color;
+  }
+  
+  th {
+    font-weight: $font-weight-semibold;
+    color: $text-secondary;
+    background-color: $bg-secondary;
+    font-size: $font-size-xs;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  
+  td {
+    color: $text-primary;
+  }
+  
+  tbody tr {
+    transition: background-color $transition-fast;
+    
+    &:hover {
+      background-color: $bg-secondary;
+    }
+  }
+}
+
+// Modal Base
+%modal-base {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: $z-modal;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: $spacing-lg;
+  
+  .modal-backdrop {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: color-alpha($black, 0.5);
+    backdrop-filter: blur(4px);
+  }
+  
+  .modal-content {
+    position: relative;
+    background: $bg-primary;
+    border-radius: $border-radius-lg;
+    box-shadow: $shadow-xl;
+    max-width: 90vw;
+    max-height: 90vh;
+    overflow: hidden;
+    z-index: 1;
+  }
+}
+
+// Navigation Base
+%nav-base {
+  ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  
+  a {
+    display: flex;
+    align-items: center;
+    padding: $spacing-sm $spacing-md;
+    color: $text-secondary;
+    text-decoration: none;
+    border-radius: $border-radius;
+    transition: all $transition-fast;
+    
+    &:hover {
+      color: $text-primary;
+      background-color: $bg-secondary;
+    }
+    
+    &.active {
+      color: $primary-color;
+      background-color: color-alpha($primary-color, 0.1);
+      font-weight: $font-weight-medium;
+    }
+  }
+}
+
+// Form Group Base
+%form-group-base {
+  margin-bottom: $spacing-lg;
+  
+  label {
+    display: block;
+    margin-bottom: $spacing-xs;
+    font-size: $font-size-sm;
+    font-weight: $font-weight-medium;
+    color: $text-primary;
+  }
+  
+  .form-help {
+    margin-top: $spacing-xs;
+    font-size: $font-size-xs;
+    color: $text-muted;
+  }
+  
+  .form-error {
+    margin-top: $spacing-xs;
+    font-size: $font-size-xs;
+    color: $error-color;
+  }
+}
+
+// Loading Spinner Base
+%spinner-base {
+  display: inline-block;
+  width: 1rem;
+  height: 1rem;
+  border: 2px solid $border-color;
+  border-top-color: $primary-color;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+// Badge Base
+%badge-base {
+  display: inline-flex;
+  align-items: center;
+  padding: $spacing-xs $spacing-sm;
+  font-size: $font-size-xs;
+  font-weight: $font-weight-medium;
+  line-height: 1;
+  border-radius: $border-radius-full;
+  text-transform: uppercase;
+  letter-spacing: 0.025em;
+}
+
+// Alert Base
+%alert-base {
+  padding: $spacing-md;
+  border-radius: $border-radius;
+  border-left: 4px solid;
+  margin-bottom: $spacing-lg;
+  
+  .alert-title {
+    margin: 0 0 $spacing-xs;
+    font-weight: $font-weight-semibold;
+  }
+  
+  .alert-message {
+    margin: 0;
+    font-size: $font-size-sm;
+  }
+}

@@ -1,0 +1,182 @@
+// Prism Theme - Buttons
+// =====================================
+
+.btn {
+  @extend %btn-base;
+  
+  // Button Sizes
+  &--sm {
+    padding: $spacing-xs $spacing-sm;
+    min-height: 2rem;
+    font-size: $font-size-xs;
+  }
+  
+  &--lg {
+    padding: $spacing-md $spacing-xl;
+    min-height: 3rem;
+    font-size: $font-size-base;
+  }
+  
+  // Button Variants
+  &--primary {
+    background-color: $primary-color;
+    color: $white;
+    border: 1px solid $primary-color;
+    
+    &:hover:not(:disabled) {
+      background-color: $primary-dark;
+      border-color: $primary-dark;
+      transform: translateY(-1px);
+      box-shadow: $shadow-md;
+    }
+    
+    &:active:not(:disabled) {
+      transform: translateY(0);
+      box-shadow: $shadow-sm;
+    }
+  }
+  
+  &--secondary {
+    background-color: $white;
+    color: $text-primary;
+    border: 1px solid $border-color;
+    
+    &:hover:not(:disabled) {
+      background-color: $bg-secondary;
+      border-color: $gray-300;
+    }
+  }
+  
+  &--outline {
+    background-color: transparent;
+    color: $primary-color;
+    border: 1px solid $primary-color;
+    
+    &:hover:not(:disabled) {
+      background-color: $primary-color;
+      color: $white;
+    }
+  }
+  
+  &--ghost {
+    background-color: transparent;
+    color: $text-primary;
+    border: 1px solid transparent;
+    
+    &:hover:not(:disabled) {
+      background-color: $bg-secondary;
+    }
+  }
+  
+  &--danger {
+    background-color: $error-color;
+    color: $white;
+    border: 1px solid $error-color;
+    
+    &:hover:not(:disabled) {
+      background-color: color-shade($error-color, 10%);
+      border-color: color-shade($error-color, 10%);
+    }
+  }
+  
+  &--success {
+    background-color: $success-color;
+    color: $white;
+    border: 1px solid $success-color;
+    
+    &:hover:not(:disabled) {
+      background-color: color-shade($success-color, 10%);
+      border-color: color-shade($success-color, 10%);
+    }
+  }
+  
+  // Button States
+  &--loading {
+    position: relative;
+    color: transparent;
+    
+    &::after {
+      content: '';
+      @extend %spinner-base;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+  }
+  
+  // Button Groups
+  &-group {
+    display: inline-flex;
+    border-radius: $border-radius;
+    overflow: hidden;
+    
+    .btn {
+      border-radius: 0;
+      border-right-width: 0;
+      
+      &:first-child {
+        border-top-left-radius: $border-radius;
+        border-bottom-left-radius: $border-radius;
+      }
+      
+      &:last-child {
+        border-top-right-radius: $border-radius;
+        border-bottom-right-radius: $border-radius;
+        border-right-width: 1px;
+      }
+      
+      &:focus {
+        z-index: 1;
+      }
+    }
+  }
+}
+
+// Icon Buttons
+.btn-icon {
+  @extend %btn-base;
+  
+  width: $btn-height;
+  height: $btn-height;
+  padding: 0;
+  border-radius: $border-radius;
+  
+  &--sm {
+    width: 2rem;
+    height: 2rem;
+  }
+  
+  &--lg {
+    width: 3rem;
+    height: 3rem;
+  }
+}
+
+// Floating Action Button
+.fab {
+  @extend %btn-base;
+  
+  position: fixed;
+  bottom: $spacing-xl;
+  right: $spacing-xl;
+  width: 3.5rem;
+  height: 3.5rem;
+  border-radius: 50%;
+  background-color: $primary-color;
+  color: $white;
+  box-shadow: $shadow-lg;
+  z-index: $z-fixed;
+  
+  &:hover:not(:disabled) {
+    transform: scale(1.1);
+    box-shadow: $shadow-xl;
+  }
+}
+
+// Button Animations
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}

@@ -1,0 +1,389 @@
+// Prism Theme - Sidebar
+// =====================================
+
+.sidebar {
+  position: fixed;
+  top: $header-height;
+  left: 0;
+  width: $sidebar-width;
+  height: calc(100vh - #{$header-height});
+  background-color: $bg-primary;
+  border-right: 1px solid $border-color;
+  z-index: $z-sticky;
+  overflow-y: auto;
+  transition: width $transition-normal, transform $transition-normal;
+  
+  // Sidebar Header
+  &-header {
+    padding: $spacing-lg;
+    border-bottom: 1px solid $border-color;
+    
+    .sidebar-brand {
+      display: flex;
+      align-items: center;
+      gap: $spacing-sm;
+      color: $text-primary;
+      text-decoration: none;
+      font-size: $font-size-lg;
+      font-weight: $font-weight-semibold;
+      
+      &:hover {
+        color: $primary-color;
+        text-decoration: none;
+      }
+      
+      &-logo {
+        width: 1.5rem;
+        height: 1.5rem;
+        object-fit: contain;
+      }
+    }
+  }
+  
+  // Sidebar Navigation
+  &-nav {
+    padding: $spacing-md 0;
+    
+    &-section {
+      margin-bottom: $spacing-lg;
+      
+      &:last-child {
+        margin-bottom: 0;
+      }
+      
+      &-title {
+        padding: 0 $spacing-lg $spacing-sm;
+        font-size: $font-size-xs;
+        font-weight: $font-weight-semibold;
+        color: $text-muted;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+      }
+    }
+    
+    &-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+    
+    &-item {
+      margin-bottom: $spacing-xs;
+      
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+    
+    &-link {
+      display: flex;
+      align-items: center;
+      gap: $spacing-sm;
+      padding: $spacing-sm $spacing-lg;
+      color: $text-secondary;
+      text-decoration: none;
+      border-radius: 0 $border-radius $border-radius 0;
+      margin-right: $spacing-md;
+      transition: all $transition-fast;
+      position: relative;
+      
+      &:hover {
+        color: $text-primary;
+        background-color: $bg-secondary;
+        text-decoration: none;
+      }
+      
+      &.active {
+        color: $primary-color;
+        background-color: color-alpha($primary-color, 0.1);
+        font-weight: $font-weight-medium;
+        
+        &::before {
+          content: '';
+          position: absolute;
+          left: 0;
+          top: 0;
+          bottom: 0;
+          width: 3px;
+          background-color: $primary-color;
+          border-radius: 0 $border-radius-sm $border-radius-sm 0;
+        }
+      }
+      
+      .nav-icon {
+        font-size: 1.125rem;
+        width: 1.5rem;
+        text-align: center;
+        flex-shrink: 0;
+      }
+      
+      .nav-text {
+        flex: 1;
+        white-space: nowrap;
+        overflow: hidden;
+      }
+      
+      .nav-badge {
+        background-color: $primary-color;
+        color: $white;
+        font-size: $font-size-xs;
+        font-weight: $font-weight-medium;
+        padding: $spacing-xs $spacing-sm;
+        border-radius: $border-radius-full;
+        flex-shrink: 0;
+      }
+      
+      .nav-arrow {
+        font-size: 0.75rem;
+        color: $text-muted;
+        transition: transform $transition-fast;
+        flex-shrink: 0;
+        
+        &.expanded {
+          transform: rotate(90deg);
+        }
+      }
+    }
+    
+    // Sub Navigation
+    &-sub {
+      margin-left: $spacing-lg;
+      margin-top: $spacing-xs;
+      
+      &-list {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+      }
+      
+      &-item {
+        margin-bottom: $spacing-xs;
+        
+        &:last-child {
+          margin-bottom: 0;
+        }
+      }
+      
+      &-link {
+        display: flex;
+        align-items: center;
+        gap: $spacing-sm;
+        padding: $spacing-xs $spacing-lg;
+        color: $text-muted;
+        text-decoration: none;
+        border-radius: $border-radius;
+        font-size: $font-size-sm;
+        transition: all $transition-fast;
+        
+        &:hover {
+          color: $text-primary;
+          background-color: $bg-secondary;
+          text-decoration: none;
+        }
+        
+        &.active {
+          color: $primary-color;
+          background-color: color-alpha($primary-color, 0.1);
+          font-weight: $font-weight-medium;
+        }
+        
+        .nav-icon {
+          font-size: 1rem;
+          width: 1.25rem;
+          text-align: center;
+        }
+      }
+    }
+  }
+  
+  // Sidebar Collapsed State
+  &--collapsed {
+    width: $sidebar-width-collapsed;
+    
+    .sidebar-brand-text {
+      display: none;
+    }
+    
+    .sidebar-nav {
+      &-section-title {
+        display: none;
+      }
+      
+      &-link {
+        justify-content: center;
+        padding: $spacing-sm;
+        margin-right: 0;
+        
+        .nav-text,
+        .nav-badge,
+        .nav-arrow {
+          display: none;
+        }
+        
+        .nav-icon {
+          width: auto;
+        }
+      }
+      
+      &-sub {
+        display: none;
+      }
+    }
+  }
+  
+  // Sidebar Variants
+  &--dark {
+    background-color: $gray-900;
+    border-right-color: $gray-800;
+    color: $white;
+    
+    .sidebar-brand {
+      color: $white;
+    }
+    
+    .sidebar-nav {
+      &-section-title {
+        color: $gray-400;
+      }
+      
+      &-link {
+        color: $gray-300;
+        
+        &:hover {
+          color: $white;
+          background-color: $gray-800;
+        }
+        
+        &.active {
+          color: $white;
+          background-color: $primary-color;
+        }
+      }
+      
+      &-sub-link {
+        color: $gray-400;
+        
+        &:hover {
+          color: $white;
+          background-color: $gray-800;
+        }
+        
+        &.active {
+          color: $white;
+          background-color: $primary-color;
+        }
+      }
+    }
+  }
+  
+  &--transparent {
+    background-color: transparent;
+    border-right: none;
+  }
+}
+
+// Sidebar Toggle Button
+.sidebar-toggle {
+  position: fixed;
+  top: $header-height;
+  left: $sidebar-width;
+  width: 1.5rem;
+  height: 1.5rem;
+  background-color: $bg-primary;
+  border: 1px solid $border-color;
+  border-left: none;
+  border-radius: 0 $border-radius $border-radius 0;
+  color: $text-secondary;
+  font-size: 0.75rem;
+  z-index: $z-sticky;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all $transition-normal;
+  
+  &:hover {
+    background-color: $bg-secondary;
+    color: $text-primary;
+  }
+  
+  &:focus {
+    outline: 2px solid $primary-color;
+    outline-offset: 2px;
+  }
+  
+  &-icon {
+    transition: transform $transition-normal;
+  }
+}
+
+// When sidebar is collapsed, move the toggle button
+.sidebar--collapsed + .sidebar-toggle {
+  left: $sidebar-width-collapsed;
+  
+  .sidebar-toggle-icon {
+    transform: rotate(180deg);
+  }
+}
+
+// Sidebar Overlay (for mobile)
+.sidebar-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: color-alpha($black, 0.5);
+  z-index: $z-sticky;
+  opacity: 0;
+  visibility: hidden;
+  transition: all $transition-normal;
+  
+  &.show {
+    opacity: 1;
+    visibility: visible;
+  }
+}
+
+// Sidebar Responsive
+@include respond-below(md) {
+  .sidebar {
+    transform: translateX(-100%);
+    z-index: $z-modal;
+    
+    &.show {
+      transform: translateX(0);
+    }
+  }
+  
+  .sidebar-toggle {
+    display: none;
+  }
+  
+  .sidebar-overlay {
+    display: block;
+  }
+}
+
+// Sidebar Utilities
+.sidebar-fade {
+  .sidebar {
+    opacity: 0;
+    transition: opacity $transition-normal;
+    
+    &.show {
+      opacity: 1;
+    }
+  }
+}
+
+.sidebar-scale {
+  .sidebar {
+    transform: scale(0.95);
+    transition: transform $transition-normal;
+    
+    &.show {
+      transform: scale(1);
+    }
+  }
+}

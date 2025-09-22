@@ -1,0 +1,349 @@
+// Prism Theme - Dark Theme
+// =====================================
+
+[data-theme='dark'] {
+  // Override variables for dark theme
+  --color-primary: #{$primary-color};
+  --color-primary-dark: #{$primary-dark};
+  --color-primary-light: #{$primary-light};
+  
+  --color-secondary: #{$secondary-color};
+  --color-secondary-dark: #{$secondary-dark};
+  --color-secondary-light: #{$secondary-light};
+  
+  --color-success: #{$success-color};
+  --color-warning: #{$warning-color};
+  --color-error: #{$error-color};
+  --color-info: #{$info-color};
+  
+  --color-white: #{$white};
+  --color-gray-50: #{$gray-900};
+  --color-gray-100: #{$gray-800};
+  --color-gray-200: #{$gray-700};
+  --color-gray-300: #{$gray-600};
+  --color-gray-400: #{$gray-500};
+  --color-gray-500: #{$gray-400};
+  --color-gray-600: #{$gray-300};
+  --color-gray-700: #{$gray-200};
+  --color-gray-800: #{$gray-100};
+  --color-gray-900: #{$gray-50};
+  --color-black: #{$black};
+  
+  --text-primary: #{$white};
+  --text-secondary: #{$gray-300};
+  --text-muted: #{$gray-400};
+  --text-inverse: #{$gray-900};
+  
+  --bg-primary: #{$gray-900};
+  --bg-secondary: #{$gray-800};
+  --bg-muted: #{$gray-700};
+  --bg-dark: #{$white};
+  
+  --border-color: #{$gray-700};
+  --border-color-dark: #{$gray-600};
+  
+  // Dark theme specific styles
+  body {
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+  }
+  
+  .header {
+    background-color: var(--bg-primary);
+    border-bottom-color: var(--border-color);
+    
+    .header-brand {
+      color: var(--text-primary);
+    }
+    
+    .header-nav-link {
+      color: var(--text-secondary);
+      
+      &:hover {
+        color: var(--text-primary);
+        background-color: var(--bg-secondary);
+      }
+    }
+    
+    .header-search-input {
+      background-color: var(--bg-secondary);
+      border-color: var(--border-color);
+      color: var(--text-primary);
+      
+      &::placeholder {
+        color: var(--text-muted);
+      }
+    }
+  }
+  
+  .sidebar {
+    background-color: var(--bg-primary);
+    border-right-color: var(--border-color);
+    
+    .sidebar-brand {
+      color: var(--text-primary);
+    }
+    
+    .sidebar-nav-section-title {
+      color: var(--text-muted);
+    }
+    
+    .sidebar-nav-link {
+      color: var(--text-secondary);
+      
+      &:hover {
+        color: var(--text-primary);
+        background-color: var(--bg-secondary);
+      }
+      
+      &.active {
+        color: var(--color-primary);
+        background-color: color-alpha(var(--color-primary), 0.1);
+      }
+    }
+  }
+  
+  .main-content {
+    background-color: var(--bg-primary);
+    
+    .main-content-header-title {
+      color: var(--text-primary);
+    }
+    
+    .main-content-header-subtitle {
+      color: var(--text-secondary);
+    }
+  }
+  
+  .card {
+    background-color: var(--bg-primary);
+    border-color: var(--border-color);
+    
+    .card-header {
+      background-color: var(--bg-primary);
+      border-bottom-color: var(--border-color);
+    }
+    
+    .card-title {
+      color: var(--text-primary);
+    }
+    
+    .card-footer {
+      background-color: var(--bg-secondary);
+      border-top-color: var(--border-color);
+    }
+  }
+  
+  .btn--primary {
+    background-color: var(--color-primary);
+    border-color: var(--color-primary);
+    color: var(--color-white);
+  }
+  
+  .btn--secondary {
+    background-color: var(--bg-secondary);
+    border-color: var(--border-color);
+    color: var(--text-primary);
+    
+    &:hover {
+      background-color: var(--bg-muted);
+      border-color: var(--border-color-dark);
+    }
+  }
+  
+  .form-control {
+    background-color: var(--bg-primary);
+    border-color: var(--border-color);
+    color: var(--text-primary);
+    
+    &::placeholder {
+      color: var(--text-muted);
+    }
+    
+    &:focus {
+      border-color: var(--color-primary);
+      background-color: var(--bg-primary);
+    }
+  }
+  
+  .form-label {
+    color: var(--text-primary);
+  }
+  
+  .table {
+    color: var(--text-primary);
+    
+    th {
+      background-color: var(--bg-secondary);
+      color: var(--text-secondary);
+      border-bottom-color: var(--border-color);
+    }
+    
+    td {
+      border-bottom-color: var(--border-color);
+    }
+    
+    tbody tr:hover {
+      background-color: var(--bg-secondary);
+    }
+  }
+  
+  .modal-content {
+    background-color: var(--bg-primary);
+    border-color: var(--border-color);
+    
+    .modal-header {
+      background-color: var(--bg-primary);
+      border-bottom-color: var(--border-color);
+    }
+    
+    .modal-title {
+      color: var(--text-primary);
+    }
+    
+    .modal-footer {
+      background-color: var(--bg-secondary);
+      border-top-color: var(--border-color);
+    }
+  }
+  
+  .dropdown-menu {
+    background-color: var(--bg-primary);
+    border-color: var(--border-color);
+    
+    .dropdown-item {
+      color: var(--text-primary);
+      
+      &:hover {
+        background-color: var(--bg-secondary);
+      }
+      
+      &.active {
+        background-color: var(--color-primary);
+        color: var(--color-white);
+      }
+    }
+    
+    .dropdown-divider {
+      border-top-color: var(--border-color);
+    }
+  }
+  
+  .alert {
+    background-color: var(--bg-secondary);
+    border-color: var(--border-color);
+  }
+  
+  .progress {
+    background-color: var(--bg-secondary);
+  }
+  
+  .progress-bar {
+    background-color: var(--color-primary);
+  }
+  
+  .nav-link {
+    color: var(--text-secondary);
+    
+    &:hover {
+      color: var(--text-primary);
+      background-color: var(--bg-secondary);
+    }
+    
+    &.active {
+      color: var(--color-primary);
+      background-color: color-alpha(var(--color-primary), 0.1);
+    }
+  }
+  
+  .tabs-nav {
+    border-bottom-color: var(--border-color);
+    
+    &-link {
+      color: var(--text-secondary);
+      border-color: var(--border-color);
+      
+      &:hover {
+        background-color: var(--bg-secondary);
+        border-color: var(--border-color);
+      }
+      
+      &.active {
+        background-color: var(--bg-primary);
+        border-color: var(--border-color);
+        color: var(--text-primary);
+      }
+    }
+  }
+  
+  .footer {
+    background-color: var(--bg-primary);
+    border-top-color: var(--border-color);
+    
+    .footer-section-title {
+      color: var(--text-primary);
+    }
+    
+    .footer-section-text {
+      color: var(--text-secondary);
+    }
+    
+    .footer-bottom-text {
+      color: var(--text-secondary);
+    }
+  }
+  
+  code {
+    background-color: var(--bg-secondary);
+    color: var(--color-error);
+  }
+  
+  pre {
+    background-color: var(--bg-secondary);
+    color: var(--text-primary);
+  }
+  
+  blockquote {
+    background-color: var(--bg-secondary);
+    border-left-color: var(--color-primary);
+    color: var(--text-secondary);
+  }
+  
+  // Scrollbar styles for dark theme
+  ::-webkit-scrollbar-track {
+    background: var(--bg-secondary);
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background: var(--color-gray-300);
+    
+    &:hover {
+      background: var(--color-gray-400);
+    }
+  }
+}
+
+// Dark theme media query fallback
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme]) {
+    --color-primary: #{$primary-color};
+    --color-primary-dark: #{$primary-dark};
+    --color-primary-light: #{$primary-light};
+    
+    --text-primary: #{$white};
+    --text-secondary: #{$gray-300};
+    --text-muted: #{$gray-400};
+    
+    --bg-primary: #{$gray-900};
+    --bg-secondary: #{$gray-800};
+    --bg-muted: #{$gray-700};
+    
+    --border-color: #{$gray-700};
+    --border-color-dark: #{$gray-600};
+    
+    body {
+      background-color: var(--bg-primary);
+      color: var(--text-primary);
+    }
+  }
+}
