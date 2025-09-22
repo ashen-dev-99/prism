@@ -23,6 +23,11 @@
         </div>
 
         <div class="header-actions">
+            <!-- Search Button (visible when sidebar is collapsed) -->
+            <button class="btn-icon header-search-btn" data-sidebar-search-toggle aria-label="Search">
+                <i class="fas fa-search"></i>
+            </button>
+            
             <!-- Theme Toggle -->
             <button class="btn-icon" data-theme-toggle aria-label="Toggle theme">
                 <i class="fas fa-moon"></i>
@@ -91,6 +96,20 @@
 
     <!-- Sidebar -->
     <aside class="sidebar nav-no-markers" data-component="sidebar">
+        <!-- Sidebar Search -->
+        <div class="sidebar-search">
+            <div class="sidebar-search-container">
+                <i class="fas fa-search sidebar-search-icon"></i>
+                <input type="text" 
+                       class="sidebar-search-input" 
+                       placeholder="Search menu..." 
+                       data-sidebar-search>
+                <button class="sidebar-search-clear" data-sidebar-search-clear>
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+        </div>
+        
         <nav class="sidebar-nav">
             <div class="sidebar-nav-section">
                 <h6 class="sidebar-nav-section-title">Main</h6>
@@ -164,6 +183,27 @@
                                 </a>
                             </li>
                         </ul>
+                        <!-- Popover for collapsed state -->
+                        <div class="sidebar-nav-sub-popover">
+                            <a href="#" class="sidebar-nav-sub-link">
+                                <div class="nav-icon">
+                                    <i class="fas fa-user-cog"></i>
+                                </div>
+                                <span class="nav-text">Profile</span>
+                            </a>
+                            <a href="#" class="sidebar-nav-sub-link">
+                                <div class="nav-icon">
+                                    <i class="fas fa-shield-alt"></i>
+                                </div>
+                                <span class="nav-text">Security</span>
+                            </a>
+                            <a href="#" class="sidebar-nav-sub-link">
+                                <div class="nav-icon">
+                                    <i class="fas fa-bell"></i>
+                                </div>
+                                <span class="nav-text">Notifications</span>
+                            </a>
+                        </div>
                     </li>
                     <li class="sidebar-nav-item sidebar-nav-item--has-submenu">
                         <a href="#" class="sidebar-nav-link" data-submenu-toggle aria-expanded="false" aria-haspopup="true">
@@ -191,6 +231,27 @@
                                 </a>
                             </li>
                         </ul>
+                        <!-- Popover for collapsed state -->
+                        <div class="sidebar-nav-sub-popover">
+                            <a href="#" class="sidebar-nav-sub-link">
+                                <div class="nav-icon">
+                                    <i class="fas fa-chart-line"></i>
+                                </div>
+                                <span class="nav-text">Reports</span>
+                            </a>
+                            <a href="#" class="sidebar-nav-sub-link">
+                                <div class="nav-icon">
+                                    <i class="fas fa-chart-pie"></i>
+                                </div>
+                                <span class="nav-text">Statistics</span>
+                            </a>
+                            <a href="#" class="sidebar-nav-sub-link">
+                                <div class="nav-icon">
+                                    <i class="fas fa-download"></i>
+                                </div>
+                                <span class="nav-text">Exports</span>
+                            </a>
+                        </div>
                     </li>
                     <li class="sidebar-nav-item sidebar-nav-item--has-submenu">
                         <a href="#" class="sidebar-nav-link" data-submenu-toggle aria-expanded="false" aria-haspopup="true">
@@ -218,6 +279,27 @@
                                 </a>
                             </li>
                         </ul>
+                        <!-- Popover for collapsed state -->
+                        <div class="sidebar-nav-sub-popover">
+                            <a href="#" class="sidebar-nav-sub-link">
+                                <div class="nav-icon">
+                                    <i class="fas fa-table"></i>
+                                </div>
+                                <span class="nav-text">Tables</span>
+                            </a>
+                            <a href="#" class="sidebar-nav-sub-link">
+                                <div class="nav-icon">
+                                    <i class="fas fa-sync"></i>
+                                </div>
+                                <span class="nav-text">Backups</span>
+                            </a>
+                            <a href="#" class="sidebar-nav-sub-link">
+                                <div class="nav-icon">
+                                    <i class="fas fa-tools"></i>
+                                </div>
+                                <span class="nav-text">Maintenance</span>
+                            </a>
+                        </div>
                     </li>
                 </ul>
             </div>
@@ -516,6 +598,28 @@
             <div class="modal-footer">
                 <button type="button" class="btn btn--secondary" data-dismiss="modal">Close</button>
                 <button type="button" class="btn btn--primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Search Modal (for collapsed sidebar) -->
+    <div class="search-modal" id="searchModal">
+        <div class="search-modal-backdrop" data-sidebar-search-toggle></div>
+        <div class="search-modal-content">
+            <div class="search-modal-header">
+                <h3>Search Menu</h3>
+                <button class="btn-icon search-modal-close" data-sidebar-search-toggle>
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="search-modal-body">
+                <div class="search-modal-search">
+                    <input type="text" class="search-modal-input" placeholder="Search menu items..." id="searchModalInput">
+                    <i class="fas fa-search search-modal-icon"></i>
+                </div>
+                <div class="search-modal-results" id="searchModalResults">
+                    <!-- Search results will be populated here -->
+                </div>
             </div>
         </div>
     </div>

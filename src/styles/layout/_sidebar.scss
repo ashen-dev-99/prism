@@ -13,6 +13,115 @@
   z-index: $z-sticky;
   overflow-y: auto;
   transition: width $transition-normal, transform $transition-normal;
+  touch-action: pan-y;
+  -webkit-overflow-scrolling: touch;
+  
+  // Scroll indicators
+  &::before,
+  &::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 20px;
+    pointer-events: none;
+    z-index: 1;
+    opacity: 0;
+    transition: opacity $transition-fast;
+  }
+  
+  &::before {
+    top: 0;
+    background: linear-gradient(to bottom, $bg-primary, transparent);
+  }
+  
+  &::after {
+    bottom: 0;
+    background: linear-gradient(to top, $bg-primary, transparent);
+  }
+  
+  // Show scroll indicators when content overflows
+  &.scroll-top::before {
+    opacity: 1;
+  }
+  
+  &.scroll-bottom::after {
+    opacity: 1;
+  }
+  
+  // Sidebar Search
+  &-search {
+    padding: $spacing-md $spacing-lg;
+    border-bottom: 1px solid $border-color;
+    background-color: $bg-secondary;
+    
+    &-container {
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+    
+    &-icon {
+      position: absolute;
+      left: $spacing-sm;
+      color: $text-muted;
+      font-size: $font-size-sm;
+      z-index: 1;
+      pointer-events: none;
+    }
+    
+    &-input {
+      width: 100%;
+      padding: $spacing-sm $spacing-sm $spacing-sm calc(#{$spacing-lg} + #{$spacing-xs});
+      font-size: $font-size-sm;
+      color: $text-primary;
+      background-color: $bg-primary;
+      border: 1px solid $border-color;
+      border-radius: $border-radius;
+      transition: all $transition-fast;
+      
+      &:focus {
+        outline: none;
+        border-color: $primary-color;
+        box-shadow: 0 0 0 3px color-alpha($primary-color, 0.1);
+        background-color: $white;
+      }
+      
+      &::placeholder {
+        color: $text-muted;
+      }
+    }
+    
+    &-clear {
+      position: absolute;
+      right: $spacing-sm;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 1.25rem;
+      height: 1.25rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: none;
+      border: none;
+      color: $text-muted;
+      cursor: pointer;
+      border-radius: $border-radius-sm;
+      transition: all $transition-fast;
+      opacity: 0;
+      visibility: hidden;
+      
+      &:hover {
+        color: $text-primary;
+        background-color: $bg-secondary;
+      }
+      
+      &.show {
+        opacity: 1;
+        visibility: visible;
+      }
+    }
+  }
   
   // Sidebar Header
   &-header {
@@ -87,11 +196,17 @@
       margin-right: $spacing-md;
       transition: all $transition-fast;
       position: relative;
+      will-change: transform, background-color;
       
       &:hover {
         color: $text-primary;
         background-color: $bg-secondary;
         text-decoration: none;
+      }
+      
+      &:focus {
+        outline: 2px solid $primary-color;
+        outline-offset: 2px;
       }
       
       &.active {
@@ -108,6 +223,17 @@
           width: 3px;
           background-color: $primary-color;
           border-radius: 0 $border-radius-sm $border-radius-sm 0;
+        }
+      }
+      
+      // Loading state
+      &--loading {
+        opacity: 0.6;
+        pointer-events: none;
+        
+        .nav-icon::before {
+          content: '\f110'; // FontAwesome spinner
+          animation: spin 1s linear infinite;
         }
       }
       
@@ -132,6 +258,25 @@
         padding: $spacing-xs $spacing-sm;
         border-radius: $border-radius-full;
         flex-shrink: 0;
+        transition: all $transition-fast;
+        
+        // Badge variants
+        &--urgent {
+          background-color: $error-color;
+          animation: pulse 2s infinite;
+        }
+        
+        &--new {
+          background-color: $success-color;
+        }
+        
+        &--warning {
+          background-color: $warning-color;
+        }
+        
+        &--info {
+          background-color: $info-color;
+        }
       }
       
       .nav-arrow {
@@ -159,6 +304,7 @@
             border-left: 2px solid $border-color;
             padding-left: $spacing-none;
             position: relative;
+            will-change: max-height, opacity, transform;
 
 
             &-list {
@@ -279,12 +425,51 @@
               transform: translateX(0);
             }
           }
+          
+          @keyframes spin {
+            0% {
+              transform: rotate(0deg);
+            }
+            100% {
+              transform: rotate(360deg);
+            }
+          }
 
+  }
+  
+  // No Results Message
+  &-no-results {
+    padding: $spacing-xl;
+    text-align: center;
+    color: $text-muted;
+    
+    &-content {
+      i {
+        font-size: 2rem;
+        margin-bottom: $spacing-sm;
+        opacity: 0.5;
+      }
+      
+      p {
+        margin: 0 0 $spacing-xs;
+        font-weight: $font-weight-medium;
+      }
+      
+      small {
+        font-size: $font-size-sm;
+        opacity: 0.8;
+      }
+    }
   }
   
   // Sidebar Collapsed State
   &--collapsed {
     width: $sidebar-width-collapsed;
+
+    // Hide search when collapsed
+    .sidebar-search {
+      display: none;
+    }
 
     .sidebar-brand-text {
       display: none;
@@ -315,11 +500,113 @@
         display: none;
       }
 
-      // Hide submenu indicators when collapsed
+      // Submenu popover for collapsed state
       &-item--has-submenu {
+        position: relative;
+        
         .sidebar-nav-link {
           .nav-arrow {
             display: none;
+          }
+        }
+
+        // Submenu popover
+        .sidebar-nav-sub-popover {
+          position: fixed;
+          z-index: $z-dropdown;
+          background-color: $bg-primary;
+          border: 1px solid $border-color;
+          border-radius: $border-radius-lg;
+          box-shadow: $shadow-xl;
+          min-width: 200px;
+          max-width: 300px;
+          display: none;
+          transition: all $transition-fast;
+          
+          // Arrow pointing to parent
+          &::before {
+            content: '';
+            position: absolute;
+            left: -6px;
+            top: 12px;
+            width: 0;
+            height: 0;
+            border-style: solid;
+            border-width: 6px 6px 6px 0;
+            border-color: transparent $border-color transparent transparent;
+          }
+          
+          &::after {
+            content: '';
+            position: absolute;
+            left: -5px;
+            top: 12px;
+            width: 0;
+            height: 0;
+            border-style: solid;
+            border-width: 5px 5px 5px 0;
+            border-color: transparent $bg-primary transparent transparent;
+          }
+        }
+
+        // Show popover on hover
+        &:hover .sidebar-nav-sub-popover {
+          display: block;
+        }
+
+        // Popover content
+        .sidebar-nav-sub-popover {
+          .sidebar-nav-sub-link {
+            display: block;
+            padding: $spacing-3 $spacing-4;
+            color: $text-secondary;
+            text-decoration: none;
+            border-bottom: 1px solid $border-color-light;
+            transition: all $transition-fast;
+            position: relative;
+
+            &:last-child {
+              border-bottom: none;
+            }
+
+            &:hover {
+              color: $primary-color;
+              background-color: $bg-secondary;
+              padding-left: $spacing-5;
+            }
+
+            &.active {
+              color: $primary-color;
+              background-color: color-alpha($primary-color, 0.1);
+              font-weight: $font-weight-medium;
+            }
+
+            .nav-icon {
+              width: 16px;
+              height: 16px;
+              margin-right: $spacing-2;
+              display: inline-flex;
+              align-items: center;
+              justify-content: center;
+              font-size: $font-size-sm;
+            }
+
+            .nav-text {
+              display: inline;
+              font-size: $font-size-sm;
+            }
+
+            .nav-badge {
+              display: inline-block;
+              margin-left: auto;
+              font-size: $font-size-xs;
+              padding: 2px 6px;
+              background-color: $primary-color;
+              color: $white;
+              border-radius: 10px;
+              min-width: 18px;
+              text-align: center;
+            }
           }
         }
       }
@@ -335,61 +622,148 @@
     .sidebar-brand {
       color: $white;
     }
+  }
+}
+
+// Dark mode support for sidebar search
+[data-theme="dark"] .sidebar {
+  .sidebar-search {
+    background-color: $gray-800;
+    border-bottom-color: $gray-700;
     
-    .sidebar-nav {
-      &-section-title {
+    &-icon {
+      color: $gray-400;
+    }
+    
+    &-input {
+      background-color: $gray-700;
+      border-color: $gray-600;
+      color: $white;
+      
+      &:focus {
+        background-color: $gray-600;
+        border-color: $primary-light;
+      }
+      
+      &::placeholder {
         color: $gray-400;
       }
+    }
+    
+    &-clear {
+      color: $gray-400;
       
-      &-link {
-        color: $gray-300;
-        
-        &:hover {
-          color: $white;
-          background-color: $gray-800;
-        }
-        
-        &.active {
-          color: $white;
-          background-color: $primary-color;
-        }
+      &:hover {
+        color: $white;
+        background-color: $gray-600;
+      }
+    }
+  }
+  
+  .sidebar-no-results {
+    color: $gray-400;
+    
+    &-content {
+      i {
+        color: $gray-500;
+      }
+    }
+  }
+  
+  .sidebar-nav {
+    &-section-title {
+      color: $gray-400;
+    }
+    
+    &-link {
+      color: $gray-300;
+      
+      &:hover {
+        color: $white;
+        background-color: $gray-800;
       }
       
-      &-sub {
-        border-left-color: $gray-700;
+      &.active {
+        color: $white;
+        background-color: $primary-color;
+      }
+    }
+    
+    &-sub {
+      border-left-color: $gray-700;
 
+      &-link {
+        color: $gray-400;
+        border-color: transparent;
 
+        &:hover {
+          color: $white;
+          background: linear-gradient(135deg, 
+            color-alpha($primary-light, 0.1) 0%, 
+            color-alpha($primary-light, 0.05) 100%);
+          border-color: color-alpha($primary-light, 0.2);
+          box-shadow: 0 2px 8px color-alpha($primary-light, 0.2);
+        }
 
-        &-link {
-          color: $gray-400;
-          border-color: transparent;
+        &.active {
+          color: $white;
+          background: linear-gradient(135deg, 
+            color-alpha($primary-light, 0.2) 0%, 
+            color-alpha($primary-light, 0.1) 100%);
+          border-color: color-alpha($primary-light, 0.3);
+          box-shadow: 0 2px 12px color-alpha($primary-light, 0.25);
+        }
+
+        .nav-icon {
+          opacity: 0.7;
+        }
+
+        &:hover .nav-icon {
+          opacity: 1;
+        }
+      }
+    }
+
+    // Dark mode support for submenu popovers
+    &-item--has-submenu {
+      .sidebar-nav-sub-popover {
+        background-color: $gray-900;
+        border-color: $gray-700;
+        box-shadow: $shadow-xl;
+
+        &::before {
+          border-color: transparent $gray-700 transparent transparent;
+        }
+
+        &::after {
+          border-color: transparent $gray-900 transparent transparent;
+        }
+
+        .sidebar-nav-sub-link {
+          color: $gray-300;
+          border-bottom-color: $gray-700;
+
+          &:last-child {
+            border-bottom: none;
+          }
 
           &:hover {
             color: $white;
-            background: linear-gradient(135deg, 
-              color-alpha($primary-light, 0.1) 0%, 
-              color-alpha($primary-light, 0.05) 100%);
-            border-color: color-alpha($primary-light, 0.2);
-            box-shadow: 0 2px 8px color-alpha($primary-light, 0.2);
+            background-color: $gray-800;
           }
 
           &.active {
             color: $white;
-            background: linear-gradient(135deg, 
-              color-alpha($primary-light, 0.2) 0%, 
-              color-alpha($primary-light, 0.1) 100%);
-            border-color: color-alpha($primary-light, 0.3);
-            box-shadow: 0 2px 12px color-alpha($primary-light, 0.25);
-
-
+            background-color: color-alpha($primary-light, 0.2);
           }
 
           .nav-icon {
-            opacity: 0.7;
+            color: $gray-400;
           }
 
-          &:hover .nav-icon {
-            opacity: 1;
+          .nav-badge {
+            background-color: $primary-light;
+            color: $white;
           }
         }
       }
@@ -509,6 +883,250 @@
   // Add pulse animation when sidebar is collapsed (draws attention)
   .sidebar--collapsed + & {
     animation: pulse 2s ease-in-out infinite;
+  }
+}
+
+// Header Search Button (visible when sidebar is collapsed)
+.header-search-btn {
+  display: none; // Hidden by default
+  
+  // Show when sidebar is collapsed
+  .sidebar--collapsed ~ .main-content & {
+    display: flex;
+  }
+}
+
+// Search Modal
+.search-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: $z-modal;
+  display: none;
+  align-items: flex-start;
+  justify-content: center;
+  padding: $spacing-4;
+  
+  &.active {
+    display: flex;
+  }
+  
+  &-backdrop {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: $bg-overlay;
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+  }
+  
+  &-content {
+    position: relative;
+    width: 100%;
+    max-width: 500px;
+    background-color: $bg-primary;
+    border-radius: $border-radius-lg;
+    box-shadow: $shadow-xl;
+    margin-top: 10vh;
+    max-height: 80vh;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  &-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: $spacing-4;
+    border-bottom: 1px solid $border-color;
+    
+    h3 {
+      margin: 0;
+      font-size: $font-size-lg;
+      font-weight: $font-weight-semibold;
+      color: $text-primary;
+    }
+  }
+  
+  &-body {
+    padding: $spacing-4;
+    flex: 1;
+    overflow-y: auto;
+  }
+  
+  &-search {
+    position: relative;
+    margin-bottom: $spacing-4;
+    
+    &-input {
+      width: 100%;
+      height: 3rem;
+      padding: $spacing-3 $spacing-4 $spacing-3 $spacing-10;
+      font-size: $font-size-base;
+      border: 1px solid $border-color;
+      border-radius: $border-radius;
+      background-color: $bg-primary;
+      color: $text-primary;
+      transition: all $transition-fast;
+      
+      &:focus {
+        outline: none;
+        border-color: $primary-color;
+        box-shadow: 0 0 0 3px color-alpha($primary-color, 0.1);
+      }
+      
+      &::placeholder {
+        color: $text-muted;
+      }
+    }
+    
+    &-icon {
+      position: absolute;
+      left: $spacing-3;
+      top: 50%;
+      transform: translateY(-50%);
+      color: $text-muted;
+      font-size: $font-size-sm;
+    }
+  }
+  
+  &-results {
+    max-height: 300px;
+    overflow-y: auto;
+    
+    .search-result-item {
+      display: flex;
+      align-items: center;
+      padding: $spacing-3;
+      border-radius: $border-radius;
+      cursor: pointer;
+      transition: background-color $transition-fast;
+      
+      &:hover {
+        background-color: $bg-secondary;
+      }
+      
+      .search-result-icon {
+        width: 20px;
+        height: 20px;
+        margin-right: $spacing-3;
+        color: $text-muted;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      
+      .search-result-text {
+        flex: 1;
+        
+        .search-result-title {
+          font-weight: $font-weight-medium;
+          color: $text-primary;
+          margin: 0 0 $spacing-1 0;
+        }
+        
+        .search-result-path {
+          font-size: $font-size-sm;
+          color: $text-muted;
+          margin: 0;
+        }
+      }
+    }
+    
+    .search-no-results {
+      text-align: center;
+      padding: $spacing-6;
+      color: $text-muted;
+      
+      i {
+        font-size: $font-size-2xl;
+        margin-bottom: $spacing-3;
+        display: block;
+      }
+    }
+  }
+  
+  &-close {
+    color: $text-muted;
+    
+    &:hover {
+      color: $text-primary;
+    }
+  }
+}
+
+// Dark mode support for search modal
+[data-theme="dark"] .search-modal {
+  &-content {
+    background-color: $gray-900;
+    border: 1px solid $gray-700;
+  }
+  
+  &-header {
+    border-bottom-color: $gray-700;
+    
+    h3 {
+      color: $white;
+    }
+  }
+  
+  &-search {
+    &-input {
+      background-color: $gray-800;
+      border-color: $gray-600;
+      color: $white;
+      
+      &:focus {
+        border-color: $primary-light;
+        box-shadow: 0 0 0 3px color-alpha($primary-light, 0.1);
+      }
+      
+      &::placeholder {
+        color: $gray-400;
+      }
+    }
+    
+    &-icon {
+      color: $gray-400;
+    }
+  }
+  
+  &-results {
+    .search-result-item {
+      &:hover {
+        background-color: $gray-800;
+      }
+      
+      .search-result-icon {
+        color: $gray-400;
+      }
+      
+      .search-result-text {
+        .search-result-title {
+          color: $white;
+        }
+        
+        .search-result-path {
+          color: $gray-400;
+        }
+      }
+    }
+    
+    .search-no-results {
+      color: $gray-400;
+    }
+  }
+  
+  &-close {
+    color: $gray-400;
+    
+    &:hover {
+      color: $white;
+    }
   }
 }
 
