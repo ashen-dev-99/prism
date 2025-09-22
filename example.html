@@ -6,6 +6,7 @@
     <title>Prism Theme - Admin Dashboard</title>
     <link rel="stylesheet" href="dist/prism-theme.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script type="module" src="dist/prism-theme.mjs"></script>
 </head>
 <body>
     <!-- Header -->
@@ -18,7 +19,7 @@
         </div>
 
         <div class="header-search">
-            <input type="text" class="header-search-input" placeholder="Search...">
+            <input type="text" name="header-search" id="header-search" class="header-search-input" placeholder="Search...">
             <i class="fas fa-search header-search-icon"></i>
         </div>
 
@@ -34,25 +35,25 @@
             </button>
 
             <!-- Notifications -->
-            <div class="header-notifications" data-component="dropdown">
+            <div class="header-notifications dropdown" data-component="dropdown">
                 <button class="header-notifications-toggle dropdown-toggle">
                     <i class="fas fa-bell"></i>
                     <span class="notification-badge">3</span>
                 </button>
-                <div class="header-notifications-menu dropdown-menu">
-                    <div class="header-notifications-menu-header">
+                <div class="dropdown-menu">
+                    <div class="dropdown-menu-header">
                         <h6 class="notifications-title">Notifications</h6>
                         <button class="btn btn--sm btn--ghost">Mark all read</button>
                     </div>
-                    <div class="header-notifications-menu-body">
-                        <div class="header-notifications-menu-item unread">
+                    <div class="dropdown-menu-body">
+                        <div class="dropdown-menu-item unread">
                             <div class="notification-content">
                                 <p class="notification-title">New user registered</p>
                                 <p class="notification-text">John Doe just joined your platform</p>
                                 <p class="notification-time">2 minutes ago</p>
                             </div>
                         </div>
-                        <div class="header-notifications-menu-item">
+                        <div class="dropdown-menu-item">
                             <div class="notification-content">
                                 <p class="notification-title">Server maintenance</p>
                                 <p class="notification-text">Scheduled maintenance in 2 hours</p>
@@ -64,28 +65,27 @@
             </div>
 
             <!-- User Menu -->
-            <div class="header-user" data-component="dropdown">
+            <div class="header-user dropdown" data-component="dropdown">
                 <button class="header-user-toggle dropdown-toggle">
                     <img src="https://placehold.co/32x32.png" alt="User" class="user-avatar">
                     <span class="user-name">John Doe</span>
-                    <i class="fas fa-chevron-down user-arrow"></i>
                 </button>
-                <div class="header-user-menu dropdown-menu">
-                    <div class="header-user-menu-header">
+                <div class="dropdown-menu">
+                    <div class="dropdown-menu-header">
                         <div class="user-info">
                             <p class="user-name">John Doe</p>
                             <p class="user-email">john@example.com</p>
                         </div>
                     </div>
-                    <div class="header-user-menu-body">
-                        <a href="#" class="header-user-menu-item">
+                    <div class="dropdown-menu-body">
+                        <a href="#" class="dropdown-menu-item">
                             <i class="fas fa-user"></i> Profile
                         </a>
-                        <a href="#" class="header-user-menu-item">
+                        <a href="#" class="dropdown-menu-item">
                             <i class="fas fa-cog"></i> Settings
                         </a>
-                        <div class="header-user-menu-item divider"></div>
-                        <a href="#" class="header-user-menu-item">
+                        <div class="dropdown-menu-item divider"></div>
+                        <a href="#" class="dropdown-menu-item">
                             <i class="fas fa-sign-out-alt"></i> Logout
                         </a>
                     </div>

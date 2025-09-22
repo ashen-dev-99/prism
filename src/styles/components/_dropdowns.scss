@@ -44,15 +44,10 @@
     border: 1px solid $border-color;
     border-radius: $border-radius;
     box-shadow: $shadow-lg;
-    opacity: 0;
-    visibility: hidden;
-    transform: translateY(-10px);
-    transition: all $transition-fast;
+    display: none;
     
     &.show {
-      opacity: 1;
-      visibility: visible;
-      transform: translateY(0);
+      display: block;
     }
     
     &--right {
