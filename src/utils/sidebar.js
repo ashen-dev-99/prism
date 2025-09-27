@@ -310,16 +310,53 @@ export default class Sidebar {
       const popover = item.querySelector('.sidebar-nav-sub-popover')
       if (!popover) return
 
-      // Add hover event listeners
+      let hideTimeout = null
+      let showTimeout = null
+
+      // Add hover event listeners with delays
       item.addEventListener('mouseenter', () => {
-        if (this.isCollapsed) {
-          this.showSubmenuPopover(item, popover)
+        if (this.isCollapsed && this.isDesktop()) {
+          // Clear any pending hide timeout
+          if (hideTimeout) {
+            clearTimeout(hideTimeout)
+            hideTimeout = null
+          }
+          
+          // Show popover with small delay for better UX
+          showTimeout = setTimeout(() => {
+            this.showSubmenuPopover(item, popover)
+          }, 150) // 150ms delay
         }
       })
 
       item.addEventListener('mouseleave', () => {
-        if (this.isCollapsed) {
-          this.hideSubmenuPopover(popover)
+        if (this.isCollapsed && this.isDesktop()) {
+          // Clear any pending show timeout
+          if (showTimeout) {
+            clearTimeout(showTimeout)
+            showTimeout = null
+          }
+          
+          // Hide popover with delay to allow mouse movement to popover
+          hideTimeout = setTimeout(() => {
+            this.hideSubmenuPopover(popover)
+          }, 300) // 300ms delay
+        }
+      })
+
+      // Add hover events to popover itself to keep it open
+      popover.addEventListener('mouseenter', () => {
+        if (hideTimeout) {
+          clearTimeout(hideTimeout)
+          hideTimeout = null
+        }
+      })
+
+      popover.addEventListener('mouseleave', () => {
+        if (this.isCollapsed && this.isDesktop()) {
+          hideTimeout = setTimeout(() => {
+            this.hideSubmenuPopover(popover)
+          }, 200) // 200ms delay when leaving popover
         }
       })
 
@@ -353,21 +390,58 @@ export default class Sidebar {
     // Position the popover using fixed positioning
     const itemRect = item.getBoundingClientRect()
     const sidebarRect = this.sidebar.getBoundingClientRect()
+    const viewportWidth = window.innerWidth
+    const viewportHeight = window.innerHeight
     
-    // Calculate position relative to viewport
-    const top = itemRect.top
-    const left = sidebarRect.right + 8 // 8px gap from sidebar
+    // Calculate initial position
+    let top = itemRect.top
+    let left = sidebarRect.right + 8 // 8px gap from sidebar
+    
+    // Get popover dimensions (we need to show it first to measure)
+    popover.style.display = 'block'
+    const popoverRect = popover.getBoundingClientRect()
+    
+    // Check for horizontal overflow
+    if (left + popoverRect.width > viewportWidth) {
+      // Position to the left of the sidebar instead
+      left = sidebarRect.left - popoverRect.width - 8
+      
+      // Add flipped class for arrow positioning
+      popover.classList.add('popover--arrow-left--flipped')
+      
+      // If still overflowing, position at viewport edge
+      if (left < 8) {
+        left = 8
+      }
+    } else {
+      // Remove flipped class if positioning normally
+      popover.classList.remove('popover--arrow-left--flipped')
+    }
+    
+    // Check for vertical overflow
+    if (top + popoverRect.height > viewportHeight) {
+      // Position popover above the item
+      top = itemRect.bottom - popoverRect.height
+      
+      // If still overflowing, position at viewport edge
+      if (top < 8) {
+        top = 8
+      }
+    }
+    
+    // Ensure minimum distance from viewport edges
+    top = Math.max(8, Math.min(top, viewportHeight - popoverRect.height - 8))
+    left = Math.max(8, Math.min(left, viewportWidth - popoverRect.width - 8))
     
     popover.style.top = `${top}px`
     popover.style.left = `${left}px`
-    
-    // Show popover
-    popover.style.display = 'block'
   }
 
   // Hide submenu popover
   hideSubmenuPopover(popover) {
     popover.style.display = 'none'
+    // Remove any flipped class when hiding
+    popover.classList.remove('popover--arrow-left--flipped')
   }
 
   // Hide all submenu popovers
@@ -376,6 +450,11 @@ export default class Sidebar {
     popovers.forEach(popover => {
       this.hideSubmenuPopover(popover)
     })
+  }
+
+  // Check if we're on desktop (not mobile)
+  isDesktop() {
+    return window.innerWidth >= 768 // md breakpoint
   }
 
   // Toggle search modal

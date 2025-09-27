@@ -44,10 +44,15 @@
     border: 1px solid $border-color;
     border-radius: $border-radius;
     box-shadow: $shadow-lg;
-    display: none;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: all $transition-fast;
     
     &.show {
-      display: block;
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
     }
     
     &--right {
@@ -397,5 +402,317 @@
     left: 20px;
     right: auto;
     transform: none;
+  }
+}
+
+// ===========================================
+// POPOVER COMPONENT (moved from sidebar)
+// ===========================================
+
+// Popover Base
+.popover {
+  position: fixed;
+  z-index: $z-dropdown;
+  background-color: $bg-primary;
+  border: 1px solid $border-color;
+  border-radius: $border-radius-lg;
+  box-shadow: $shadow-xl;
+  min-width: 200px;
+  max-width: 300px;
+  display: none;
+  transition: all $transition-fast;
+  
+  // Arrow pointing to parent (left side)
+  &--arrow-left {
+    &::before {
+      content: '';
+      position: absolute;
+      left: -6px;
+      top: 12px;
+      width: 0;
+      height: 0;
+      border-style: solid;
+      border-width: 6px 6px 6px 0;
+      border-color: transparent $border-color transparent transparent;
+    }
+    
+    &::after {
+      content: '';
+      position: absolute;
+      left: -5px;
+      top: 12px;
+      width: 0;
+      height: 0;
+      border-style: solid;
+      border-width: 5px 5px 5px 0;
+      border-color: transparent $bg-primary transparent transparent;
+    }
+    
+    // When positioned to the left of sidebar, arrow points right
+    &--flipped {
+      &::before {
+        left: auto;
+        right: -6px;
+        border-width: 6px 0 6px 6px;
+        border-color: transparent transparent transparent $border-color;
+      }
+      
+      &::after {
+        left: auto;
+        right: -5px;
+        border-width: 5px 0 5px 5px;
+        border-color: transparent transparent transparent $bg-primary;
+      }
+    }
+  }
+  
+  // Dark mode support for arrow-left
+  &--dark {
+    &--arrow-left {
+      &--flipped {
+        &::before {
+          border-color: transparent transparent transparent $gray-700;
+        }
+        
+        &::after {
+          border-color: transparent transparent transparent $gray-900;
+        }
+      }
+    }
+  }
+  
+  // Arrow pointing to parent (right side)
+  &--arrow-right {
+    &::before {
+      content: '';
+      position: absolute;
+      right: -6px;
+      top: 12px;
+      width: 0;
+      height: 0;
+      border-style: solid;
+      border-width: 6px 0 6px 6px;
+      border-color: transparent transparent transparent $border-color;
+    }
+    
+    &::after {
+      content: '';
+      position: absolute;
+      right: -5px;
+      top: 12px;
+      width: 0;
+      height: 0;
+      border-style: solid;
+      border-width: 5px 0 5px 5px;
+      border-color: transparent transparent transparent $bg-primary;
+    }
+  }
+  
+  // Arrow pointing to parent (top)
+  &--arrow-top {
+    &::before {
+      content: '';
+      position: absolute;
+      top: -6px;
+      left: 12px;
+      width: 0;
+      height: 0;
+      border-style: solid;
+      border-width: 0 6px 6px 6px;
+      border-color: transparent transparent $border-color transparent;
+    }
+    
+    &::after {
+      content: '';
+      position: absolute;
+      top: -5px;
+      left: 12px;
+      width: 0;
+      height: 0;
+      border-style: solid;
+      border-width: 0 5px 5px 5px;
+      border-color: transparent transparent $bg-primary transparent;
+    }
+  }
+  
+  // Arrow pointing to parent (bottom)
+  &--arrow-bottom {
+    &::before {
+      content: '';
+      position: absolute;
+      bottom: -6px;
+      left: 12px;
+      width: 0;
+      height: 0;
+      border-style: solid;
+      border-width: 6px 6px 0 6px;
+      border-color: $border-color transparent transparent transparent;
+    }
+    
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 12px;
+      width: 0;
+      height: 0;
+      border-style: solid;
+      border-width: 5px 5px 0 5px;
+      border-color: $bg-primary transparent transparent transparent;
+    }
+  }
+  
+  // Popover content
+  &-content {
+    padding: 0;
+    
+    .popover-item {
+      display: block;
+      padding: $spacing-3 $spacing-4;
+      color: $text-secondary;
+      text-decoration: none;
+      border-bottom: 1px solid $border-color-light;
+      transition: all $transition-fast;
+      position: relative;
+      
+      &:last-child {
+        border-bottom: none;
+      }
+      
+      &:hover {
+        color: $primary-color;
+        background-color: $bg-secondary;
+        padding-left: $spacing-5;
+      }
+      
+      &.active {
+        color: $primary-color;
+        background-color: color-alpha($primary-color, 0.1);
+        font-weight: $font-weight-medium;
+      }
+      
+      .popover-icon {
+        width: 16px;
+        height: 16px;
+        margin-right: $spacing-2;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        font-size: $font-size-sm;
+      }
+      
+      .popover-text {
+        display: inline;
+        font-size: $font-size-sm;
+      }
+      
+      .popover-badge {
+        display: inline-block;
+        margin-left: auto;
+        font-size: $font-size-xs;
+        padding: 2px 6px;
+        background-color: $primary-color;
+        color: $white;
+        border-radius: 10px;
+        min-width: 18px;
+        text-align: center;
+      }
+    }
+  }
+  
+  // Popover sizes
+  &--sm {
+    min-width: 150px;
+    max-width: 200px;
+    
+    .popover-item {
+      padding: $spacing-2 $spacing-3;
+      font-size: $font-size-xs;
+    }
+  }
+  
+  &--lg {
+    min-width: 250px;
+    max-width: 350px;
+    
+    .popover-item {
+      padding: $spacing-4 $spacing-5;
+      font-size: $font-size-base;
+    }
+  }
+  
+  // Popover variants
+  &--dark {
+    background-color: $gray-900;
+    border-color: $gray-700;
+    box-shadow: $shadow-xl;
+    
+    &--arrow-left {
+      &::before {
+        border-color: transparent $gray-700 transparent transparent;
+      }
+      
+      &::after {
+        border-color: transparent $gray-900 transparent transparent;
+      }
+    }
+    
+    &--arrow-right {
+      &::before {
+        border-color: transparent transparent transparent $gray-700;
+      }
+      
+      &::after {
+        border-color: transparent transparent transparent $gray-900;
+      }
+    }
+    
+    &--arrow-top {
+      &::before {
+        border-color: transparent transparent $gray-700 transparent;
+      }
+      
+      &::after {
+        border-color: transparent transparent $gray-900 transparent;
+      }
+    }
+    
+    &--arrow-bottom {
+      &::before {
+        border-color: $gray-700 transparent transparent transparent;
+      }
+      
+      &::after {
+        border-color: $gray-900 transparent transparent transparent;
+      }
+    }
+    
+    .popover-item {
+      color: $gray-300;
+      border-bottom-color: $gray-700;
+      
+      &:last-child {
+        border-bottom: none;
+      }
+      
+      &:hover {
+        color: $white;
+        background-color: $gray-800;
+      }
+      
+      &.active {
+        color: $white;
+        background-color: color-alpha($primary-light, 0.2);
+      }
+      
+      .popover-icon {
+        color: $gray-400;
+      }
+      
+      .popover-badge {
+        background-color: $primary-light;
+        color: $white;
+      }
+    }
   }
 }

@@ -12,9 +12,7 @@
   z-index: $z-fixed;
   display: flex;
   align-items: center;
-  justify-content: space-between;
   padding: 0 $spacing-lg;
-  gap: $spacing-lg;
   
   // Header Brand
   &-brand {
@@ -25,8 +23,6 @@
     color: $text-primary;
     font-size: $font-size-lg;
     font-weight: $font-weight-semibold;
-    flex-shrink: 0;
-    min-width: 0;
     
     &:hover {
       color: $primary-color;
@@ -36,19 +32,10 @@
     &-logo {
       width: 2rem;
       height: 2rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.5rem;
-      color: $primary-color;
-      flex-shrink: 0;
+      object-fit: contain;
     }
     
     &-text {
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      
       @include respond-below(sm) {
         display: none;
       }
@@ -93,7 +80,7 @@
     display: flex;
     align-items: center;
     gap: $spacing-sm;
-    flex-shrink: 0;
+    margin-left: auto;
     
     &-item {
       position: relative;
@@ -103,16 +90,10 @@
   // Header Search
   &-search {
     position: relative;
-    flex: 1;
-    max-width: 400px;
-    margin: 0 $spacing-lg;
-    
-    @include respond-below(md) {
-      display: none;
-    }
+    margin-right: $spacing-lg;
     
     &-input {
-      width: 100%;
+      width: 300px;
       height: 2.5rem;
       padding: $spacing-sm $spacing-md $spacing-sm 2.5rem;
       border: 1px solid $border-color;
@@ -210,65 +191,70 @@
       }
     }
     
-    // Use general dropdown styles, only override specific properties
-    .dropdown-menu {
-      width: 320px;
+    &-menu {
+      position: absolute;
+      top: 100%;
       right: 0;
-      left: auto;
-    }
-    
-    // Specific header dropdown content styles
-    .dropdown-menu-header {
-      padding: $spacing-md;
-      border-bottom: 1px solid $border-color;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
+      width: 320px;
+      background: $bg-primary;
+      border: 1px solid $border-color;
+      border-radius: $border-radius;
+      box-shadow: $shadow-lg;
+      z-index: $z-dropdown;
+      margin-top: $spacing-xs;
       
-      .notifications-title {
-        font-size: $font-size-sm;
-        font-weight: $font-weight-semibold;
-        color: $text-primary;
-        margin: 0;
-      }
-      
-      .notifications-actions {
+      &-header {
+        padding: $spacing-md;
+        border-bottom: 1px solid $border-color;
         display: flex;
-        gap: $spacing-xs;
-      }
-    }
-    
-    .dropdown-menu-body {
-      max-height: 300px;
-      overflow-y: auto;
-    }
-    
-    .dropdown-menu-item {
-      padding: $spacing-md;
-      border-bottom: 1px solid $border-color;
-      cursor: pointer;
-      transition: background-color $transition-fast;
-      
-      &:hover {
-        background-color: $bg-secondary;
+        align-items: center;
+        justify-content: space-between;
+        
+        .notifications-title {
+          font-size: $font-size-sm;
+          font-weight: $font-weight-semibold;
+          color: $text-primary;
+          margin: 0;
+        }
+        
+        .notifications-actions {
+          display: flex;
+          gap: $spacing-xs;
+        }
       }
       
-      &:last-child {
-        border-bottom: none;
+      &-body {
+        max-height: 300px;
+        overflow-y: auto;
       }
       
-      &.unread {
-        background-color: color-alpha($primary-color, 0.05);
+      &-item {
+        padding: $spacing-md;
+        border-bottom: 1px solid $border-color;
+        cursor: pointer;
+        transition: background-color $transition-fast;
+        
+        &:hover {
+          background-color: $bg-secondary;
+        }
+        
+        &:last-child {
+          border-bottom: none;
+        }
+        
+        &.unread {
+          background-color: color-alpha($primary-color, 0.05);
+        }
       }
-    }
-    
-    .dropdown-menu-footer {
-      padding: $spacing-md;
-      border-top: 1px solid $border-color;
-      text-align: center;
       
-      .btn {
-        font-size: $font-size-xs;
+      &-footer {
+        padding: $spacing-md;
+        border-top: 1px solid $border-color;
+        text-align: center;
+        
+        .btn {
+          font-size: $font-size-xs;
+        }
       }
     }
   }
@@ -319,57 +305,63 @@
       }
     }
     
-    // Use general dropdown styles, only override specific properties
-    .dropdown-menu {
-      width: 200px;
+    &-menu {
+      position: absolute;
+      top: 100%;
       right: 0;
-      left: auto;
-    }
-    
-    .dropdown-menu-header {
-      padding: $spacing-md;
-      border-bottom: 1px solid $border-color;
-      text-align: center;
+      width: 200px;
+      background: $bg-primary;
+      border: 1px solid $border-color;
+      border-radius: $border-radius;
+      box-shadow: $shadow-lg;
+      z-index: $z-dropdown;
+      margin-top: $spacing-xs;
       
-      .user-info {
-        .user-name {
-          font-size: $font-size-sm;
-          font-weight: $font-weight-medium;
-          color: $text-primary;
-          margin: 0 0 $spacing-xs;
+      &-header {
+        padding: $spacing-md;
+        border-bottom: 1px solid $border-color;
+        text-align: center;
+        
+        .user-info {
+          .user-name {
+            font-size: $font-size-sm;
+            font-weight: $font-weight-medium;
+            color: $text-primary;
+            margin: 0 0 $spacing-xs;
+          }
+          
+          .user-email {
+            font-size: $font-size-xs;
+            color: $text-muted;
+            margin: 0;
+          }
+        }
+      }
+      
+      &-body {
+        padding: $spacing-sm 0;
+      }
+      
+      &-item {
+        display: block;
+        width: 100%;
+        padding: $spacing-sm $spacing-md;
+        color: $text-primary;
+        text-decoration: none;
+        font-size: $font-size-sm;
+        transition: background-color $transition-fast;
+        
+        &:hover {
+          background-color: $bg-secondary;
+          text-decoration: none;
         }
         
-        .user-email {
-          font-size: $font-size-xs;
-          color: $text-muted;
-          margin: 0;
+        &.divider {
+          height: 1px;
+          background-color: $border-color;
+          margin: $spacing-sm 0;
+          padding: 0;
         }
-      }
-    }
-    
-    .dropdown-menu-body {
-      padding: $spacing-sm 0;
-    }
-    
-    .dropdown-menu-item {
-      display: block;
-      width: 100%;
-      padding: $spacing-sm $spacing-md;
-      color: $text-primary;
-      text-decoration: none;
-      font-size: $font-size-sm;
-      transition: background-color $transition-fast;
-      
-      &:hover {
-        background-color: $bg-secondary;
-        text-decoration: none;
-      }
-      
-      &.divider {
-        height: 1px;
-        background-color: $border-color;
-        margin: $spacing-sm 0;
-        padding: 0;
       }
     }
   }
@@ -399,27 +391,6 @@
     }
   }
   
-  // Header Search Button (for mobile)
-  &-search-btn {
-    @extend %btn-base;
-    
-    width: 2.5rem;
-    height: 2.5rem;
-    border-radius: $border-radius;
-    background-color: transparent;
-    color: $text-secondary;
-    transition: all $transition-fast;
-    
-    &:hover {
-      background-color: $bg-secondary;
-      color: $text-primary;
-    }
-    
-    @include respond-to(md) {
-      display: none;
-    }
-  }
-  
   // Header Variants
   &--transparent {
     background-color: transparent;
@@ -442,137 +413,6 @@
         color: $white;
         background-color: $gray-800;
       }
-    }
-  }
-}
-
-// Dark mode support for header
-[data-theme="dark"] .header {
-  background-color: $gray-900;
-  border-bottom-color: $gray-800;
-  
-  .header-brand {
-    color: $white;
-    
-    &-logo {
-      color: $primary-light;
-    }
-  }
-  
-  .header-search {
-    &-input {
-      background-color: $gray-800;
-      border-color: $gray-700;
-      color: $white;
-      
-      &:focus {
-        background-color: $gray-800;
-        border-color: $primary-light;
-        box-shadow: 0 0 0 3px color-alpha($primary-light, 0.1);
-      }
-      
-      &::placeholder {
-        color: $gray-400;
-      }
-    }
-    
-    &-icon {
-      color: $gray-400;
-    }
-  }
-  
-  .header-notifications {
-    &-toggle {
-      color: $gray-300;
-      
-      &:hover {
-        background-color: $gray-800;
-        color: $white;
-      }
-    }
-    
-    .dropdown-menu {
-      background-color: $gray-900;
-      border-color: $gray-700;
-      
-      &-header {
-        border-bottom-color: $gray-700;
-        
-        .notifications-title {
-          color: $white;
-        }
-      }
-      
-      &-item {
-        color: $gray-300;
-        border-bottom-color: $gray-700;
-        
-        &:hover {
-          background-color: $gray-800;
-        }
-        
-        &.unread {
-          background-color: color-alpha($primary-light, 0.1);
-        }
-      }
-    }
-  }
-  
-  .header-user {
-    &-toggle {
-      color: $gray-300;
-      
-      &:hover {
-        background-color: $gray-800;
-      }
-      
-      .user-name {
-        color: $white;
-      }
-      
-      .user-arrow {
-        color: $gray-400;
-      }
-    }
-    
-    .dropdown-menu {
-      background-color: $gray-900;
-      border-color: $gray-700;
-      
-      &-header {
-        border-bottom-color: $gray-700;
-        
-        .user-info {
-          .user-name {
-            color: $white;
-          }
-          
-          .user-email {
-            color: $gray-400;
-          }
-        }
-      }
-      
-      &-item {
-        color: $gray-300;
-        
-        &:hover {
-          background-color: $gray-800;
-        }
-        
-        &.divider {
-          background-color: $gray-700;
-        }
-      }
-    }
-  }
-  
-  .header-search-btn {
-    color: $gray-300;
-    
-    &:hover {
-      background-color: $gray-800;
-      color: $white;
     }
   }
   

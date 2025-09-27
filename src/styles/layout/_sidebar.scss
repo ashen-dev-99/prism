@@ -510,102 +510,37 @@
           }
         }
 
-        // Submenu popover
+        // Submenu popover - use popover component
         .sidebar-nav-sub-popover {
-          position: fixed;
-          z-index: $z-dropdown;
-          background-color: $bg-primary;
-          border: 1px solid $border-color;
-          border-radius: $border-radius-lg;
-          box-shadow: $shadow-xl;
-          min-width: 200px;
-          max-width: 300px;
-          display: none;
-          transition: all $transition-fast;
+          @extend .popover;
+          @extend .popover--arrow-left;
           
-          // Arrow pointing to parent
-          &::before {
-            content: '';
-            position: absolute;
-            left: -6px;
-            top: 12px;
-            width: 0;
-            height: 0;
-            border-style: solid;
-            border-width: 6px 6px 6px 0;
-            border-color: transparent $border-color transparent transparent;
-          }
-          
-          &::after {
-            content: '';
-            position: absolute;
-            left: -5px;
-            top: 12px;
-            width: 0;
-            height: 0;
-            border-style: solid;
-            border-width: 5px 5px 5px 0;
-            border-color: transparent $bg-primary transparent transparent;
+          // Dark mode support
+          [data-theme="dark"] & {
+            @extend .popover--dark;
           }
         }
 
-        // Show popover on hover
+        // Show popover on hover (only on desktop, not mobile)
         &:hover .sidebar-nav-sub-popover {
           display: block;
         }
 
-        // Popover content
+        // Popover content - use popover component structure
         .sidebar-nav-sub-popover {
           .sidebar-nav-sub-link {
-            display: block;
-            padding: $spacing-3 $spacing-4;
-            color: $text-secondary;
-            text-decoration: none;
-            border-bottom: 1px solid $border-color-light;
-            transition: all $transition-fast;
-            position: relative;
-
-            &:last-child {
-              border-bottom: none;
-            }
-
-            &:hover {
-              color: $primary-color;
-              background-color: $bg-secondary;
-              padding-left: $spacing-5;
-            }
-
-            &.active {
-              color: $primary-color;
-              background-color: color-alpha($primary-color, 0.1);
-              font-weight: $font-weight-medium;
-            }
-
+            @extend .popover-item;
+            
             .nav-icon {
-              width: 16px;
-              height: 16px;
-              margin-right: $spacing-2;
-              display: inline-flex;
-              align-items: center;
-              justify-content: center;
-              font-size: $font-size-sm;
+              @extend .popover-icon;
             }
 
             .nav-text {
-              display: inline;
-              font-size: $font-size-sm;
+              @extend .popover-text;
             }
 
             .nav-badge {
-              display: inline-block;
-              margin-left: auto;
-              font-size: $font-size-xs;
-              padding: 2px 6px;
-              background-color: $primary-color;
-              color: $white;
-              border-radius: 10px;
-              min-width: 18px;
-              text-align: center;
+              @extend .popover-badge;
             }
           }
         }
@@ -724,50 +659,12 @@
       }
     }
 
-    // Dark mode support for submenu popovers
-    &-item--has-submenu {
-      .sidebar-nav-sub-popover {
-        background-color: $gray-900;
-        border-color: $gray-700;
-        box-shadow: $shadow-xl;
-
-        &::before {
-          border-color: transparent $gray-700 transparent transparent;
-        }
-
-        &::after {
-          border-color: transparent $gray-900 transparent transparent;
-        }
-
-        .sidebar-nav-sub-link {
-          color: $gray-300;
-          border-bottom-color: $gray-700;
-
-          &:last-child {
-            border-bottom: none;
-          }
-
-          &:hover {
-            color: $white;
-            background-color: $gray-800;
-          }
-
-          &.active {
-            color: $white;
-            background-color: color-alpha($primary-light, 0.2);
-          }
-
-          .nav-icon {
-            color: $gray-400;
-          }
-
-          .nav-badge {
-            background-color: $primary-light;
-            color: $white;
-          }
-        }
-      }
+  // Dark mode support for submenu popovers - handled by popover component
+  &-item--has-submenu {
+    .sidebar-nav-sub-popover {
+      // Dark mode styles are now handled by .popover--dark class
     }
+  }
   }
   
   &--transparent {
@@ -1234,6 +1131,18 @@
         
         &-sub {
           display: none;
+        }
+        
+        // Disable popovers on mobile - submenus should not be accessible when collapsed
+        &-item--has-submenu {
+          .sidebar-nav-sub-popover {
+            display: none !important;
+          }
+          
+          // Remove hover effect on mobile
+          &:hover .sidebar-nav-sub-popover {
+            display: none !important;
+          }
         }
       }
     }
