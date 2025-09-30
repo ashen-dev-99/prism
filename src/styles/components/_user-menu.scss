@@ -1,0 +1,351 @@
+// Prism Theme - User Menu Component
+// =====================================
+
+// User Toggle Button
+.user-toggle {
+  @extend %btn-base;
+  
+  display: flex;
+  align-items: center;
+  gap: $spacing-sm;
+  padding: $spacing-xs;
+  border-radius: $border-radius;
+  transition: all $transition-fast;
+  
+  &:hover {
+    background-color: $bg-secondary;
+  }
+  
+  // User Avatar
+  .user-avatar {
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid transparent;
+    transition: border-color $transition-fast;
+  }
+  
+  // User Name
+  .user-name {
+    font-size: $font-size-sm;
+    color: $text-primary;
+    margin: 0;
+    font-weight: $font-weight-medium;
+    
+    @include respond-below(sm) {
+      display: none;
+    }
+  }
+  
+  // User Arrow
+  .user-arrow {
+    font-size: 0.75rem;
+    color: $text-muted;
+    transition: transform $transition-fast;
+    
+    @include respond-below(sm) {
+      display: none;
+    }
+  }
+  
+  // Active State
+  &[aria-expanded="true"] {
+    .user-arrow {
+      transform: rotate(180deg);
+    }
+  }
+  
+  // Avatar States
+  &:hover .user-avatar {
+    border-color: $primary-color;
+  }
+}
+
+// User Dropdown Menu
+.user-dropdown {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  width: 200px;
+  background: $bg-primary;
+  border: 1px solid $border-color;
+  border-radius: $border-radius;
+  box-shadow: $shadow-lg;
+  z-index: $z-dropdown;
+  margin-top: $spacing-xs;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-10px);
+  transition: all $transition-fast;
+  
+  &.show {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+  
+  // Dropdown Header
+  &-header {
+    padding: $spacing-md;
+    border-bottom: 1px solid $border-color;
+    text-align: center;
+    
+    .user-info {
+      .user-name {
+        font-size: $font-size-sm;
+        font-weight: $font-weight-medium;
+        color: $text-primary;
+        margin: 0 0 $spacing-xs;
+      }
+      
+      .user-email {
+        font-size: $font-size-xs;
+        color: $text-muted;
+        margin: 0;
+      }
+      
+      .user-role {
+        font-size: $font-size-xs;
+        color: $primary-color;
+        background-color: color-alpha($primary-color, 0.1);
+        padding: $spacing-xs $spacing-sm;
+        border-radius: $border-radius-full;
+        margin-top: $spacing-xs;
+        display: inline-block;
+      }
+    }
+  }
+  
+  // Dropdown Body
+  &-body {
+    padding: $spacing-sm 0;
+  }
+  
+  // Dropdown Footer
+  &-footer {
+    padding: $spacing-sm $spacing-md;
+    border-top: 1px solid $border-color;
+    text-align: center;
+    
+    .btn {
+      font-size: $font-size-xs;
+    }
+  }
+}
+
+// User Menu Item
+.user-item {
+  display: block;
+  width: 100%;
+  padding: $spacing-sm $spacing-md;
+  color: $text-primary;
+  text-decoration: none;
+  font-size: $font-size-sm;
+  transition: background-color $transition-fast;
+  position: relative;
+  
+  &:hover {
+    background-color: $bg-secondary;
+    text-decoration: none;
+  }
+  
+  // Item with Icon
+  &.with-icon {
+    display: flex;
+    align-items: center;
+    gap: $spacing-sm;
+    
+    .user-item-icon {
+      width: 1rem;
+      height: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.875rem;
+      color: $text-muted;
+    }
+    
+    .user-item-text {
+      flex: 1;
+    }
+    
+    .user-item-badge {
+      background-color: $primary-color;
+      color: $white;
+      font-size: 0.625rem;
+      font-weight: $font-weight-medium;
+      padding: 2px 6px;
+      border-radius: $border-radius-full;
+      min-width: 18px;
+      text-align: center;
+    }
+  }
+  
+  // Divider
+  &.divider {
+    height: 1px;
+    background-color: $border-color;
+    margin: $spacing-sm 0;
+    padding: 0;
+    cursor: default;
+    
+    &:hover {
+      background-color: $border-color;
+    }
+  }
+  
+  // Active State
+  &.active {
+    background-color: color-alpha($primary-color, 0.1);
+    color: $primary-color;
+    font-weight: $font-weight-medium;
+    
+    .user-item-icon {
+      color: $primary-color;
+    }
+  }
+  
+  // Disabled State
+  &.disabled {
+    color: $text-muted;
+    cursor: not-allowed;
+    opacity: 0.6;
+    
+    &:hover {
+      background-color: transparent;
+    }
+  }
+}
+
+// User Profile Section
+.user-profile {
+  display: flex;
+  align-items: center;
+  gap: $spacing-sm;
+  padding: $spacing-sm $spacing-md;
+  border-bottom: 1px solid $border-color;
+  
+  .user-avatar {
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid $primary-color;
+  }
+  
+  .user-details {
+    flex: 1;
+    
+    .user-name {
+      font-size: $font-size-sm;
+      font-weight: $font-weight-medium;
+      color: $text-primary;
+      margin: 0 0 $spacing-xs;
+    }
+    
+    .user-email {
+      font-size: $font-size-xs;
+      color: $text-muted;
+      margin: 0;
+    }
+  }
+  
+  .user-status {
+    width: 0.5rem;
+    height: 0.5rem;
+    border-radius: 50%;
+    background-color: $success-color;
+    
+    &--online { background-color: $success-color; }
+    &--away { background-color: $warning-color; }
+    &--busy { background-color: $error-color; }
+    &--offline { background-color: $text-muted; }
+  }
+}
+
+// User Menu Variants
+.user-menu {
+  &--sm {
+    .user-dropdown {
+      width: 180px;
+    }
+    
+    .user-item {
+      padding: $spacing-xs $spacing-sm;
+      font-size: $font-size-xs;
+    }
+  }
+  
+  &--lg {
+    .user-dropdown {
+      width: 250px;
+    }
+    
+    .user-item {
+      padding: $spacing-md $spacing-lg;
+      font-size: $font-size-base;
+    }
+  }
+  
+  &--compact {
+    .user-toggle {
+      padding: $spacing-xs;
+      
+      .user-avatar {
+        width: 1.5rem;
+        height: 1.5rem;
+      }
+      
+      .user-name {
+        font-size: $font-size-xs;
+      }
+    }
+  }
+  
+  &--minimal {
+    .user-toggle {
+      .user-name,
+      .user-arrow {
+        display: none;
+      }
+    }
+  }
+}
+
+// User Menu States
+.user-menu {
+  &--loading {
+    .user-toggle {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+  }
+  
+  &--error {
+    .user-toggle {
+      .user-avatar {
+        border-color: $error-color;
+      }
+    }
+  }
+}
+
+// Dark Mode Support
+[data-theme="dark"] {
+  .user-dropdown {
+    background: var(--bg-primary);
+    border-color: var(--border-color);
+  }
+  
+  .user-item {
+    &.active {
+      background-color: color-alpha($primary-light, 0.1);
+      color: $primary-light;
+    }
+  }
+  
+  .user-profile {
+    border-color: var(--border-color);
+  }
+}

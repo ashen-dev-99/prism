@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dropdown Test - Prism Theme</title>
+    <link rel="stylesheet" href="dist/prism-theme.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        body {
+            margin: 0;
+            padding: 100px 20px 20px;
+            background-color: #f5f5f5;
+        }
+        .test-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .test-section {
+            background: white;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+    </style>
+</head>
+<body>
+    <div class="test-container">
+        <h1>Dropdown Test Page</h1>
+        
+        <div class="test-section">
+            <h2>Notifications Dropdown Test</h2>
+            <div class="header-notifications" data-component="dropdown">
+                <button class="notification-toggle dropdown-toggle" aria-expanded="false" aria-haspopup="true">
+                    <i class="fas fa-bell"></i>
+                    <span class="notification-badge">3</span>
+                </button>
+                <div class="notification-dropdown dropdown-menu" role="menu">
+                    <div class="notification-dropdown-header">
+                        <h6 class="notification-title">Notifications</h6>
+                        <div class="notification-actions">
+                            <button class="btn btn--sm btn--ghost">Mark all read</button>
+                        </div>
+                    </div>
+                    <div class="notification-dropdown-body">
+                        <div class="notification-item unread" role="menuitem">
+                            <div class="notification-content">
+                                <div class="notification-icon notification-icon--primary">
+                                    <i class="fas fa-user-plus"></i>
+                                </div>
+                                <div class="notification-details">
+                                    <p class="notification-title">New user registered</p>
+                                    <p class="notification-text">John Doe just joined your platform</p>
+                                    <p class="notification-time">2 minutes ago</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="notification-item" role="menuitem">
+                            <div class="notification-content">
+                                <div class="notification-icon notification-icon--warning">
+                                    <i class="fas fa-tools"></i>
+                                </div>
+                                <div class="notification-details">
+                                    <p class="notification-title">Server maintenance</p>
+                                    <p class="notification-text">Scheduled maintenance in 2 hours</p>
+                                    <p class="notification-time">1 hour ago</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="test-section">
+            <h2>User Menu Dropdown Test</h2>
+            <div class="header-user" data-component="dropdown">
+                <button class="user-toggle dropdown-toggle" aria-expanded="false" aria-haspopup="true">
+                    <img src="https://placehold.co/32x32.png" alt="User" class="user-avatar">
+                    <span class="user-name">John Doe</span>
+                    <i class="fas fa-chevron-down user-arrow"></i>
+                </button>
+                <div class="user-dropdown dropdown-menu" role="menu">
+                    <div class="user-dropdown-header">
+                        <div class="user-info">
+                            <p class="user-name">John Doe</p>
+                            <p class="user-email">john@example.com</p>
+                            <span class="user-role">Administrator</span>
+                        </div>
+                    </div>
+                    <div class="user-dropdown-body">
+                        <a href="#" class="user-item with-icon" role="menuitem">
+                            <div class="user-item-icon">
+                                <i class="fas fa-user"></i>
+                            </div>
+                            <div class="user-item-text">Profile</div>
+                        </a>
+                        <a href="#" class="user-item with-icon" role="menuitem">
+                            <div class="user-item-icon">
+                                <i class="fas fa-cog"></i>
+                            </div>
+                            <div class="user-item-text">Settings</div>
+                        </a>
+                        <div class="user-item divider"></div>
+                        <a href="#" class="user-item with-icon" role="menuitem">
+                            <div class="user-item-icon">
+                                <i class="fas fa-sign-out-alt"></i>
+                            </div>
+                            <div class="user-item-text">Logout</div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="test-section">
+            <h2>Standard Dropdown Test (for comparison)</h2>
+            <div class="dropdown" data-component="dropdown">
+                <button class="btn dropdown-toggle" aria-expanded="false" aria-haspopup="true">
+                    Standard Dropdown
+                </button>
+                <div class="dropdown-menu" role="menu">
+                    <a href="#" class="dropdown-item" role="menuitem">Action 1</a>
+                    <a href="#" class="dropdown-item" role="menuitem">Action 2</a>
+                    <div class="dropdown-divider"></div>
+                    <a href="#" class="dropdown-item" role="menuitem">Action 3</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="dist/prism-theme.umd.js"></script>
+    <script>
+        // Debug script to check if components are being initialized
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('DOM loaded');
+            console.log('Component Registry:', window.componentRegistry);
+            
+            // Check if dropdowns are found
+            const dropdowns = document.querySelectorAll('[data-component="dropdown"]');
+            console.log('Found dropdowns:', dropdowns.length);
+            
+            dropdowns.forEach((dropdown, index) => {
+                console.log(`Dropdown ${index + 1}:`, dropdown);
+                const toggle = dropdown.querySelector('.dropdown-toggle');
+                const menu = dropdown.querySelector('.dropdown-menu') || 
+                           dropdown.querySelector('.notification-dropdown') || 
+                           dropdown.querySelector('.user-dropdown');
+                console.log(`  Toggle:`, toggle);
+                console.log(`  Menu:`, menu);
+            });
+        });
+    </script>
+</body>
+</html>

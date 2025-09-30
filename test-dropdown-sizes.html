@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dropdown Sizes Test - Prism Theme</title>
+    <link rel="stylesheet" href="dist/prism-theme.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            background-color: var(--bg-secondary);
+            color: var(--text-primary);
+        }
+        .test-content {
+            padding: 2rem;
+        }
+        .test-section {
+            background-color: var(--bg-primary);
+            border: 1px solid var(--border-color);
+            border-radius: 0.5rem;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .test-section h3 {
+            margin-top: 0;
+            color: var(--text-primary);
+        }
+        .test-section p {
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+        }
+        .dropdown-demo {
+            position: relative;
+            margin-bottom: 1rem;
+            border: 2px dashed var(--border-color);
+            border-radius: 0.5rem;
+            padding: 1rem;
+            background-color: var(--bg-primary);
+        }
+        .dropdown-demo h4 {
+            position: absolute;
+            top: 0.5rem;
+            left: 0.5rem;
+            background-color: var(--primary-color);
+            color: white;
+            padding: 0.25rem 0.5rem;
+            border-radius: 0.25rem;
+            font-size: 0.75rem;
+            margin: 0;
+            z-index: 10;
+        }
+        .size-controls {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+        .size-btn {
+            padding: 0.5rem 1rem;
+            border: 1px solid var(--border-color);
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            border-radius: 0.25rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        .size-btn:hover {
+            background-color: var(--bg-secondary);
+        }
+        .size-btn.active {
+            background-color: var(--primary-color);
+            color: white;
+            border-color: var(--primary-color);
+        }
+        .dropdowns-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        .dropdown-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .dropdown-icon {
+            width: 1rem;
+            text-align: center;
+        }
+        .responsive-demo {
+            background-color: var(--bg-primary);
+            border: 1px solid var(--border-color);
+            border-radius: 0.5rem;
+            padding: 1rem;
+            margin-top: 1rem;
+        }
+        .responsive-demo h4 {
+            margin-top: 0;
+            color: var(--text-primary);
+        }
+        .responsive-demo p {
+            color: var(--text-secondary);
+            margin-bottom: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="test-content">
+        <h1>Dynamic Dropdown Sizes Test</h1>
+        
+        <div class="test-section">
+            <h3>🎛️ Dropdown Size Controls</h3>
+            <p>Click the buttons below to change the dropdown size dynamically:</p>
+            <div class="size-controls">
+                <button class="size-btn active" data-size="sm">Small (sm)</button>
+                <button class="size-btn" data-size="md">Medium (md)</button>
+                <button class="size-btn" data-size="lg">Large (lg)</button>
+                <button class="size-btn" data-size="xl">Extra Large (xl)</button>
+                <button class="size-btn" data-size="xxl">Extra Extra Large (xxl)</button>
+            </div>
+        </div>
+
+        <!-- Dynamic Dropdown -->
+        <div class="dropdown-demo">
+            <h4 id="current-size">Current: Medium (md)</h4>
+            <div class="dropdown dropdown--md" data-component="dropdown" id="dynamic-dropdown">
+                <button class="dropdown-toggle" aria-expanded="false" aria-haspopup="true">
+                    Select Option
+                </button>
+                <div class="dropdown-menu" role="menu">
+                    <div class="dropdown-header">Actions</div>
+                    <a href="#" class="dropdown-item" role="menuitem">
+                        <div class="dropdown-icon"><i class="fas fa-user"></i></div>
+                        Profile
+                    </a>
+                    <a href="#" class="dropdown-item" role="menuitem">
+                        <div class="dropdown-icon"><i class="fas fa-cog"></i></div>
+                        Settings
+                    </a>
+                    <a href="#" class="dropdown-item" role="menuitem">
+                        <div class="dropdown-icon"><i class="fas fa-bell"></i></div>
+                        Notifications
+                    </a>
+                    <div class="dropdown-divider"></div>
+                    <div class="dropdown-text">Account</div>
+                    <a href="#" class="dropdown-item" role="menuitem">
+                        <div class="dropdown-icon"><i class="fas fa-sign-out-alt"></i></div>
+                        Logout
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="test-section">
+            <h3>📊 All Dropdown Sizes Comparison</h3>
+            <p>Here are all the dropdown sizes side by side:</p>
+            <div class="dropdowns-grid">
+                <!-- Small Dropdown -->
+                <div class="dropdown dropdown--sm" data-component="dropdown">
+                    <button class="dropdown-toggle" aria-expanded="false" aria-haspopup="true">
+                        Small
+                    </button>
+                    <div class="dropdown-menu" role="menu">
+                        <div class="dropdown-header">Actions</div>
+                        <a href="#" class="dropdown-item" role="menuitem">
+                            <div class="dropdown-icon"><i class="fas fa-user"></i></div>
+                            Profile
+                        </a>
+                        <a href="#" class="dropdown-item" role="menuitem">
+                            <div class="dropdown-icon"><i class="fas fa-cog"></i></div>
+                            Settings
+                        </a>
+                        <a href="#" class="dropdown-item" role="menuitem">
+                            <div class="dropdown-icon"><i class="fas fa-bell"></i></div>
+                            Notifications
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Medium Dropdown -->
+                <div class="dropdown dropdown--md" data-component="dropdown">
+                    <button class="dropdown-toggle" aria-expanded="false" aria-haspopup="true">
+                        Medium
+                    </button>
+                    <div class="dropdown-menu" role="menu">
+                        <div class="dropdown-header">Actions</div>
+                        <a href="#" class="dropdown-item" role="menuitem">
+                            <div class="dropdown-icon"><i class="fas fa-user"></i></div>
+                            Profile
+                        </a>
+                        <a href="#" class="dropdown-item" role="menuitem">
+                            <div class="dropdown-icon"><i class="fas fa-cog"></i></div>
+                            Settings
+                        </a>
+                        <a href="#" class="dropdown-item" role="menuitem">
+                            <div class="dropdown-icon"><i class="fas fa-bell"></i></div>
+                            Notifications
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Large Dropdown -->
+                <div class="dropdown dropdown--lg" data-component="dropdown">
+                    <button class="dropdown-toggle" aria-expanded="false" aria-haspopup="true">
+                        Large
+                    </button>
+                    <div class="dropdown-menu" role="menu">
+                        <div class="dropdown-header">Actions</div>
+                        <a href="#" class="dropdown-item" role="menuitem">
+                            <div class="dropdown-icon"><i class="fas fa-user"></i></div>
+                            Profile
+                        </a>
+                        <a href="#" class="dropdown-item" role="menuitem">
+                            <div class="dropdown-icon"><i class="fas fa-cog"></i></div>
+                            Settings
+                        </a>
+                        <a href="#" class="dropdown-item" role="menuitem">
+                            <div class="dropdown-icon"><i class="fas fa-bell"></i></div>
+                            Notifications
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Extra Large Dropdown -->
+                <div class="dropdown dropdown--xl" data-component="dropdown">
+                    <button class="dropdown-toggle" aria-expanded="false" aria-haspopup="true">
+                        Extra Large
+                    </button>
+                    <div class="dropdown-menu" role="menu">
+                        <div class="dropdown-header">Actions</div>
+                        <a href="#" class="dropdown-item" role="menuitem">
+                            <div class="dropdown-icon"><i class="fas fa-user"></i></div>
+                            Profile
+                        </a>
+                        <a href="#" class="dropdown-item" role="menuitem">
+                            <div class="dropdown-icon"><i class="fas fa-cog"></i></div>
+                            Settings
+                        </a>
+                        <a href="#" class="dropdown-item" role="menuitem">
+                            <div class="dropdown-icon"><i class="fas fa-bell"></i></div>
+                            Notifications
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Extra Extra Large Dropdown -->
+                <div class="dropdown dropdown--xxl" data-component="dropdown">
+                    <button class="dropdown-toggle" aria-expanded="false" aria-haspopup="true">
+                        Extra Extra Large
+                    </button>
+                    <div class="dropdown-menu" role="menu">
+                        <div class="dropdown-header">Actions</div>
+                        <a href="#" class="dropdown-item" role="menuitem">
+                            <div class="dropdown-icon"><i class="fas fa-user"></i></div>
+                            Profile
+                        </a>
+                        <a href="#" class="dropdown-item" role="menuitem">
+                            <div class="dropdown-icon"><i class="fas fa-cog"></i></div>
+                            Settings
+                        </a>
+                        <a href="#" class="dropdown-item" role="menuitem">
+                            <div class="dropdown-icon"><i class="fas fa-bell"></i></div>
+                            Notifications
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="test-section">
+            <h3>📱 Responsive Behavior</h3>
+            <p>Dropdowns automatically adjust their size based on screen size:</p>
+            <div class="responsive-demo">
+                <h4>Screen Size Breakpoints:</h4>
+                <p><strong>Desktop (xl+):</strong> Uses the selected size (sm, md, lg, xl, xxl)</p>
+                <p><strong>Large (lg):</strong> Automatically switches to medium size</p>
+                <p><strong>Medium (md):</strong> Automatically switches to small size</p>
+                <p><strong>Small (sm):</strong> Uses full width with small padding</p>
+            </div>
+        </div>
+
+        <div class="test-section">
+            <h3>🎨 Size Specifications</h3>
+            <p>Each dropdown size has specific dimensions and styling:</p>
+            <div class="responsive-demo">
+                <h4>Size Details:</h4>
+                <p><strong>Small (sm):</strong> 200px width, 2rem item height, compact spacing</p>
+                <p><strong>Medium (md):</strong> 250px width, 2.5rem item height, standard spacing</p>
+                <p><strong>Large (lg):</strong> 320px width, 3rem item height, generous spacing</p>
+                <p><strong>Extra Large (xl):</strong> 400px width, 3.5rem item height, extra generous spacing</p>
+                <p><strong>Extra Extra Large (xxl):</strong> 500px width, 4rem item height, maximum spacing</p>
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="/src/index.js"></script>
+    <script>
+        // Dropdown size switching functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const dropdown = document.getElementById('dynamic-dropdown');
+            const sizeButtons = document.querySelectorAll('.size-btn');
+            const currentSizeLabel = document.getElementById('current-size');
+            
+            sizeButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const size = this.dataset.size;
+                    
+                    // Remove active class from all buttons
+                    sizeButtons.forEach(btn => btn.classList.remove('active'));
+                    // Add active class to clicked button
+                    this.classList.add('active');
+                    
+                    // Remove all size classes from dropdown
+                    dropdown.classList.remove('dropdown--sm', 'dropdown--md', 'dropdown--lg', 'dropdown--xl', 'dropdown--xxl');
+                    // Add the selected size class
+                    dropdown.classList.add(`dropdown--${size}`);
+                    
+                    // Update the current size label
+                    currentSizeLabel.textContent = `Current: ${size.toUpperCase()} (${size})`;
+                });
+            });
+        });
+    </script>
+</body>
+</html>

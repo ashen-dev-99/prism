@@ -3,6 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="./assets/prism_favicon_16.svg" type="image/x-icon" size="16X16">
+    <link rel="shortcut icon" href="./assets/prism_favicon_16.svg" type="image/x-icon" size="32X32">
+    <link rel="shortcut icon" href="./assets/prism_favicon_16.svg" type="image/x-icon" size="64X64">
     <title>Prism Theme - Admin Dashboard</title>
     <link rel="stylesheet" href="dist/prism-theme.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -12,21 +15,40 @@
     <header class="header">
         <div class="header-brand">
             <div class="header-brand-logo">
-                <i class="fas fa-cube"></i>
+                <!-- Light theme logo -->
+                <img src="assets/prism_logo_light.svg" alt="Prism Admin" class="header-brand-logo--light">
+                <!-- Dark theme logo -->
+                <img src="assets/prism_logo_dark.svg" alt="Prism Admin" class="header-brand-logo--dark">
             </div>
             <span class="header-brand-text">Prism Admin</span>
         </div>
 
-        <div class="header-search">
-            <input type="text" class="header-search-input" placeholder="Search...">
-            <i class="fas fa-search header-search-icon"></i>
-        </div>
-
         <div class="header-actions">
-            <!-- Search Button (visible when sidebar is collapsed) -->
-            <button class="btn-icon header-search-btn" data-sidebar-search-toggle aria-label="Search">
-                <i class="fas fa-search"></i>
-            </button>
+            <!-- Search -->
+            <div class="header-search dropdown" data-component="dropdown">
+                <button class="search-toggle dropdown-toggle" aria-expanded="false" aria-haspopup="true" aria-label="Search">
+                    <i class="fas fa-search"></i>
+                </button>
+                <div class="search-dropdown dropdown-menu" role="menu">
+                    <div class="search-dropdown-header">
+                        <h6 class="search-title">Search</h6>
+                    </div>
+                    <div class="search-dropdown-body">
+                        <div class="search-input-container">
+                            <input type="text" class="search-input" placeholder="Search anything..." id="headerSearchInput">
+                            <i class="fas fa-search search-icon"></i>
+                        </div>
+                        <div class="search-results" id="headerSearchResults">
+                            <!-- Search results will be populated here -->
+                        </div>
+                    </div>
+                    <div class="search-dropdown-footer">
+                        <div class="search-shortcuts">
+                            <span class="search-shortcut">Press <kbd>Ctrl</kbd> + <kbd>K</kbd> to search</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
             
             <!-- Theme Toggle -->
             <button class="btn-icon" data-theme-toggle aria-label="Toggle theme">
@@ -34,59 +56,50 @@
             </button>
 
             <!-- Notifications -->
-            <div class="header-notifications" data-component="dropdown">
-                <button class="header-notifications-toggle dropdown-toggle">
+            <div class="header-notifications dropdown dropdown--xl" data-component="dropdown">
+                <button class="notification-toggle dropdown-toggle" aria-expanded="false" aria-haspopup="true">
                     <i class="fas fa-bell"></i>
                     <span class="notification-badge">3</span>
                 </button>
-                <div class="header-notifications-menu dropdown-menu">
-                    <div class="header-notifications-menu-header">
-                        <h6 class="notifications-title">Notifications</h6>
-                        <button class="btn btn--sm btn--ghost">Mark all read</button>
+                <div class="notification-dropdown dropdown-menu" role="menu">
+                    <div class="notification-dropdown-header">
+                        <h6 class="notification-title">Notifications</h6>
+                        <div class="notification-actions">
+                            <button class="notification-btn notification-btn--sm notification-btn--ghost" data-action="mark-all-read">Mark all read</button>
+                        </div>
                     </div>
-                    <div class="header-notifications-menu-body">
-                        <div class="header-notifications-menu-item unread">
-                            <div class="notification-content">
-                                <p class="notification-title">New user registered</p>
-                                <p class="notification-text">John Doe just joined your platform</p>
-                                <p class="notification-time">2 minutes ago</p>
-                            </div>
-                        </div>
-                        <div class="header-notifications-menu-item">
-                            <div class="notification-content">
-                                <p class="notification-title">Server maintenance</p>
-                                <p class="notification-text">Scheduled maintenance in 2 hours</p>
-                                <p class="notification-time">1 hour ago</p>
-                            </div>
-                        </div>
+                    <div class="notification-dropdown-body">
+                        <!-- Notifications will be dynamically loaded here -->
+                    </div>
+                    <div class="notification-dropdown-footer">
+                        <button class="notification-btn notification-btn--sm notification-btn--ghost">View all notifications</button>
                     </div>
                 </div>
             </div>
 
             <!-- User Menu -->
-            <div class="header-user" data-component="dropdown">
-                <button class="header-user-toggle dropdown-toggle">
+            <div class="header-user dropdown dropdown--sm" data-component="dropdown">
+                <button class="user-toggle dropdown-toggle" aria-expanded="false" aria-haspopup="true">
                     <img src="https://placehold.co/32x32.png" alt="User" class="user-avatar">
                     <span class="user-name">John Doe</span>
-                    <i class="fas fa-chevron-down user-arrow"></i>
                 </button>
-                <div class="header-user-menu dropdown-menu">
-                    <div class="header-user-menu-header">
+                <div class="user-dropdown dropdown-menu" role="menu">
+                    <div class="user-dropdown-header">
                         <div class="user-info">
                             <p class="user-name">John Doe</p>
                             <p class="user-email">john@example.com</p>
                         </div>
                     </div>
-                    <div class="header-user-menu-body">
-                        <a href="#" class="header-user-menu-item">
-                            <i class="fas fa-user"></i> Profile
+                    <div class="user-dropdown-body">
+                        <a href="#" class="user-item with-icon" role="menuitem">
+                            <div class="user-item-icon"><i class="fas fa-user"></i></div> Profile
                         </a>
-                        <a href="#" class="header-user-menu-item">
-                            <i class="fas fa-cog"></i> Settings
+                        <a href="#" class="user-item with-icon" role="menuitem">
+                            <div class="user-item-icon"><i class="fas fa-cog"></i></div> Settings
                         </a>
-                        <div class="header-user-menu-item divider"></div>
-                        <a href="#" class="header-user-menu-item">
-                            <i class="fas fa-sign-out-alt"></i> Logout
+                        <div class="user-item divider"></div>
+                        <a href="#" class="user-item with-icon" role="menuitem">
+                            <div class="user-item-icon"><i class="fas fa-sign-out-alt"></i></div> Logout
                         </a>
                     </div>
                 </div>
@@ -625,6 +638,16 @@
                 }
             }, 1000);
         });
+        
+        // Handle notification actions
+        const markAllReadBtn = document.querySelector('[data-action="mark-all-read"]');
+        if (markAllReadBtn) {
+            markAllReadBtn.addEventListener('click', function() {
+                if (window.notificationManager) {
+                    window.notificationManager.markAllAsRead();
+                }
+            });
+        }
     </script>
 </body>
 </html>

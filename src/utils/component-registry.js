@@ -15,7 +15,6 @@ class ComponentRegistry {
   // Register a component
   register(name, component) {
     this.components.set(name, component);
-    console.log(`Component registered: ${name}`);
   }
 
   // Get a registered component
@@ -30,27 +29,36 @@ class ComponentRegistry {
 
   // Initialize all components with data-component attribute
   autoInitializeComponents() {
-    document.addEventListener('DOMContentLoaded', () => {
+    const initializeComponents = () => {
       const elements = document.querySelectorAll('[data-component]');
-      elements.forEach(element => {
+      
+      elements.forEach((element) => {
         const componentName = element.getAttribute('data-component');
         this.initializeComponent(componentName, element);
       });
-    });
+    };
+
+    // Check if DOM is already loaded
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initializeComponents);
+    } else {
+      // DOM is already loaded, initialize immediately
+      initializeComponents();
+    }
   }
 
   // Initialize a specific component
   initializeComponent(name, element) {
     const Component = this.get(name);
+    
     if (Component) {
       try {
         new Component(element);
-        console.log(`Component initialized: ${name}`);
       } catch (error) {
         console.error(`Failed to initialize component ${name}:`, error);
       }
     } else {
-      console.warn(`Component not found: ${name}`);
+      console.warn(`Component "${name}" not found in registry`);
     }
   }
 
@@ -61,6 +69,7 @@ class ComponentRegistry {
       constructor(element) {
         this.element = element;
         this.toggle = element.querySelector('.dropdown-toggle');
+        // Look for dropdown menu with various possible class names
         this.menu = element.querySelector('.dropdown-menu');
         this.isOpen = false;
         this.bindEvents();
@@ -70,7 +79,7 @@ class ComponentRegistry {
         if (this.toggle) {
           this.toggle.addEventListener('click', (e) => {
             e.preventDefault();
-            this.toggle();
+            this.toggleDropdown();
           });
         }
 
@@ -81,20 +90,32 @@ class ComponentRegistry {
         });
       }
 
-      toggle() {
+      toggleDropdown() {
         this.isOpen ? this.close() : this.open();
       }
 
       open() {
         this.isOpen = true;
-        this.menu.classList.add('show');
-        this.toggle.setAttribute('aria-expanded', 'true');
+        if (this.menu) {
+          this.menu.classList.add('show');
+          // Also add show class to parent for component-specific styling
+          this.element.classList.add('show');
+        }
+        if (this.toggle) {
+          this.toggle.setAttribute('aria-expanded', 'true');
+        }
       }
 
       close() {
         this.isOpen = false;
-        this.menu.classList.remove('show');
-        this.toggle.setAttribute('aria-expanded', 'false');
+        if (this.menu) {
+          this.menu.classList.remove('show');
+          // Also remove show class from parent
+          this.element.classList.remove('show');
+        }
+        if (this.toggle) {
+          this.toggle.setAttribute('aria-expanded', 'false');
+        }
       }
     });
 

@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Header Sizes Test - Prism Theme</title>
+    <link rel="stylesheet" href="dist/prism-theme.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            background-color: var(--bg-secondary);
+            color: var(--text-primary);
+        }
+        .test-content {
+            padding: 2rem;
+        }
+        .test-section {
+            background-color: var(--bg-primary);
+            border: 1px solid var(--border-color);
+            border-radius: 0.5rem;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .test-section h3 {
+            margin-top: 0;
+            color: var(--text-primary);
+        }
+        .test-section p {
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+        }
+        .header-demo {
+            position: relative;
+            margin-bottom: 1rem;
+            border: 2px dashed var(--border-color);
+            border-radius: 0.5rem;
+            overflow: hidden;
+        }
+        .header-demo h4 {
+            position: absolute;
+            top: 0.5rem;
+            left: 0.5rem;
+            background-color: var(--primary-color);
+            color: white;
+            padding: 0.25rem 0.5rem;
+            border-radius: 0.25rem;
+            font-size: 0.75rem;
+            margin: 0;
+            z-index: 10;
+        }
+        .size-controls {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+        .size-btn {
+            padding: 0.5rem 1rem;
+            border: 1px solid var(--border-color);
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            border-radius: 0.25rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        .size-btn:hover {
+            background-color: var(--bg-secondary);
+        }
+        .size-btn.active {
+            background-color: var(--primary-color);
+            color: white;
+            border-color: var(--primary-color);
+        }
+        .responsive-demo {
+            background-color: var(--bg-primary);
+            border: 1px solid var(--border-color);
+            border-radius: 0.5rem;
+            padding: 1rem;
+            margin-top: 1rem;
+        }
+        .responsive-demo h4 {
+            margin-top: 0;
+            color: var(--text-primary);
+        }
+        .responsive-demo p {
+            color: var(--text-secondary);
+            margin-bottom: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="test-content">
+        <h1>Dynamic Header Sizes Test</h1>
+        
+        <div class="test-section">
+            <h3>🎛️ Header Size Controls</h3>
+            <p>Click the buttons below to change the header size dynamically:</p>
+            <div class="size-controls">
+                <button class="size-btn active" data-size="sm">Small (sm)</button>
+                <button class="size-btn" data-size="md">Medium (md)</button>
+                <button class="size-btn" data-size="lg">Large (lg)</button>
+                <button class="size-btn" data-size="xl">Extra Large (xl)</button>
+                <button class="size-btn" data-size="xxl">Extra Extra Large (xxl)</button>
+            </div>
+        </div>
+
+        <!-- Dynamic Header -->
+        <div class="header-demo">
+            <h4 id="current-size">Current: Medium (md)</h4>
+            <header class="header header--md" id="dynamic-header">
+                <div class="header-brand">
+                    <div class="header-brand-logo">
+                        <img src="assets/prism_logo_light.svg" alt="Prism Admin" class="header-brand-logo--light">
+                        <img src="assets/prism_logo_dark.svg" alt="Prism Admin" class="header-brand-logo--dark">
+                    </div>
+                    <span class="header-brand-text">Prism Admin</span>
+                </div>
+
+                <div class="header-search">
+                    <input type="text" class="search-input" placeholder="Search...">
+                    <i class="fas fa-search search-icon"></i>
+                </div>
+
+                <div class="header-actions">
+                    <button class="btn-icon header-search-btn" data-sidebar-search-toggle aria-label="Search">
+                        <i class="fas fa-search"></i>
+                    </button>
+                    
+                    <button class="btn-icon" data-theme-toggle aria-label="Toggle theme">
+                        <i class="fas fa-moon"></i>
+                    </button>
+
+                    <div class="header-notifications" data-component="dropdown">
+                        <button class="notification-toggle dropdown-toggle" aria-expanded="false" aria-haspopup="true">
+                            <i class="fas fa-bell"></i>
+                            <span class="notification-badge">3</span>
+                        </button>
+                        <div class="notification-dropdown dropdown-menu" role="menu">
+                            <div class="notification-dropdown-header">
+                                <h6 class="notification-title">Notifications</h6>
+                                <div class="notification-actions">
+                                    <button class="btn btn--sm btn--ghost">Mark all read</button>
+                                </div>
+                            </div>
+                            <div class="notification-dropdown-body">
+                                <div class="notification-item unread" role="menuitem">
+                                    <div class="notification-content">
+                                        <p class="notification-title">New user registered</p>
+                                        <p class="notification-text">John Doe just joined your platform</p>
+                                        <p class="notification-time">2 minutes ago</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="header-user" data-component="dropdown">
+                        <button class="user-toggle dropdown-toggle" aria-expanded="false" aria-haspopup="true">
+                            <img src="https://placehold.co/32x32.png" alt="User" class="user-avatar">
+                            <span class="user-name">John Doe</span>
+                            <i class="fas fa-chevron-down user-arrow"></i>
+                        </button>
+                        <div class="user-dropdown dropdown-menu" role="menu">
+                            <div class="user-dropdown-header">
+                                <div class="user-info">
+                                    <p class="user-name">John Doe</p>
+                                    <p class="user-email">john@example.com</p>
+                                </div>
+                            </div>
+                            <div class="user-dropdown-body">
+                                <a href="#" class="user-item with-icon" role="menuitem">
+                                    <div class="user-item-icon"><i class="fas fa-user"></i></div> Profile
+                                </a>
+                                <a href="#" class="user-item with-icon" role="menuitem">
+                                    <div class="user-item-icon"><i class="fas fa-cog"></i></div> Settings
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </header>
+        </div>
+
+        <div class="test-section">
+            <h3>📱 Responsive Behavior</h3>
+            <p>The header automatically adjusts its size based on screen size:</p>
+            <div class="responsive-demo">
+                <h4>Screen Size Breakpoints:</h4>
+                <p><strong>Desktop (xl+):</strong> Uses the selected size (sm, md, lg, xl, xxl)</p>
+                <p><strong>Large (lg):</strong> Automatically switches to medium size</p>
+                <p><strong>Medium (md):</strong> Automatically switches to small size</p>
+                <p><strong>Small (sm):</strong> Uses extra compact size (3.5rem height)</p>
+            </div>
+        </div>
+
+        <div class="test-section">
+            <h3>🎨 Size Specifications</h3>
+            <p>Each header size has specific dimensions and styling:</p>
+            <div class="responsive-demo">
+                <h4>Size Details:</h4>
+                <p><strong>Small (sm):</strong> 3rem height, 2rem logo, compact spacing</p>
+                <p><strong>Medium (md):</strong> 4rem height, 2.5rem logo, standard spacing</p>
+                <p><strong>Large (lg):</strong> 5rem height, 3rem logo, generous spacing</p>
+                <p><strong>Extra Large (xl):</strong> 6rem height, 3.5rem logo, extra generous spacing</p>
+                <p><strong>Extra Extra Large (xxl):</strong> 7rem height, 4rem logo, maximum spacing</p>
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="dist/prism-theme.js"></script>
+    <script>
+        // Header size switching functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const header = document.getElementById('dynamic-header');
+            const sizeButtons = document.querySelectorAll('.size-btn');
+            const currentSizeLabel = document.getElementById('current-size');
+            
+            sizeButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const size = this.dataset.size;
+                    
+                    // Remove active class from all buttons
+                    sizeButtons.forEach(btn => btn.classList.remove('active'));
+                    // Add active class to clicked button
+                    this.classList.add('active');
+                    
+                    // Remove all size classes from header
+                    header.classList.remove('header--sm', 'header--md', 'header--lg', 'header--xl', 'header--xxl');
+                    // Add the selected size class
+                    header.classList.add(`header--${size}`);
+                    
+                    // Update the current size label
+                    currentSizeLabel.textContent = `Current: ${size.toUpperCase()} (${size})`;
+                });
+            });
+        });
+    </script>
+</body>
+</html>

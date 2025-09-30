@@ -1,0 +1,117 @@
+[
+    {
+      "id": "notif-001",
+      "type": "info",
+      "title": "New Dashboard Available",
+      "message": "We've launched a new dashboard layout. You can switch now or keep the classic one.",
+      "icon": "info-circle",
+      "cta": {
+        "label": "Try It Out",
+        "url": "/dashboard/new"
+      },
+      "read": false
+    },
+    {
+      "id": "notif-002",
+      "type": "success",
+      "title": "Files Uploaded Successfully",
+      "message": "All 12 files were uploaded and are ready for review.",
+      "icon": "check-circle",
+      "cta": null,
+      "read": false
+    },
+    {
+      "id": "notif-003",
+      "type": "warning",
+      "title": "Password Will Expire Soon",
+      "message": "Your password will expire in 5 days. Please update it to maintain access.",
+      "icon": "exclamation-triangle",
+      "cta": {
+        "label": "Update Password",
+        "url": "/settings/security"
+      },
+      "read": false
+    },
+    {
+      "id": "notif-004",
+      "type": "error",
+      "title": "Payment Failed",
+      "message": "We couldn't process your payment for this month. Please check your billing info.",
+      "icon": "times-circle",
+      "cta": {
+        "label": "Update Billing",
+        "url": "/billing"
+      },
+      "read": false
+    },
+    {
+      "id": "notif-005",
+      "type": "announcement",
+      "title": "We're Rebranding!",
+      "message": "Exciting changes are coming next week, including a new logo and brand colors.",
+      "icon": "bullhorn",
+      "cta": {
+        "label": "See What's Coming",
+        "url": "/announcement/rebrand"
+      },
+      "read": true
+    },
+    {
+      "id": "notif-006",
+      "type": "promotion",
+      "title": "50% Off for Pro Users",
+      "message": "Upgrade to Pro before the end of the month and get 50% off your first year.",
+      "icon": "tag",
+      "cta": {
+        "label": "Upgrade Now",
+        "url": "/pricing"
+      },
+      "read": false
+    },
+    {
+      "id": "notif-007",
+      "type": "system",
+      "title": "Maintenance Completed",
+      "message": "Our scheduled maintenance is complete. All systems are back online.",
+      "icon": "cog",
+      "cta": null,
+      "read": true
+    },
+    {
+      "id": "notif-008",
+      "type": "security",
+      "title": "New Login Detected",
+      "message": "A new login was detected from Chrome on a Windows device in Berlin, Germany.",
+      "icon": "shield-alt",
+      "cta": {
+        "label": "Review Activity",
+        "url": "/security/logins"
+      },
+      "read": false
+    },
+    {
+      "id": "notif-009",
+      "type": "reminder",
+      "title": "Team Standup in 15 Minutes",
+      "message": "Don’t forget your daily standup at 10:00 AM.",
+      "icon": "clock",
+      "cta": {
+        "label": "Open Calendar",
+        "url": "/calendar"
+      },
+      "read": false
+    },
+    {
+      "id": "notif-010",
+      "type": "feedback",
+      "title": "How Was Your Experience?",
+      "message": "You recently used our analytics feature. We'd love to hear your thoughts.",
+      "icon": "comment-alt",
+      "cta": {
+        "label": "Leave Feedback",
+        "url": "/feedback"
+      },
+      "read": false
+    }
+  ]
+  

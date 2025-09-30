@@ -13,6 +13,7 @@
   display: flex;
   align-items: center;
   padding: 0 $spacing-lg;
+  gap: $spacing-lg;
   
   // Header Brand
   &-brand {
@@ -23,6 +24,8 @@
     color: $text-primary;
     font-size: $font-size-lg;
     font-weight: $font-weight-semibold;
+    transition: color $transition-fast;
+    flex-shrink: 0; // Prevent brand from shrinking
     
     &:hover {
       color: $primary-color;
@@ -30,47 +33,39 @@
     }
     
     &-logo {
-      width: 2rem;
-      height: 2rem;
+      width: 2.5rem;
+      height: 2.5rem;
       object-fit: contain;
+      transition: all $transition-fast;
+      
+      // Multi-theme logo support
+      &--light {
+        display: block;
+      }
+      
+      &--dark {
+        display: none;
+      }
+      
+      // SVG styling
+      svg {
+        width: 100%;
+        height: 100%;
+        fill: currentColor;
+      }
+      
+      // Icon fallback styling
+      i {
+        font-size: 1.5rem;
+        color: $primary-color;
+      }
     }
     
     &-text {
+      white-space: nowrap;
+      
       @include respond-below(sm) {
         display: none;
-      }
-    }
-  }
-  
-  // Header Navigation
-  &-nav {
-    display: flex;
-    align-items: center;
-    gap: $spacing-sm;
-    margin-left: auto;
-    
-    &-item {
-      position: relative;
-    }
-    
-    &-link {
-      display: flex;
-      align-items: center;
-      padding: $spacing-sm $spacing-md;
-      color: $text-secondary;
-      text-decoration: none;
-      border-radius: $border-radius;
-      transition: all $transition-fast;
-      
-      &:hover {
-        color: $text-primary;
-        background-color: $bg-secondary;
-        text-decoration: none;
-      }
-      
-      &.active {
-        color: $primary-color;
-        background-color: color-alpha($primary-color, 0.1);
       }
     }
   }
@@ -81,24 +76,74 @@
     align-items: center;
     gap: $spacing-sm;
     margin-left: auto;
+    flex-shrink: 0; // Prevent actions from shrinking
     
     &-item {
       position: relative;
     }
+    
+    // Mobile search button
+    .header-search-btn {
+      @extend %btn-base;
+      
+      width: 2.5rem;
+      height: 2.5rem;
+      border-radius: $border-radius;
+      background-color: transparent;
+      color: $text-secondary;
+      transition: all $transition-fast;
+      
+      &:hover {
+        background-color: $bg-secondary;
+        color: $text-primary;
+      }
+      
+      @include respond-to(md) {
+        display: none; // Hide on desktop, show search bar instead
+      }
+    }
+    
+    // Theme toggle button
+    .btn-icon {
+      @extend %btn-base;
+      
+      width: 2.5rem;
+      height: 2.5rem;
+      border-radius: $border-radius;
+      background-color: transparent;
+      color: $text-secondary;
+      transition: all $transition-fast;
+      
+      &:hover {
+        background-color: $bg-secondary;
+        color: $text-primary;
+      }
+    }
   }
   
-  // Header Search
+  // Header Search (Layout only - functionality in search component)
   &-search {
     position: relative;
-    margin-right: $spacing-lg;
+    flex: 1;
+    max-width: 400px;
+    min-width: 200px;
     
-    &-input {
-      width: 300px;
-      height: 2.5rem;
+    @include respond-below(lg) {
+      max-width: 300px;
+    }
+    
+    @include respond-below(md) {
+      display: none; // Hide on mobile, use search button instead
+    }
+    
+    // Search input styling
+    .search-input {
+      width: 100%;
       padding: $spacing-sm $spacing-md $spacing-sm 2.5rem;
       border: 1px solid $border-color;
       border-radius: $border-radius-full;
       background-color: $bg-secondary;
+      color: $text-primary;
       font-size: $font-size-sm;
       transition: all $transition-fast;
       
@@ -114,255 +159,47 @@
       }
     }
     
-    &-icon {
+    // Search icon
+    .search-icon {
       position: absolute;
       left: $spacing-sm;
       top: 50%;
       transform: translateY(-50%);
       color: $text-muted;
       pointer-events: none;
-    }
-    
-    &-results {
-      position: absolute;
-      top: 100%;
-      left: 0;
-      right: 0;
-      background: $bg-primary;
-      border: 1px solid $border-color;
-      border-radius: $border-radius;
-      box-shadow: $shadow-lg;
-      z-index: $z-dropdown;
-      max-height: 400px;
-      overflow-y: auto;
-      margin-top: $spacing-xs;
-      
-      &-item {
-        padding: $spacing-sm $spacing-md;
-        border-bottom: 1px solid $border-color;
-        cursor: pointer;
-        transition: background-color $transition-fast;
-        
-        &:hover {
-          background-color: $bg-secondary;
-        }
-        
-        &:last-child {
-          border-bottom: none;
-        }
-      }
+      font-size: $font-size-sm;
     }
   }
   
-  // Header Notifications
+  // Header Notifications (Layout + component integration)
   &-notifications {
     position: relative;
     
-    &-toggle {
-      @extend %btn-base;
-      
-      position: relative;
-      width: 2.5rem;
-      height: 2.5rem;
-      border-radius: 50%;
-      background-color: transparent;
-      color: $text-secondary;
-      transition: all $transition-fast;
-      
-      &:hover {
-        background-color: $bg-secondary;
-        color: $text-primary;
-      }
-      
-      .notification-badge {
-        position: absolute;
-        top: -0.25rem;
-        right: -0.25rem;
-        width: 1rem;
-        height: 1rem;
-        background-color: $error-color;
-        color: $white;
-        font-size: 0.625rem;
-        font-weight: $font-weight-bold;
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-      }
-    }
-    
-    &-menu {
-      position: absolute;
-      top: 100%;
+    // Use notification component with header-specific positioning
+    .notification-dropdown {
+      // Inherits all styles from .notification-dropdown component
+      // Header-specific positioning
       right: 0;
-      width: 320px;
-      background: $bg-primary;
-      border: 1px solid $border-color;
-      border-radius: $border-radius;
-      box-shadow: $shadow-lg;
+      left: auto;
+      
+      // Ensure proper z-index for header context
       z-index: $z-dropdown;
-      margin-top: $spacing-xs;
-      
-      &-header {
-        padding: $spacing-md;
-        border-bottom: 1px solid $border-color;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        
-        .notifications-title {
-          font-size: $font-size-sm;
-          font-weight: $font-weight-semibold;
-          color: $text-primary;
-          margin: 0;
-        }
-        
-        .notifications-actions {
-          display: flex;
-          gap: $spacing-xs;
-        }
-      }
-      
-      &-body {
-        max-height: 300px;
-        overflow-y: auto;
-      }
-      
-      &-item {
-        padding: $spacing-md;
-        border-bottom: 1px solid $border-color;
-        cursor: pointer;
-        transition: background-color $transition-fast;
-        
-        &:hover {
-          background-color: $bg-secondary;
-        }
-        
-        &:last-child {
-          border-bottom: none;
-        }
-        
-        &.unread {
-          background-color: color-alpha($primary-color, 0.05);
-        }
-      }
-      
-      &-footer {
-        padding: $spacing-md;
-        border-top: 1px solid $border-color;
-        text-align: center;
-        
-        .btn {
-          font-size: $font-size-xs;
-        }
-      }
     }
   }
   
-  // Header User Menu
+  // Header User Menu (Layout + component integration)
   &-user {
     position: relative;
     
-    &-toggle {
-      @extend %btn-base;
-      
-      display: flex;
-      align-items: center;
-      gap: $spacing-sm;
-      padding: $spacing-xs;
-      border-radius: $border-radius;
-      transition: all $transition-fast;
-      
-      &:hover {
-        background-color: $bg-secondary;
-      }
-      
-      .user-avatar {
-        width: 2rem;
-        height: 2rem;
-        border-radius: 50%;
-        object-fit: cover;
-      }
-      
-      .user-name {
-        font-size: $font-size-sm;
-        color: $text-primary;
-        margin: 0;
-        
-        @include respond-below(sm) {
-          display: none;
-        }
-      }
-      
-      .user-arrow {
-        font-size: 0.75rem;
-        color: $text-muted;
-        transition: transform $transition-fast;
-        
-        @include respond-below(sm) {
-          display: none;
-        }
-      }
-    }
-    
-    &-menu {
-      position: absolute;
-      top: 100%;
+    // Use user-menu component with header-specific positioning
+    .user-dropdown {
+      // Inherits all styles from .user-dropdown component
+      // Header-specific positioning
       right: 0;
-      width: 200px;
-      background: $bg-primary;
-      border: 1px solid $border-color;
-      border-radius: $border-radius;
-      box-shadow: $shadow-lg;
+      left: auto;
+      
+      // Ensure proper z-index for header context
       z-index: $z-dropdown;
-      margin-top: $spacing-xs;
-      
-      &-header {
-        padding: $spacing-md;
-        border-bottom: 1px solid $border-color;
-        text-align: center;
-        
-        .user-info {
-          .user-name {
-            font-size: $font-size-sm;
-            font-weight: $font-weight-medium;
-            color: $text-primary;
-            margin: 0 0 $spacing-xs;
-          }
-          
-          .user-email {
-            font-size: $font-size-xs;
-            color: $text-muted;
-            margin: 0;
-          }
-        }
-      }
-      
-      &-body {
-        padding: $spacing-sm 0;
-      }
-      
-      &-item {
-        display: block;
-        width: 100%;
-        padding: $spacing-sm $spacing-md;
-        color: $text-primary;
-        text-decoration: none;
-        font-size: $font-size-sm;
-        transition: background-color $transition-fast;
-        
-        &:hover {
-          background-color: $bg-secondary;
-          text-decoration: none;
-        }
-        
-        &.divider {
-          height: 1px;
-          background-color: $border-color;
-          margin: $spacing-sm 0;
-          padding: 0;
-        }
-      }
     }
   }
   
@@ -391,34 +228,198 @@
     }
   }
   
-  // Header Variants
+  // Header Size Variants
+  &--sm {
+    height: $header-height-sm;
+    
+    .header-brand-logo {
+      width: 2rem;
+      height: 2rem;
+    }
+    
+    .header-brand-text {
+      font-size: $font-size-base;
+    }
+    
+    .search-input {
+      padding: $spacing-xs $spacing-sm $spacing-xs 2rem;
+      font-size: $font-size-xs;
+    }
+    
+    .btn-icon {
+      width: 2rem;
+      height: 2rem;
+    }
+  }
+  
+  &--md {
+    height: $header-height-md;
+    // Default styles already applied
+  }
+  
+  &--lg {
+    height: $header-height-lg;
+    
+    .header-brand-logo {
+      width: 3rem;
+      height: 3rem;
+    }
+    
+    .header-brand-text {
+      font-size: $font-size-xl;
+    }
+    
+    .search-input {
+      padding: $spacing-md $spacing-lg $spacing-md 3rem;
+      font-size: $font-size-base;
+    }
+    
+    .btn-icon {
+      width: 3rem;
+      height: 3rem;
+    }
+  }
+  
+  &--xl {
+    height: $header-height-xl;
+    
+    .header-brand-logo {
+      width: 3.5rem;
+      height: 3.5rem;
+    }
+    
+    .header-brand-text {
+      font-size: $font-size-2xl;
+    }
+    
+    .search-input {
+      padding: $spacing-lg $spacing-xl $spacing-lg 3.5rem;
+      font-size: $font-size-lg;
+    }
+    
+    .btn-icon {
+      width: 3.5rem;
+      height: 3.5rem;
+    }
+  }
+  
+  &--xxl {
+    height: $header-height-xxl;
+    
+    .header-brand-logo {
+      width: 4rem;
+      height: 4rem;
+    }
+    
+    .header-brand-text {
+      font-size: $font-size-3xl;
+    }
+    
+    .search-input {
+      padding: $spacing-xl $spacing-2xl $spacing-xl 4rem;
+      font-size: $font-size-xl;
+    }
+    
+    .btn-icon {
+      width: 4rem;
+      height: 4rem;
+    }
+  }
+
+  // Header Style Variants
   &--transparent {
     background-color: transparent;
     border-bottom: none;
   }
   
-  &--dark {
-    background-color: $gray-900;
-    border-bottom-color: $gray-800;
-    color: $white;
+  &--sticky {
+    position: sticky;
+    top: 0;
+  }
+  
+  // Responsive Header Sizing
+  // Automatically adjust header size based on screen size
+  @include respond-below(lg) {
+    // On large screens and below, use medium size
+    height: $header-height-md;
+  }
+  
+  @include respond-below(md) {
+    // On medium screens and below, use small size
+    height: $header-height-sm;
     
-    .header-brand {
-      color: $white;
+    .header-brand-logo {
+      width: 2rem;
+      height: 2rem;
     }
     
-    .header-nav-link {
-      color: $gray-300;
-      
-      &:hover {
-        color: $white;
-        background-color: $gray-800;
+    .header-brand-text {
+      font-size: $font-size-base;
+    }
+    
+    .search-input {
+      padding: $spacing-xs $spacing-sm $spacing-xs 2rem;
+      font-size: $font-size-xs;
+    }
+    
+    .btn-icon {
+      width: 2rem;
+      height: 2rem;
+    }
+  }
+  
+  @include respond-below(sm) {
+    // On small screens, use extra compact size
+    height: 3.5rem;
+    padding: 0 $spacing-md;
+    gap: $spacing-sm;
+    
+    .header-brand-logo {
+      width: 1.75rem;
+      height: 1.75rem;
+    }
+    
+    .header-brand-text {
+      font-size: $font-size-sm;
+    }
+    
+    .search-input {
+      padding: $spacing-xs $spacing-sm $spacing-xs 1.75rem;
+      font-size: $font-size-xs;
+    }
+    
+    .btn-icon {
+      width: 1.75rem;
+      height: 1.75rem;
+    }
+  }
+
+  // Responsive behavior for header dropdowns
+  @include respond-below(md) {
+    .header-notifications,
+    .header-user {
+      // Ensure dropdowns work on mobile
+      .notification-dropdown,
+      .user-dropdown {
+        // Adjust positioning for mobile
+        right: -$spacing-sm;
+        left: auto;
+        width: calc(100vw - #{$spacing-lg * 2});
+        max-width: 320px;
       }
     }
   }
   
-  &--sticky {
-    position: sticky;
-    top: 0;
+  @include respond-below(sm) {
+    .header-notifications,
+    .header-user {
+      .notification-dropdown,
+      .user-dropdown {
+        // Full width on very small screens
+        width: calc(100vw - #{$spacing-md * 2});
+        right: -$spacing-xs;
+      }
+    }
   }
 }
 

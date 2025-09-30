@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Header Test - Prism Theme</title>
+    <link rel="stylesheet" href="dist/prism-theme.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            background-color: var(--bg-secondary);
+            color: var(--text-primary);
+        }
+        .test-content {
+            padding: 2rem;
+            margin-top: 4rem; /* Account for fixed header */
+        }
+        .test-section {
+            background-color: var(--bg-primary);
+            border: 1px solid var(--border-color);
+            border-radius: 0.5rem;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        .test-section h3 {
+            margin-top: 0;
+            color: var(--text-primary);
+        }
+        .test-section p {
+            color: var(--text-secondary);
+            margin-bottom: 0;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-brand">
+            <div class="header-brand-logo">
+                <!-- Light theme logo -->
+                <img src="assets/prism_logo_light.svg" alt="Prism Admin" class="header-brand-logo--light">
+                <!-- Dark theme logo -->
+                <img src="assets/prism_logo_dark.svg" alt="Prism Admin" class="header-brand-logo--dark">
+            </div>
+            <span class="header-brand-text">Prism Admin</span>
+        </div>
+
+        <div class="header-search">
+            <input type="text" class="search-input" placeholder="Search...">
+            <i class="fas fa-search search-icon"></i>
+        </div>
+
+        <div class="header-actions">
+            <!-- Search Button (visible on mobile) -->
+            <button class="btn-icon header-search-btn" data-sidebar-search-toggle aria-label="Search">
+                <i class="fas fa-search"></i>
+            </button>
+            
+            <!-- Theme Toggle -->
+            <button class="btn-icon" data-theme-toggle aria-label="Toggle theme">
+                <i class="fas fa-moon"></i>
+            </button>
+
+            <!-- Notifications -->
+            <div class="header-notifications" data-component="dropdown">
+                <button class="notification-toggle dropdown-toggle" aria-expanded="false" aria-haspopup="true">
+                    <i class="fas fa-bell"></i>
+                    <span class="notification-badge">3</span>
+                </button>
+                <div class="notification-dropdown dropdown-menu" role="menu">
+                    <div class="notification-dropdown-header">
+                        <h6 class="notification-title">Notifications</h6>
+                        <div class="notification-actions">
+                            <button class="btn btn--sm btn--ghost">Mark all read</button>
+                        </div>
+                    </div>
+                    <div class="notification-dropdown-body">
+                        <div class="notification-item unread" role="menuitem">
+                            <div class="notification-content">
+                                <p class="notification-title">New user registered</p>
+                                <p class="notification-text">John Doe just joined your platform</p>
+                                <p class="notification-time">2 minutes ago</p>
+                            </div>
+                        </div>
+                        <div class="notification-item" role="menuitem">
+                            <div class="notification-content">
+                                <p class="notification-title">Server maintenance</p>
+                                <p class="notification-text">Scheduled maintenance in 2 hours</p>
+                                <p class="notification-time">1 hour ago</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="notification-dropdown-footer">
+                        <button class="btn btn--sm btn--primary">View all notifications</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- User Menu -->
+            <div class="header-user" data-component="dropdown">
+                <button class="user-toggle dropdown-toggle" aria-expanded="false" aria-haspopup="true">
+                    <img src="https://placehold.co/32x32.png" alt="User" class="user-avatar">
+                    <span class="user-name">John Doe</span>
+                    <i class="fas fa-chevron-down user-arrow"></i>
+                </button>
+                <div class="user-dropdown dropdown-menu" role="menu">
+                    <div class="user-dropdown-header">
+                        <div class="user-info">
+                            <p class="user-name">John Doe</p>
+                            <p class="user-email">john@example.com</p>
+                        </div>
+                    </div>
+                    <div class="user-dropdown-body">
+                        <a href="#" class="user-item with-icon" role="menuitem">
+                            <div class="user-item-icon"><i class="fas fa-user"></i></div> Profile
+                        </a>
+                        <a href="#" class="user-item with-icon" role="menuitem">
+                            <div class="user-item-icon"><i class="fas fa-cog"></i></div> Settings
+                        </a>
+                        <div class="user-item divider"></div>
+                        <a href="#" class="user-item with-icon" role="menuitem">
+                            <div class="user-item-icon"><i class="fas fa-sign-out-alt"></i></div> Logout
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="test-content">
+        <h1>Header Layout Test</h1>
+        
+        <div class="test-section">
+            <h3>🎨 Multi-Theme Logo Support</h3>
+            <p>Click the theme toggle button to see the logo switch between light and dark versions automatically.</p>
+        </div>
+        
+        <div class="test-section">
+            <h3>🔍 Search Bar Positioning</h3>
+            <p>The search bar is now properly positioned with flexible width, responsive behavior, and clean styling.</p>
+        </div>
+        
+        <div class="test-section">
+            <h3>📱 Mobile Responsiveness</h3>
+            <p>On mobile devices, the search bar is hidden and replaced with a search button. Resize your browser to test this behavior.</p>
+        </div>
+        
+        <div class="test-section">
+            <h3>🎯 Dropdown Functionality</h3>
+            <p>Click on the notification bell or user avatar to test the dropdown functionality. Both should work perfectly with the new component architecture.</p>
+        </div>
+        
+        <div class="test-section">
+            <h3>⚡ Performance</h3>
+            <p>All header components are now optimized with proper flexbox layout, consistent spacing, and smooth transitions.</p>
+        </div>
+    </main>
+
+    <script type="module" src="src/index.js"></script>
+</body>
+</html>

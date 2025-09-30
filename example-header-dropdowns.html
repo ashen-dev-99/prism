@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Header Dropdowns - Prism Theme</title>
+        <!-- favicon -->
+         <link rel="shortcut icon" href="./assets/prism_favicon_16.svg" type="image/x-icon" size="16X16">
+
+        <link rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    </head>
+    <body>
+        <!-- Header -->
+        <header class="header">
+            <div class="header-brand">
+                <div class="header-brand-logo">
+                    <i class="fas fa-cube"></i>
+                </div>
+                <span class="header-brand-text">Prism Admin</span>
+            </div>
+
+            <div class="header-actions">
+                <!-- Search Button (visible when sidebar is collapsed) -->
+                <button class="btn-icon header-search-btn"
+                    data-sidebar-search-toggle aria-label="Search">
+                    <i class="fas fa-search"></i>
+                </button>
+
+                <!-- Theme Toggle -->
+                <button class="btn-icon" data-theme-toggle
+                    aria-label="Toggle theme">
+                    <i class="fas fa-moon"></i>
+                </button>
+
+                <!-- Notifications Dropdown -->
+                <div class="header-notifications" data-component="dropdown">
+                    <button class="notification-toggle dropdown-toggle"
+                        aria-expanded="false" aria-haspopup="true">
+                        <i class="fas fa-bell"></i>
+                        <span class="notification-badge">3</span>
+                    </button>
+                    <div class="notification-dropdown dropdown-menu"
+                        role="menu">
+                        <div class="notification-dropdown-header">
+                            <h6 class="notification-title">Notifications</h6>
+                            <div class="notification-actions">
+                                <button class="btn btn--sm btn--ghost">Mark all
+                                    read</button>
+                            </div>
+                        </div>
+                        <div class="notification-dropdown-body">
+                            <div class="notification-item unread"
+                                role="menuitem">
+                                <div class="notification-content">
+                                    <div
+                                        class="notification-icon notification-icon--primary">
+                                        <i class="fas fa-user-plus"></i>
+                                    </div>
+                                    <div class="notification-details">
+                                        <p class="notification-title">New user
+                                            registered</p>
+                                        <p class="notification-text">John Doe
+                                            just joined your platform</p>
+                                        <p class="notification-time">2 minutes
+                                            ago</p>
+                                    </div>
+                                    <div class="notification-actions">
+                                        <button class="notification-action"
+                                            aria-label="Mark as read">
+                                            <i class="fas fa-check"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="notification-item" role="menuitem">
+                                <div class="notification-content">
+                                    <div
+                                        class="notification-icon notification-icon--warning">
+                                        <i class="fas fa-tools"></i>
+                                    </div>
+                                    <div class="notification-details">
+                                        <p class="notification-title">Server
+                                            maintenance</p>
+                                        <p class="notification-text">Scheduled
+                                            maintenance in 2 hours</p>
+                                        <p class="notification-time">1 hour
+                                            ago</p>
+                                    </div>
+                                    <div class="notification-actions">
+                                        <button class="notification-action"
+                                            aria-label="Mark as read">
+                                            <i class="fas fa-check"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="notification-item" role="menuitem">
+                                <div class="notification-content">
+                                    <div
+                                        class="notification-icon notification-icon--success">
+                                        <i class="fas fa-check-circle"></i>
+                                    </div>
+                                    <div class="notification-details">
+                                        <p class="notification-title">Backup
+                                            completed</p>
+                                        <p class="notification-text">Daily
+                                            backup completed successfully</p>
+                                        <p class="notification-time">3 hours
+                                            ago</p>
+                                    </div>
+                                    <div class="notification-actions">
+                                        <button class="notification-action"
+                                            aria-label="Mark as read">
+                                            <i class="fas fa-check"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="notification-dropdown-footer">
+                            <button class="btn btn--sm btn--primary">View all
+                                notifications</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- User Menu Dropdown -->
+                <div class="header-user" data-component="dropdown">
+                    <button class="user-toggle dropdown-toggle"
+                        aria-expanded="false" aria-haspopup="true">
+                        <img src="https://placehold.co/32x32.png" alt="User"
+                            class="user-avatar">
+                        <span class="user-name">John Doe</span>
+                        <i class="fas fa-chevron-down user-arrow"></i>
+                    </button>
+                    <div class="user-dropdown dropdown-menu" role="menu">
+                        <div class="user-dropdown-header">
+                            <div class="user-info">
+                                <p class="user-name">John Doe</p>
+                                <p class="user-email">john@example.com</p>
+                                <span class="user-role">Administrator</span>
+                            </div>
+                        </div>
+                        <div class="user-dropdown-body">
+                            <a href="#" class="user-item with-icon"
+                                role="menuitem">
+                                <div class="user-item-icon">
+                                    <i class="fas fa-user"></i>
+                                </div>
+                                <div class="user-item-text">Profile</div>
+                            </a>
+                            <a href="#" class="user-item with-icon"
+                                role="menuitem">
+                                <div class="user-item-icon">
+                                    <i class="fas fa-cog"></i>
+                                </div>
+                                <div class="user-item-text">Settings</div>
+                            </a>
+                            <a href="#" class="user-item with-icon"
+                                role="menuitem">
+                                <div class="user-item-icon">
+                                    <i class="fas fa-bell"></i>
+                                </div>
+                                <div class="user-item-text">Notifications</div>
+                                <div class="user-item-badge">5</div>
+                            </a>
+                            <div class="user-item divider"></div>
+                            <a href="#" class="user-item with-icon"
+                                role="menuitem">
+                                <div class="user-item-icon">
+                                    <i class="fas fa-sign-out-alt"></i>
+                                </div>
+                                <div class="user-item-text">Logout</div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <div class="container">
+                <h1>Header Dropdowns Demo</h1>
+                <p>This page demonstrates the header dropdowns using the new
+                    component architecture.</p>
+
+                <div class="card">
+                    <div class="card-header">
+                        <h3>Features Demonstrated</h3>
+                    </div>
+                    <div class="card-body">
+                        <ul>
+                            <li><strong>Notifications Dropdown:</strong> Uses
+                                the notification component with proper ARIA
+                                attributes</li>
+                            <li><strong>User Menu Dropdown:</strong> Uses the
+                                user-menu component with proper ARIA
+                                attributes</li>
+                            <li><strong>Component Architecture:</strong> Each
+                                dropdown uses its dedicated component</li>
+                            <li><strong>Accessibility:</strong> Proper ARIA
+                                attributes and keyboard navigation</li>
+                            <li><strong>Dark Mode:</strong> Both dropdowns
+                                support dark mode</li>
+                            <li><strong>Responsive:</strong> Adapts to different
+                                screen sizes</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <script type="module" src="src/index.js"></script>
+
+    </body>
+</html>

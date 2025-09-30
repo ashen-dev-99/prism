@@ -5,9 +5,11 @@ import './styles/main.scss'
 import ThemeManager from './utils/theme-manager.js'
 import ComponentRegistry from './utils/component-registry.js'
 import Sidebar from './utils/sidebar.js'
+import NotificationManager from './utils/notification-manager.js'
+import HeaderSearch from './utils/header-search.js'
 
 // Export theme utilities
-export { ThemeManager, ComponentRegistry, Sidebar }
+export { ThemeManager, ComponentRegistry, Sidebar, NotificationManager, HeaderSearch }
 
 // Auto-initialize theme and components
 document.addEventListener('DOMContentLoaded', () => {
@@ -24,6 +26,21 @@ document.addEventListener('DOMContentLoaded', () => {
   if (sidebarElement) {
     window.sidebar = new Sidebar(sidebarElement)
     console.log('Sidebar initialized')
+  }
+
+  // Initialize notification manager
+  const notificationDropdown = document.querySelector('.notification-dropdown');
+  const notificationBadge = document.querySelector('.notification-badge');
+  if (notificationDropdown && notificationBadge) {
+      window.notificationManager = new NotificationManager(notificationDropdown, notificationBadge);
+      console.log('Notification Manager initialized');
+  }
+
+  // Initialize header search
+  const headerSearchElement = document.querySelector('.header-search');
+  if (headerSearchElement) {
+      window.headerSearch = new HeaderSearch(headerSearchElement);
+      console.log('Header Search initialized');
   }
   
   console.log('All components initialized')

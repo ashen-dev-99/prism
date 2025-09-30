@@ -1,0 +1,40 @@
+<svg width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+  <!-- Simplified prism for small size -->
+  <g transform="translate(8, 8)">
+    <!-- Main prism face -->
+    <polygon points="-6,-4 0,-8 6,-4 6,4 0,8 -6,4" 
+             fill="url(#gradient1)" 
+             stroke="#334155" 
+             stroke-width="0.3"/>
+    
+    <!-- Top face -->
+    <polygon points="-6,-4 0,-8 0,-3 -6,1" 
+             fill="url(#gradient2)" 
+             stroke="#334155" 
+             stroke-width="0.3"/>
+    
+    <!-- Right face -->
+    <polygon points="0,-8 6,-4 6,4 0,8 0,-3" 
+             fill="url(#gradient3)" 
+             stroke="#334155" 
+             stroke-width="0.3"/>
+  </g>
+  
+  <!-- Gradients -->
+  <defs>
+    <linearGradient id="gradient1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#3b82f6;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#1d4ed8;stop-opacity:1" />
+    </linearGradient>
+    
+    <linearGradient id="gradient2" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#60a5fa;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#3b82f6;stop-opacity:1" />
+    </linearGradient>
+    
+    <linearGradient id="gradient3" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1d4ed8;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#1e40af;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+</svg>

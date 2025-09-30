@@ -1,0 +1,61 @@
+<svg width="200" height="60" viewBox="0 0 200 60" xmlns="http://www.w3.org/2000/svg">
+  <!-- Light background circle -->
+  <circle cx="30" cy="30" r="26" fill="#ffffff" stroke="#e2e8f0" stroke-width="1"/>
+  
+  <!-- Main prism geometric shapes -->
+  <g transform="translate(30, 30)">
+    <!-- Primary prism face -->
+    <polygon points="-12,-8 0,-16 12,-8 12,8 0,16 -12,8" 
+             fill="url(#lightGradient1)" 
+             stroke="#334155" 
+             stroke-width="0.5"/>
+    
+    <!-- Top face -->
+    <polygon points="-12,-8 0,-16 0,-6 -12,2" 
+             fill="url(#lightGradient2)" 
+             stroke="#334155" 
+             stroke-width="0.5"/>
+    
+    <!-- Right face -->
+    <polygon points="0,-16 12,-8 12,8 0,16 0,-6" 
+             fill="url(#lightGradient3)" 
+             stroke="#334155" 
+             stroke-width="0.5"/>
+             
+    <!-- Subtle highlight for depth -->
+    <polygon points="-9,-6 -3,-12 3,-9 -3,-3" 
+             fill="#ffffff40" 
+             stroke="none"/>
+  </g>
+  
+  <!-- Text for light theme -->
+  <text x="70" y="25" 
+        font-family="'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif" 
+        font-size="20" 
+        font-weight="600" 
+        fill="#1e293b">PRISM</text>
+  <text x="70" y="42" 
+        font-family="'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif" 
+        font-size="11" 
+        font-weight="400" 
+        fill="#64748b" 
+        letter-spacing="0.05em">THEME</text>
+  
+  <!-- Light theme gradients -->
+  <defs>
+    <linearGradient id="lightGradient1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#3b82f6;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#1d4ed8;stop-opacity:1" />
+    </linearGradient>
+    
+    <linearGradient id="lightGradient2" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#60a5fa;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#3b82f6;stop-opacity:1" />
+    </linearGradient>
+    
+    <linearGradient id="lightGradient3" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1d4ed8;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#1e40af;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+</svg>
